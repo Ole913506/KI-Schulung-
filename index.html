@@ -180,6 +180,38 @@ code{font-family:var(--mono); font-size:.86em; background:rgba(15,92,74,.10); pa
   transition:background .15s;
 }
 .uebe-knopf:hover{background:var(--akzent); color:var(--tinte)}
+/* ---------- Abbildungen ----------
+   Schematische Zeichnungen, keine Bildschirmfotos. Alle Farben kommen aus
+   den Tokens oben, damit sie im Dunkelmodus automatisch mitgehen. */
+.abb{margin:30px 0; padding:22px 20px 16px; background:var(--karte);
+  border:1px solid var(--linie); border-radius:var(--r)}
+.abb svg{display:block; width:100%; height:auto; overflow:visible}
+.abb figcaption{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--grau-hell); margin-top:14px;
+  padding-top:12px; border-top:1px solid var(--linie)}
+.abb figcaption b{font-weight:700; color:var(--grau); text-transform:none;
+  letter-spacing:0; font-family:var(--body); font-size:13.5px; display:block; margin-bottom:3px}
+.abb .fl{fill:var(--karte)}
+.abb .fl-leit{fill:var(--leit-flaeche)}
+.abb .fl-weich{fill:var(--papier-tief)}
+.abb .fl-gelb{fill:var(--gelb-feld)}
+.abb .str{stroke:var(--linie-stark); fill:none; stroke-width:1.5}
+.abb .str-leit{stroke:var(--leit); fill:none; stroke-width:2}
+.abb .str-akzent{stroke:var(--akzent); fill:none; stroke-width:2}
+.abb .str-fein{stroke:var(--linie); fill:none; stroke-width:1}
+.abb text{font-family:var(--body); fill:var(--tinte); font-size:13px}
+.abb .t-klein{font-size:11px; fill:var(--grau)}
+.abb .t-mono{font-family:var(--mono); font-size:10px; fill:var(--grau-hell);
+  letter-spacing:.1em; text-transform:uppercase}
+.abb .t-weiss{fill:#fff}
+.abb .t-fett{font-weight:600}
+.abb .t-akzent{fill:var(--akzent-text); font-weight:600}
+@media (max-width:720px){
+  .abb{padding:16px 12px 12px}
+  .abb text{font-size:14px}
+  .abb .t-klein{font-size:12px}
+  .abb .t-mono{font-size:11px}
+}
 .uebe-zeile{
   display:flex; align-items:center; gap:14px; flex-wrap:wrap;
   margin:26px 0 6px; padding:14px 16px; border:1px dashed var(--linie-stark);
@@ -275,6 +307,29 @@ h2{font-size:clamp(27px,3.9vw,37px)}
   text-decoration:none; margin-left:.4em; opacity:0; transition:opacity .15s;
 }
 h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
+/* ---------- Platz für eigene Bildschirmfotos ----------
+   Diese Kästen sind absichtlich leer. Anleitung zum Füllen steht
+   im Kasten selbst und in einem HTML-Kommentar direkt darüber.
+   Sind alle gefüllt, kann die Regel .platzhalter{display:none} in
+   den Stilblock, falls doch einer übrig bleibt. */
+.platzhalter{margin:26px 0; padding:26px 22px; border:2px dashed var(--linie-stark);
+  border-radius:var(--r); background:repeating-linear-gradient(135deg,
+    transparent 0 9px, rgba(255,107,44,.045) 9px 18px)}
+.platzhalter b{display:block; font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--akzent-text); margin-bottom:9px}
+.platzhalter strong{display:block; font-family:var(--display); font-weight:800;
+  font-size:17px; letter-spacing:-.02em; margin-bottom:7px; color:var(--tinte)}
+.platzhalter p{margin:0 0 6px; font-size:14.5px; color:var(--grau)}
+.platzhalter em{display:block; margin-top:11px; font-family:var(--mono); font-size:10.5px;
+  line-height:1.7; color:var(--grau-hell); font-style:normal}
+.platzhalter img{display:block; width:100%; height:auto; border-radius:2px}
+@media (max-width:720px){.platzhalter{padding:18px 14px}}
+.stand{display:flex; gap:9px; align-items:baseline; margin:-6px 0 20px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.08em; color:var(--grau-hell)}
+.stand b{flex:0 0 auto; font-weight:700; color:var(--akzent-text); text-transform:uppercase;
+  letter-spacing:.14em; font-size:9.5px}
+.stand span{color:var(--grau)}
+@media print{.stand{color:#555}}
 .ziel{font-family:var(--mono); font-size:11.5px; line-height:1.7; color:var(--tinte);
   border-left:3px solid var(--akzent); padding:2px 0 2px 13px; margin:16px 0 26px}
 .ziel b{color:var(--akzent-text); letter-spacing:.08em; text-transform:uppercase; font-size:10px; display:block; margin-bottom:2px}
@@ -290,9 +345,9 @@ h4{font-family:var(--body); font-weight:600; font-size:16px; margin:22px 0 7px; 
 .teilung > div{padding:15px 17px}
 .teilung .ki{background:rgba(15,92,74,.08); border-right:1.5px solid var(--tinte)}
 .teilung .mensch{background:var(--gelb-feld)}
-.teilung h5{margin:0 0 8px; font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:700}
-.teilung .ki h5{color:var(--leit-tief)}
-.teilung .mensch h5{color:var(--gelb-text)}
+.teilung h4{margin:0 0 8px; font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; font-weight:700}
+.teilung .ki h4{color:var(--leit-tief)}
+.teilung .mensch h4{color:var(--gelb-text)}
 .teilung ul{margin:0; padding-left:1.05em; font-size:14.5px}
 .teilung ul:last-child{margin-bottom:0}
 .teilung p{font-size:14.5px}
@@ -301,8 +356,8 @@ h4{font-family:var(--body); font-weight:600; font-size:16px; margin:22px 0 7px; 
 /* --- Ergebnisvergleich schwach / stark --- */
 .gegenueber .schwach{background:rgba(176,58,0,.07); border-right:1.5px solid var(--tinte)}
 .gegenueber .stark{background:rgba(15,92,74,.08)}
-.gegenueber .schwach h5{color:var(--akzent-text)}
-.gegenueber .stark h5{color:var(--leit-tief)}
+.gegenueber .schwach h4{color:var(--akzent-text)}
+.gegenueber .stark h4{color:var(--leit-tief)}
 .gegenueber blockquote{margin:0 0 10px; font-size:14.5px; font-style:italic; line-height:1.55}
 .gegenueber .befund{font-family:var(--mono); font-size:11px; line-height:1.6; color:var(--grau); margin:0}
 
@@ -355,7 +410,7 @@ tr:last-child td{border-bottom:0}
 /* --- Branchenpfade --- */
 .pfade{display:grid; gap:14px; margin:24px 0}
 .pfad{border:1.5px solid var(--tinte); border-radius:var(--r); background:var(--karte); padding:16px 18px}
-.pfad h4{margin:0 0 3px; font-family:var(--display); font-weight:800; font-size:17px; letter-spacing:-.02em}
+.pfad h3{margin:0 0 3px; font-family:var(--display); font-weight:800; font-size:17px; letter-spacing:-.02em}
 .pfad .rolle{font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--akzent-text); margin-bottom:9px}
 .pfad p{font-size:14.5px; margin:0 0 10px}
 .pfad .kette{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
@@ -425,6 +480,12 @@ details > div > *:last-child{margin-bottom:0}
   details{border:0} details[open] > div{border:0}
   .modul{page-break-inside:auto}
   h2,h3{page-break-after:avoid}
+  /* Abbildungen und Kästen nicht mitten durchschneiden */
+  .abb,.merk,.warnung,.uebung,.prompt,.teilung,figure{page-break-inside:avoid}
+  .abb{border-color:#999; background:none}
+  .abb figcaption{color:#333; border-top-color:#999}
+  .platzhalter{border-style:solid; border-color:#999}
+  .platzhalter em{color:#555}
 }
 
 /* ============================================================
@@ -681,7 +742,7 @@ details > div > *:last-child{margin-bottom:0}
     <p class="vorspann">Hundert Stunden pro Woche klingt nach einem Werbeversprechen. Es ist eine Rechnung – und du machst sie gleich hier selbst auf. Dieses Programm zeigt dir Aufgabe für Aufgabe, welche Arbeit in einem kleinen Unternehmen an Claude abgegeben werden kann, wie du sie sauber übergibst und wo du besser die Finger davon lässt.</p>
     <div class="meta-zeile">
       <span class="marke">18 Module</span>
-      <span class="marke">≈ 9 Stunden</span>
+      <span class="marke" title="Reine Lesezeit gemessen am Textumfang. Die Übungen an eigenem Material kommen dazu und dauern erfahrungsgemäß länger als das Lesen.">2,5 h lesen · Üben dauert länger</span>
       <span class="marke">52 Prompts zum Kopieren</span>
       <span class="marke">Übungsteil mit 15 Themen</span>
       <span class="marke">Ohne Vorkenntnisse</span>
@@ -789,6 +850,7 @@ details > div > *:last-child{margin-bottom:0}
 <section class="modul" id="m00">
   <div class="modul-kopf"><span class="modul-nr">00</span><h2>In 60 Minuten startklar</h2></div>
   <p class="ziel"><b>Lernziel</b>Du hast ein Konto, weißt, welche Arbeitsform für welche Aufgabe gedacht ist, und hast eine echte Aufgabe aus deinem Betrieb damit erledigt. Wenn du Claude schon täglich nutzt, überspring dieses Modul.</p>
+  <p class="stand"><b>Stand August 2026</b><span>Beschreibt Zugänge und Arbeitsformen. Funktionsumfang und Grenzen ändern sich – im Zweifel bei claude.com/pricing gegenprüfen.</span></p>
 
   <h3>Welcher Zugang für dich</h3>
   <p>Claude gibt es als kostenlose Version und in mehreren bezahlten Stufen. Der Unterschied zwischen den Stufen ist vor allem, <b>wie viel</b> du nutzen kannst und wie viele Zusatzfunktionen dabei sind – nicht, ob die Antworten besser werden.</p>
@@ -814,6 +876,28 @@ details > div > *:last-child{margin-bottom:0}
   </table></div>
   <div class="merk"><span class="etikett">Der Unterschied, der am meisten ausmacht</span>
     <p>Eine Frage ohne Anhang beantwortet Claude aus allgemeinem Wissen – korrekt formuliert, aber austauschbar und ohne Bezug zu deinem Betrieb. Dieselbe Frage <i>mit</i> deinem Angebot, deiner Preisliste, deinem Vertrag beantwortet sie aus deinem Material. Wenn du aus Modul 00 nur eine Sache mitnimmst: Häng an, was du hast.</p>
+  </div>
+
+  <!-- ===== BILDSCHIRMFOTO 01 EINSETZEN =====
+       Ersetze den gesamten <div class="platzhalter">…</div> unten durch:
+
+         <figure class="abb">
+           <img src="bilder/01.png" alt="Die Arbeitsformen im Überblick">
+           <figcaption><b>Bildschirmfoto 01 · Die Arbeitsformen im Überblick</b>Wo du Chat, Projekte und die übrigen Arbeitsformen findest — der Punkt, an dem Einsteiger am häufigsten hängenbleiben.</figcaption>
+         </figure>
+
+       Lege die Bilddatei in einen Ordner "bilder" neben dieser HTML-Datei.
+       Soll alles in EINER Datei bleiben, nimm statt des Pfades das Bild
+       als Datenstrom: src="data:image/png;base64,IVBORw0KG…"
+       (Ein Bild in Base64 umwandeln kann jedes Online-Werkzeug oder
+        unter Linux/Mac: base64 -w0 bild.png)
+       ====================================== -->
+  <div class="platzhalter">
+    <b>Platz für dein Bildschirmfoto · 01</b>
+    <strong>Die Arbeitsformen im Überblick</strong>
+    <p>Wo du Chat, Projekte und die übrigen Arbeitsformen findest — der Punkt, an dem Einsteiger am häufigsten hängenbleiben.</p>
+    <em>So füllst du ihn: Öffne die Startseite nach dem Anmelden und fotografiere den Bereich mit der Seitenleiste ab. Persönliche Chattitel vorher unkenntlich machen.<br>
+    Die genaue Anleitung steht im HTML-Kommentar direkt über diesem Kasten.</em>
   </div>
 
   <h3>Was du in der ersten Stunde tust</h3>
@@ -911,6 +995,53 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
     <tr><td><b>Selten</b></td><td><b>Einmal sauber dokumentieren</b> (<a href="#m14">Modul 14</a>), damit es beim nächsten Mal in zehn Minuten läuft. Nicht automatisieren</td><td><b>Von Hand lassen.</b> Der Aufwand für die Übergabe ist höher als der Nutzen. Höchstens als Einzelfrage im Chat</td></tr>
   </table></div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 452" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbMatrixT">
+        <title id="abbMatrixT">Vier Felder, sortiert nach Häufigkeit und Regelhaftigkeit. Häufig und regelhaft: automatisieren. Häufig und wechselnd: assistieren lassen. Selten und regelhaft: nur dokumentieren. Selten und wechselnd: von Hand lassen.</title>
+        <text class="t-mono" x="235" y="20" text-anchor="middle">immer gleich</text>
+        <text class="t-mono" x="525" y="20" text-anchor="middle">jedes Mal anders</text>
+        <text class="t-mono" x="8" y="130">häufig</text>
+        <text class="t-mono" x="8" y="330">selten</text>
+      
+        <rect class="fl-leit" x="100" y="34" width="270" height="184" rx="3"/>
+        <text class="t-mono t-weiss" x="122" y="64" opacity=".7">Feld 1</text>
+        <text class="t-weiss t-fett" x="122" y="94" font-size="19">Automatisieren</text>
+        <text class="t-weiss" x="122" y="122" opacity=".95">Hier liegt das Geld.</text>
+        <text class="t-weiss t-klein" x="122" y="150" fill="#fff" opacity=".78">Wochenübersicht, Posteingang</text>
+        <text class="t-weiss t-klein" x="122" y="170" fill="#fff" opacity=".78">sichten, Zahlungserinnerung</text>
+        <text class="t-weiss t-klein" x="122" y="198" fill="#fff" opacity=".78">&#8594; Stufe 2 bis 4</text>
+      
+        <rect class="fl-gelb" x="390" y="34" width="270" height="184" rx="3"/>
+        <rect class="str" x="390" y="34" width="270" height="184" rx="3"/>
+        <text class="t-mono" x="412" y="64">Feld 2</text>
+        <text class="t-fett" x="412" y="94" font-size="19">Assistieren lassen</text>
+        <text x="412" y="122">Du entscheidest jedes Mal.</text>
+        <text class="t-klein" x="412" y="150">Angebotstexte, Reklamationen,</text>
+        <text class="t-klein" x="412" y="170">Kundenanfragen beantworten</text>
+        <text class="t-klein" x="412" y="198">&#8594; Stufe 1, oft der größte Hebel</text>
+      
+        <rect class="fl-weich" x="100" y="234" width="270" height="184" rx="3"/>
+        <rect class="str-fein" x="100" y="234" width="270" height="184" rx="3"/>
+        <text class="t-mono" x="122" y="264">Feld 3</text>
+        <text class="t-fett" x="122" y="294" font-size="19">Nur dokumentieren</text>
+        <text x="122" y="322">Einmal sauber aufschreiben.</text>
+        <text class="t-klein" x="122" y="350">Jahresmeldung, Inventur,</text>
+        <text class="t-klein" x="122" y="370">Betriebsprüfung vorbereiten</text>
+        <text class="t-klein" x="122" y="398">&#8594; Anweisung, keine Vorlage</text>
+      
+        <rect class="fl" x="390" y="234" width="270" height="184" rx="3"/>
+        <rect class="str-fein" x="390" y="234" width="270" height="184" rx="3"/>
+        <text class="t-mono" x="412" y="264">Feld 4</text>
+        <text class="t-fett" x="412" y="294" font-size="19">Von Hand lassen</text>
+        <text x="412" y="322">Übergabe kostet mehr als sie spart.</text>
+        <text class="t-klein" x="412" y="350">Sonderkalkulation, Reaktion auf</text>
+        <text class="t-klein" x="412" y="370">eine Lieferanteninsolvenz</text>
+        <text class="t-klein" x="412" y="398">&#8594; höchstens Einzelfrage im Chat</text>
+      
+        <text class="t-akzent" x="100" y="444">Sortiere nach Häufigkeit × Dauer — nicht danach, was interessant klingt.</text>
+      </svg>
+      <figcaption><b>Abbildung 1 · Die Automatisierungsmatrix</b>Wohin eine Aufgabe gehört, entscheiden zwei Fragen: Wie oft kommt sie vor — und läuft sie jedes Mal gleich ab?</figcaption>
+    </figure>
   <h3>Der Vier-Fragen-Test vor jeder Automatisierung</h3>
   <ol>
     <li><b>Wie oft im Monat?</b> Unter viermal: dokumentieren statt automatisieren.</li>
@@ -950,6 +1081,54 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
   <h3>Das Grundprinzip in einem Absatz</h3>
   <p>Claude ist ein Sprachmodell. Es sagt fortlaufend das nächste Textstück voraus – auf Basis von Mustern aus sehr großen Textmengen. Es „weiß" nichts im menschlichen Sinne und schlägt nichts nach, solange es nicht ausdrücklich die Websuche nutzt oder ein Dokument von dir vor sich hat. Daraus folgt alles Weitere: hervorragend in Sprache, Struktur, Umformulierung und Mustererkennung; unzuverlässig bei exakten Zahlen, Zitaten, Quellenangaben, Paragrafen, Preisen und allem, was nur in deinem Betrieb existiert.</p>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbKontextT">
+        <title id="abbKontextT">Was Claude beim Antworten zur Verfügung hat: das Kontextfenster mit Projektwissen, Anhängen und dem laufenden Chat, dazu Muster aus dem Training. Nicht verfügbar sind laufende Betriebsdaten, Systeme und alles nach dem Wissensstichtag.</title>
+      
+        <text class="t-mono" x="0" y="16">Liegt vor — darauf kann Claude sich beziehen</text>
+        <rect class="fl-leit" x="0" y="30" width="316" height="196" rx="3"/>
+        <text class="t-weiss t-fett" x="18" y="58" font-size="15">Das Kontextfenster</text>
+        <text class="t-weiss t-klein" x="18" y="80" fill="#fff" opacity=".8">alles, was gerade „im Blick“ ist</text>
+      
+        <rect x="18" y="94" width="280" height="30" rx="2" fill="#fff" opacity=".16"/>
+        <text class="t-weiss" x="30" y="114" font-size="12">Dateien im Projekt-Wissensspeicher</text>
+        <rect x="18" y="130" width="280" height="30" rx="2" fill="#fff" opacity=".16"/>
+        <text class="t-weiss" x="30" y="150" font-size="12">Was du im Chat angehängt hast</text>
+        <rect x="18" y="166" width="280" height="30" rx="2" fill="#fff" opacity=".16"/>
+        <text class="t-weiss" x="30" y="186" font-size="12">Der Verlauf dieser Unterhaltung</text>
+        <text class="t-weiss t-klein" x="18" y="216" fill="#FFC94D">ist es voll, fällt das Älteste heraus</text>
+      
+        <rect class="fl-gelb" x="0" y="238" width="316" height="86" rx="3"/>
+        <rect class="str" x="0" y="238" width="316" height="86" rx="3"/>
+        <text class="t-fett" x="18" y="266" font-size="15">Muster aus dem Training</text>
+        <text class="t-klein" x="18" y="288">Sprache, Aufbau, Textsorten — aber</text>
+        <text class="t-klein" x="18" y="308">als Wahrscheinlichkeit, nicht als Wissen</text>
+      
+        <text class="t-mono" x="364" y="16">Liegt nicht vor — wird sonst geraten</text>
+        <rect class="fl" x="364" y="30" width="316" height="294" rx="3"/>
+        <rect class="str-fein" x="364" y="30" width="316" height="294" rx="3" stroke-dasharray="5 4"/>
+      
+        <text class="t-klein" x="382" y="62">Deine Einkaufs- und Verkaufspreise</text>
+        <path class="str-fein" d="M382 76 L662 76"/>
+        <text class="t-klein" x="382" y="102">Auslastung, Kapazität, Termine</text>
+        <path class="str-fein" d="M382 116 L662 116"/>
+        <text class="t-klein" x="382" y="142">Warenwirtschaft, Buchhaltung</text>
+        <path class="str-fein" d="M382 156 L662 156"/>
+        <text class="t-klein" x="382" y="182">Was mit dem Kunden besprochen war</text>
+        <path class="str-fein" d="M382 196 L662 196"/>
+        <text class="t-klein" x="382" y="222">Alles nach dem Wissensstichtag</text>
+        <path class="str-fein" d="M382 236 L662 236"/>
+        <text class="t-klein" x="382" y="262">Vorschriften in heutiger Fassung</text>
+        <path class="str-fein" d="M382 276 L662 276"/>
+        <text class="t-akzent" x="382" y="306" font-size="12">Trotzdem kommt eine Antwort.</text>
+      
+        <path class="str-akzent" d="M0 352 L680 352"/>
+        <text class="t-fett" x="0" y="380" font-size="15">Jeder Qualitätssprung kommt von links.</text>
+        <text class="t-klein" x="0" y="404">Nicht die Formulierung deiner Frage entscheidet, sondern was du mitlieferst.</text>
+        <text class="t-klein" x="0" y="424">Was rechts steht und gebraucht wird, gehört in den Auftrag — oder muss erfragt werden.</text>
+      </svg>
+      <figcaption><b>Abbildung 2 · Was vorliegt und was geraten wird</b>Die Trennlinie, aus der sich jede weitere Regel in diesem Programm ableitet.</figcaption>
+    </figure>
   <h3>Fünf Begriffe, die du im Alltag brauchst</h3>
   <div class="tab-huelle"><table>
     <tr><th>Begriff</th><th>Bedeutung</th><th>Konsequenz für dich</th></tr>
@@ -962,7 +1141,7 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
 
   <h3>Was das für deinen Betrieb heißt</h3>
   <div class="teilung">
-    <div class="ki"><h5>Gib ab</h5><ul>
+    <div class="ki"><h4>Gib ab</h4><ul>
       <li>Erste Entwürfe: Angebote, Antworten, Anzeigen, Texte</li>
       <li>Umschreiben, kürzen, Ton wechseln, übersetzen</li>
       <li>Strukturieren: Checklisten, Ablaufpläne, Tabellen</li>
@@ -971,7 +1150,7 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
       <li>Wiederkehrende Formatarbeit und Listenpflege</li>
       <li>Vorbereitung: Gesprächsleitfäden, Fragenkataloge</li>
     </ul></div>
-    <div class="mensch"><h5>Behalte bei dir</h5><ul>
+    <div class="mensch"><h4>Behalte bei dir</h4><ul>
       <li>Preise, Fristen, Mengen, Maße – jede Zahl, die verbindlich wird</li>
       <li>Rechtsaussagen und Paragrafen – jede einzeln prüfen</li>
       <li>Zusagen an Kunden und Lieferanten</li>
@@ -985,6 +1164,30 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
     <span class="etikett">Der häufigste Anfängerfehler</span>
     <p>Der Text ist gut formuliert, also wird er auch stimmen. Genau umgekehrt: Sprachliche Qualität und faktische Richtigkeit sind bei einem Sprachmodell zwei völlig getrennte Dinge. Behandle jede Ausgabe wie den Entwurf einer sehr schnellen, sehr belesenen neuen Kollegin, die deinen Betrieb noch nicht kennt und gelegentlich etwas erfindet, um hilfsbereit zu wirken.</p>
   </div>
+
+  <h3>Warum ein Fehler genauso souverän klingt wie eine richtige Antwort</h3>
+  <p>Dieser Punkt ist der wichtigste im ganzen Programm, deshalb hier etwas ausführlicher. Ein Sprachmodell erzeugt seinen Text Stück für Stück. Bei jedem Schritt fragt es sinngemäß: <i>Was folgt hier am wahrscheinlichsten?</i> Es gibt keinen zweiten, getrennten Vorgang, der prüft, ob das Ergebnis mit der Wirklichkeit übereinstimmt.</p>
+  <p>Daraus folgt etwas, das den meisten Menschen unnatürlich vorkommt: <b>Flüssigkeit und Richtigkeit entstehen im selben Arbeitsgang.</b> Bei einem Menschen ist Selbstsicherheit ein – zugegeben unzuverlässiges – Signal für Sachkenntnis. Wer unsicher ist, stockt, schränkt ein, sagt „ich glaube“. Dieses Signal fehlt hier vollständig. Der Satz „Die Frist beträgt nach § 634a Abs. 1 Nr. 2 BGB fünf Jahre“ entsteht nach demselben Verfahren wie ein Satz über das Wetter. Er klingt exakt so belastbar, ob er nun stimmt oder nicht.</p>
+
+  <div class="tab-huelle"><table>
+    <tr><th>Wonach du normalerweise urteilst</th><th>Warum es hier nicht trägt</th></tr>
+    <tr><td>Die Antwort ist gut formuliert</td><td>Sprachliche Qualität ist genau die Stärke – sie sagt nichts über den Inhalt</td></tr>
+    <tr><td>Sie nennt konkrete Zahlen</td><td>Zahlen sind ein Textmuster wie jedes andere und entstehen genauso</td></tr>
+    <tr><td>Sie nennt eine Quelle oder einen Paragrafen</td><td>Quellenangaben sind ein besonders gut gelerntes Muster – deshalb sind erfundene so häufig</td></tr>
+    <tr><td>Sie klingt vorsichtig und abwägend</td><td>Vorsicht im Ton ist eine Stilebene, kein Ergebnis einer Prüfung</td></tr>
+    <tr><td>Auf Nachfrage wird es bestätigt</td><td>Die Bestätigung entsteht nach demselben Prinzip wie die ursprüngliche Angabe</td></tr>
+  </table></div>
+
+  <p>Der letzte Punkt überrascht viele. <b>„Bist du sicher?“ ist keine Prüfung.</b> Die Rückfrage erzeugt nur einen weiteren wahrscheinlichen Text – und weil im Verlauf bereits die erste Aussage steht, ist Zustimmung oft das Wahrscheinlichste. Manchmal kippt die Antwort auch ins Gegenteil, ohne dass sich an der Faktenlage etwas geändert hätte. Beides sagt nichts aus.</p>
+
+  <div class="merk">
+    <span class="etikett">Was stattdessen hilft</span>
+    <p>Erstens: <b>am Original prüfen</b> – Gesetzestext, Preisliste, eigenes System. Zweitens: <b>Fundstellen verlangen</b>, wenn ein Dokument vorliegt („nur mit Angabe von Seite oder Abschnitt“), dann ist jede Aussage in Sekunden nachschlagbar. Drittens: <b>in einem frischen Chat gegenlesen lassen</b>, ausdrücklich mit dem Auftrag zu widersprechen statt zu bestätigen. Das findet deutlich mehr als eine Rückfrage im selben Verlauf – ersetzt aber Punkt eins nicht.</p>
+  </div>
+
+  <h3>Zwei verwandte Eigenheiten, die im Alltag auffallen</h3>
+  <p><b>Dieselbe Frage, zwei verschiedene Antworten.</b> Das ist kein Fehler, sondern Absicht: Bei jedem Schritt wird unter mehreren wahrscheinlichen Fortsetzungen ausgewählt. Für Textarbeit ist das ein Vorteil – so bekommst du zwölf Betreffzeilen statt zwölfmal derselben. Für alles, was reproduzierbar sein muss, ist es ein Grund mehr, das Ergebnis nicht als Beleg zu behandeln.</p>
+  <p><b>Hilfsbereitschaft als Fehlerquelle.</b> Ein Modell ist darauf ausgerichtet, nützlich zu antworten. Fehlt eine Angabe, ist die naheliegende Fortsetzung eine plausible Annahme – nicht die Rückfrage. Genau deshalb ist der Satz „Fehlen dir Angaben: frag nach, bevor du beginnst“ so wirksam. Er macht das Nachfragen zur erwarteten Fortsetzung.</p>
 
   <h3>Woher der Zeitgewinn tatsächlich kommt</h3>
   <p>Nicht daraus, dass Claude etwas kann, was du nicht kannst. Sondern aus drei Hebeln – und es hilft, sie zu kennen, weil du dann gezielt danach suchst:</p>
@@ -1024,11 +1227,11 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
 
   <h3>Vorher / Nachher</h3>
   <div class="teilung gegenueber">
-    <div class="schwach"><h5>Schwacher Auftrag</h5>
+    <div class="schwach"><h4>Schwacher Auftrag</h4>
       <blockquote>„Schreib mir ein Angebot für eine Badsanierung."</blockquote>
       <p class="befund">Ergebnis: ein allgemeingültiges Muster mit erfundenen Positionen und Fantasiepreisen. Unbrauchbar, weil jede Zahl darin nachgeprüft und ersetzt werden muss. Die Nacharbeit dauert länger als das Schreiben von Hand.</p>
     </div>
-    <div class="stark"><h5>Tragfähiger Auftrag</h5>
+    <div class="stark"><h4>Tragfähiger Auftrag</h4>
       <blockquote>„Du bist Kalkulator in meinem Sanitärbetrieb. Anbei: unsere Preisliste, das Aufmaß und zwei frühere Angebote, deren Ton mir gefällt. Erstelle den <b>Begleittext</b> zum Angebot – die Positionen und Preise übernehme ich selbst aus der Liste. …"</blockquote>
       <p class="befund">Ergebnis: ein Text, der zu deinem Betrieb passt, weil er auf deinem Material steht. Und – wichtiger – die Aufgabe ist so geschnitten, dass Claude nichts erfinden <i>kann</i>: die Zahlen bleiben bei dir.</p>
     </div>
@@ -1051,6 +1254,52 @@ NICHT: [Tabus, z. B. keine Preise erfinden, kein
 Fehlen dir Angaben: frag nach, bevor du beginnst.</pre>
   </div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbAuftragT">
+        <title id="abbAuftragT">Die sechs Bausteine eines Auftrags am Beispiel: Rolle, Kontext, Aufgabe, Format, Maßstab und Rückfrage. Links steht der Beispieltext, rechts ist jeder Zeile ihr Baustein zugeordnet.</title>
+      
+        <rect class="fl-weich" x="0" y="0" width="680" height="392" rx="3"/>
+        <rect class="str-fein" x="0" y="0" width="680" height="392" rx="3"/>
+      
+        <!-- Rolle -->
+        <rect class="fl-leit" x="0" y="22" width="4" height="30"/>
+        <text class="t-mono t-akzent" x="20" y="34">1 · Rolle</text>
+        <text x="20" y="54" font-family="monospace" font-size="12.5">Du bist erfahrener Kalkulator in einem Sanitärbetrieb.</text>
+      
+        <!-- Kontext -->
+        <rect class="fl-leit" x="0" y="76" width="4" height="52"/>
+        <text class="t-mono t-akzent" x="20" y="88">2 · Kontext</text>
+        <text x="20" y="108" font-family="monospace" font-size="12.5">Betrieb: 9 Mitarbeiter, Altbausanierung, Raum Herford.</text>
+        <text x="20" y="128" font-family="monospace" font-size="12.5">Anbei die Kundenanfrage und mein fertiges Angebot.</text>
+      
+        <!-- Aufgabe -->
+        <rect class="fl-leit" x="0" y="152" width="4" height="30"/>
+        <text class="t-mono t-akzent" x="20" y="164">3 · Aufgabe</text>
+        <text x="20" y="184" font-family="monospace" font-size="12.5">Schreib den Begleittext zum Angebot.</text>
+      
+        <!-- Format -->
+        <rect class="fl-leit" x="0" y="206" width="4" height="30"/>
+        <text class="t-mono t-akzent" x="20" y="218">4 · Format</text>
+        <text x="20" y="238" font-family="monospace" font-size="12.5">Höchstens 200 Wörter, Sie-Form, keine Aufzählung.</text>
+      
+        <!-- Maßstab -->
+        <rect class="fl-leit" x="0" y="260" width="4" height="30"/>
+        <text class="t-mono t-akzent" x="20" y="272">5 · Maßstab</text>
+        <text x="20" y="292" font-family="monospace" font-size="12.5">Gut ist er, wenn der Kunde versteht, wofür er zahlt.</text>
+      
+        <!-- Rückfrage -->
+        <rect class="fl-leit" x="0" y="314" width="4" height="52"/>
+        <text class="t-mono t-akzent" x="20" y="326">6 · Rückfrage</text>
+        <text x="20" y="346" font-family="monospace" font-size="12.5">Fehlen dir Angaben: frag nach, bevor du beginnst.</text>
+        <text x="20" y="366" font-family="monospace" font-size="12.5">Erfinde keine Preise und keine Termine.</text>
+      
+        <!-- Fußnote -->
+        <text class="t-klein" x="0" y="424">Baustein 6 fehlt am häufigsten und bringt am meisten: Er verwandelt ein Raten</text>
+        <text class="t-klein" x="0" y="444">in ein Briefing. Statt einer Antwort auf Basis erfundener Annahmen bekommst du</text>
+        <text class="t-klein" x="0" y="464">drei Rückfragen — und danach ein Ergebnis, das passt.</text>
+      </svg>
+      <figcaption><b>Abbildung 3 · Die sechs Bausteine an einem echten Auftrag</b>Kein Formular zum Abarbeiten — eine Prüfliste für den Fall, dass ein Ergebnis daneben liegt.</figcaption>
+    </figure>
   <h3>Nachsteuern statt neu würfeln</h3>
   <p>Die zweite Antwort ist fast immer besser – aber nur, wenn du präzise korrigierst. „Gefällt mir nicht" erzeugt eine andere Antwort, die dir auch nicht gefällt.</p>
   <div class="tab-huelle"><table>
@@ -1085,6 +1334,7 @@ Fehlen dir Angaben: frag nach, bevor du beginnst.</pre>
 <section class="modul" id="m04">
   <div class="modul-kopf"><span class="modul-nr">04</span><h2>Das Unternehmensgedächtnis: Projekte richtig aufsetzen</h2></div>
   <p class="ziel"><b>Lernziel</b>Du hast ein Projekt eingerichtet, das deinen Betrieb kennt – sodass du den Kontext nicht bei jeder Anfrage neu erklären musst. Das ist die Investition mit der höchsten Rendite in diesem ganzen Programm.</p>
+  <p class="stand"><b>Stand August 2026</b><span>Beschreibt Projekte und Wissensspeicher. Bedienung und Bezeichnungen können sich ändern, das Prinzip bleibt.</span></p>
 
   <h3>Was ein Projekt ist</h3>
   <p>Ein Projekt ist ein eigener Arbeitsbereich mit eigenem Wissensspeicher und eigener Dauer-Anweisung. Alles, was du dort hinterlegst, steht in <i>jeder</i> Unterhaltung innerhalb dieses Projekts zur Verfügung – ohne dass du es erneut anhängst. Projekte gibt es auf allen Stufen; auf den kostenlosen Konten ist die Zahl begrenzt. Auf bezahlten Stufen wird der Wissensspeicher automatisch erweitert, sobald er groß wird, sodass auch umfangreiches Material hineinpasst.</p>
@@ -1092,6 +1342,70 @@ Fehlen dir Angaben: frag nach, bevor du beginnst.</pre>
     <p>Der Inhalt einzelner Unterhaltungen wandert <b>nicht</b> automatisch in den Wissensspeicher. Wenn in einem Chat etwas Gutes entstanden ist – eine Formulierung, eine Regel, ein Ablauf –, musst du es aktiv dort ablegen. Sonst ist es beim nächsten Mal weg. Genau daran scheitern die meisten Einführungen.</p>
   </div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 414" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbProjektT">
+        <title id="abbProjektT">Das Projekt als Aktenschrank: Dauerhaftes Wissen liegt im Wissensspeicher und steht jeder Unterhaltung im Projekt zur Verfügung. Einzelne Vorgänge gehören in den jeweiligen Chat. Was sich in einem Chat bewährt, muss aktiv zurück in den Speicher gelegt werden.</title>
+      
+        <!-- Projekt-Rahmen -->
+        <rect class="fl-weich" x="0" y="24" width="330" height="286" rx="3"/>
+        <rect class="str-leit" x="0" y="24" width="330" height="286" rx="3"/>
+        <text class="t-mono" x="18" y="16">Das Projekt — gilt für alle Chats darin</text>
+      
+        <rect class="fl-leit" x="18" y="42" width="294" height="26" rx="2"/>
+        <text class="t-weiss t-fett" x="30" y="60" font-size="12.5">Wissensspeicher</text>
+      
+        <text class="t-klein" x="30" y="92">Was wir machen</text>
+        <text class="t-klein" x="30" y="114">Preise und Konditionen</text>
+        <text class="t-klein" x="30" y="136">Wie wir klingen</text>
+        <text class="t-klein" x="30" y="158">Häufige Fragen</text>
+        <text class="t-klein" x="30" y="180">Abläufe und Grenzen</text>
+      
+        <rect class="fl-gelb" x="18" y="200" width="294" height="90" rx="2"/>
+        <rect class="str" x="18" y="200" width="294" height="90" rx="2"/>
+        <text class="t-fett" x="30" y="224" font-size="12.5">Projektanweisung</text>
+        <text class="t-klein" x="30" y="246">Dauerregeln: Tonfall, Sie-Form,</text>
+        <text class="t-klein" x="30" y="266">nichts erfinden, und am Ende</text>
+        <text class="t-klein" x="30" y="282">immer: was ich prüfen muss</text>
+      
+        <!-- Chats -->
+        <text class="t-mono" x="382" y="16">Die einzelnen Unterhaltungen</text>
+        <rect class="fl" x="364" y="24" width="316" height="76" rx="3"/>
+        <rect class="str-fein" x="364" y="24" width="316" height="76" rx="3"/>
+        <text class="t-fett" x="384" y="52" font-size="13">Angebot für Familie K.</text>
+        <text class="t-klein" x="384" y="76">Anfrage angehängt, einmaliger Vorgang</text>
+      
+        <rect class="fl" x="364" y="112" width="316" height="76" rx="3"/>
+        <rect class="str-fein" x="364" y="112" width="316" height="76" rx="3"/>
+        <text class="t-fett" x="384" y="140" font-size="13">Reklamation Bauteil 7</text>
+        <text class="t-klein" x="384" y="164">Schriftwechsel angehängt, einmaliger Vorgang</text>
+      
+        <rect class="fl" x="364" y="200" width="316" height="90" rx="3"/>
+        <rect class="str-akzent" x="364" y="200" width="316" height="90" rx="3"/>
+        <text class="t-fett" x="384" y="228" font-size="13">Hier entsteht etwas Gutes</text>
+        <text class="t-klein" x="384" y="252">Eine Formulierung, die sitzt. Eine Regel,</text>
+        <text class="t-klein" x="384" y="272">die sich bewährt hat.</text>
+      
+        <!-- Pfeil: Wissen fließt hinaus -->
+        <path class="str-leit" d="M330 130 L356 130"/>
+        <path class="str-leit" d="M350 124 L358 130 L350 136"/>
+        <!-- Pfeil: zurück in den Speicher -->
+        <path class="str-akzent" d="M362 245 C 344 245, 344 160, 322 108" stroke-dasharray="5 4"/>
+        <path class="str-akzent" d="M318 116 L321 104 L328 111"/>
+      
+        <!-- Legende -->
+        <path class="str-leit" d="M0 330 L24 330"/>
+        <path class="str-leit" d="M18 324 L26 330 L18 336"/>
+        <text class="t-klein" x="36" y="335">Läuft von allein: Alles im Speicher steht jedem Chat des Projekts bereit.</text>
+      
+        <path class="str-akzent" d="M0 356 L24 356" stroke-dasharray="5 4"/>
+        <path class="str-akzent" d="M6 350 L0 356 L6 362"/>
+        <text class="t-akzent" x="36" y="361" font-size="12.5">Läuft nicht von allein: Bewährtes musst du selbst zurücklegen.</text>
+      
+        <text class="t-klein" x="0" y="394">Genau daran scheitern die meisten. Das gute Ergebnis von letzter Woche ist weg —</text>
+        <text class="t-klein" x="0" y="412">und alles entsteht jedes Mal neu und jedes Mal ein bisschen anders.</text>
+      </svg>
+      <figcaption><b>Abbildung 4 · Aktenschrank und Schreibtisch</b>Was dauerhaft gilt, gehört ins Projekt. Was einmalig ist, in den Chat. Der Rückweg ist Handarbeit.</figcaption>
+    </figure>
   <h3>Die sieben Dateien, die in jedes Betriebsprojekt gehören</h3>
   <p>Du musst das nicht an einem Tag erledigen. Aber jede dieser Dateien zahlt in jede spätere Antwort ein.</p>
   <div class="tab-huelle"><table>
@@ -1123,6 +1437,28 @@ Beschreibe nur, was du tatsächlich in den Texten
 findest. Keine allgemeinen Stilempfehlungen.</pre>
   </div>
   <p class="gering">Das Ergebnis liest du einmal durch und korrigierst es. Danach kommt es in den Wissensspeicher – und ab dann klingt jeder Text, der dort entsteht, nach deinem Betrieb statt nach dem Durchschnitt des Internets.</p>
+
+  <!-- ===== BILDSCHIRMFOTO 02 EINSETZEN =====
+       Ersetze den gesamten <div class="platzhalter">…</div> unten durch:
+
+         <figure class="abb">
+           <img src="bilder/02.png" alt="Wissensspeicher und Projektanweisung">
+           <figcaption><b>Bildschirmfoto 02 · Wissensspeicher und Projektanweisung</b>Wie ein eingerichtetes Projekt aussieht: hinterlegte Dateien links, Dauervorgaben im Anweisungsfeld.</figcaption>
+         </figure>
+
+       Lege die Bilddatei in einen Ordner "bilder" neben dieser HTML-Datei.
+       Soll alles in EINER Datei bleiben, nimm statt des Pfades das Bild
+       als Datenstrom: src="data:image/png;base64,IVBORw0KG…"
+       (Ein Bild in Base64 umwandeln kann jedes Online-Werkzeug oder
+        unter Linux/Mac: base64 -w0 bild.png)
+       ====================================== -->
+  <div class="platzhalter">
+    <b>Platz für dein Bildschirmfoto · 02</b>
+    <strong>Wissensspeicher und Projektanweisung</strong>
+    <p>Wie ein eingerichtetes Projekt aussieht: hinterlegte Dateien links, Dauervorgaben im Anweisungsfeld.</p>
+    <em>So füllst du ihn: Richte dein eigenes Betriebsprojekt ein und fotografiere es ab, sobald die ersten drei Dateien darin liegen. Echte Preise vorher schwärzen.<br>
+    Die genaue Anleitung steht im HTML-Kommentar direkt über diesem Kasten.</em>
+  </div>
 
   <h3>Die Projektanweisung</h3>
   <p>Zusätzlich zu den Dateien bekommt jedes Projekt eine Dauer-Anweisung. Sie gilt für alle Unterhaltungen darin. Hier ist eine, die sich in kleinen Betrieben bewährt:</p>
@@ -1172,6 +1508,7 @@ REGELN
 <section class="modul" id="m05">
   <div class="modul-kopf"><span class="modul-nr">05</span><h2>Die fünf Automatisierungsstufen</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kennst den Weg vom einzelnen Chat bis zur Aufgabe, die ohne dich läuft – und weißt, auf welcher Stufe eine bestimmte Arbeit aufgehoben ist. Höher ist nicht besser; passend ist besser.</p>
+  <p class="stand"><b>Stand August 2026</b><span>Beschreibt Vorlagen, Verbindungen und geplante Aufgaben. Genau hier ändert sich am meisten – prüfe vor dem Einrichten den aktuellen Stand.</span></p>
 
   <h3>Der Weg nach oben</h3>
   <div class="tab-huelle"><table>
@@ -1184,6 +1521,64 @@ REGELN
   </table></div>
   <p class="gering">Es gibt darüber noch eine Stufe für Selbstgebautes über Programmierschnittstellen – für die allermeisten kleinen Betriebe ist sie weder nötig noch wirtschaftlich. Wer dort landen will, kommt über Stufe 4 ohnehin von selbst dorthin.</p>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbStufenT">
+        <title id="abbStufenT">Fünf Automatisierungsstufen als Treppe: Stufe 0 Chat, Stufe 1 Projekt, Stufe 2 Vorlage, Stufe 3 Verbindungen, Stufe 4 geplante Aufgabe. Mit jeder Stufe wächst der Hebel, aber auch die Sorgfaltspflicht.</title>
+      
+        <!-- Treppe: fünf Stufen, jede höher -->
+        <rect class="fl-weich" x="20" y="270" width="120" height="60" rx="3"/>
+        <rect class="str-fein" x="20" y="270" width="120" height="60" rx="3"/>
+        <text class="t-mono" x="34" y="294">Stufe 0</text>
+        <text class="t-fett" x="34" y="318" font-size="15">Chat</text>
+      
+        <rect class="fl-weich" x="150" y="228" width="120" height="102" rx="3"/>
+        <rect class="str-fein" x="150" y="228" width="120" height="102" rx="3"/>
+        <text class="t-mono" x="164" y="252">Stufe 1</text>
+        <text class="t-fett" x="164" y="276" font-size="15">Projekt</text>
+        <text class="t-klein" x="164" y="300">Kontext liegt</text>
+        <text class="t-klein" x="164" y="318">dauerhaft bereit</text>
+      
+        <rect class="fl-weich" x="280" y="186" width="120" height="144" rx="3"/>
+        <rect class="str-fein" x="280" y="186" width="120" height="144" rx="3"/>
+        <text class="t-mono" x="294" y="210">Stufe 2</text>
+        <text class="t-fett" x="294" y="234" font-size="15">Vorlage</text>
+        <text class="t-klein" x="294" y="258">Der Ablauf</text>
+        <text class="t-klein" x="294" y="276">selbst ist</text>
+        <text class="t-klein" x="294" y="294">gespeichert</text>
+      
+        <rect class="fl-gelb" x="410" y="144" width="120" height="186" rx="3"/>
+        <rect class="str" x="410" y="144" width="120" height="186" rx="3"/>
+        <text class="t-mono" x="424" y="168">Stufe 3</text>
+        <text class="t-fett" x="424" y="192" font-size="13">Verbindungen</text>
+        <text class="t-klein" x="424" y="216">Postfach,</text>
+        <text class="t-klein" x="424" y="234">Kalender,</text>
+        <text class="t-klein" x="424" y="252">Ablage</text>
+        <text class="t-akzent" x="424" y="280" font-size="11">erst nur lesen</text>
+      
+        <rect class="fl-leit" x="540" y="102" width="120" height="228" rx="3"/>
+        <text class="t-mono t-weiss" x="554" y="126" opacity=".7">Stufe 4</text>
+        <text class="t-weiss t-fett" x="554" y="150" font-size="15">Geplante</text>
+        <text class="t-weiss t-fett" x="554" y="170" font-size="15">Aufgabe</text>
+        <text class="t-weiss t-klein" x="554" y="194" fill="#fff" opacity=".78">Läuft nach</text>
+        <text class="t-weiss t-klein" x="554" y="212" fill="#fff" opacity=".78">Zeitplan,</text>
+        <text class="t-weiss t-klein" x="554" y="230" fill="#fff" opacity=".78">ohne dich</text>
+        <text class="t-weiss" x="554" y="262" font-size="11" fill="#FFC94D">erst nach 10</text>
+        <text class="t-weiss" x="554" y="278" font-size="11" fill="#FFC94D">Handläufen</text>
+      
+        <!-- Grundlinie -->
+        <path class="str-fein" d="M20 330 L660 330"/>
+      
+        <!-- Pfeil: wachsender Hebel -->
+        <path class="str-leit" d="M28 76 L640 76"/>
+        <path class="str-leit" d="M632 68 L642 76 L632 84"/>
+        <text class="t-mono" x="28" y="60">Hebel — und Sorgfaltspflicht</text>
+      
+        <!-- Fußnote -->
+        <text class="t-klein" x="20" y="364">Höher ist nicht besser. Passend ist besser: Eine seltene, jedes Mal andere</text>
+        <text class="t-klein" x="20" y="384">Aufgabe gehört auf Stufe 0 — auch wenn Stufe 4 technisch möglich wäre.</text>
+      </svg>
+      <figcaption><b>Abbildung 5 · Die fünf Automatisierungsstufen</b>Mit jeder Stufe wächst der Hebel — und im gleichen Maß die Sorgfaltspflicht.</figcaption>
+    </figure>
   <h3>Stufe 2: Der wiederverwendbare Ablauf</h3>
   <p>Der Unterschied zwischen Projekt und Vorlage ist wichtig: Ein <b>Projekt</b> speichert, <i>was</i> Claude über deinen Betrieb wissen muss. Eine <b>Vorlage</b> speichert, <i>wie</i> eine bestimmte Aufgabe abläuft. Das Projekt ist dein Aktenschrank, die Vorlage deine Arbeitsanweisung.</p>
   <p>Am Anfang reicht dafür ein Dokument mit deinen bewährten Aufträgen, aus dem du kopierst. Wenn eine Aufgabe sich festgesetzt hat, lohnt es sich, sie als eigene Fähigkeit zu hinterlegen – dann greift Claude automatisch darauf zu, sobald diese Art von Aufgabe kommt, ohne dass du sie jedes Mal aufrufst.</p>
@@ -1194,6 +1589,28 @@ REGELN
     <span class="etikett">Zwei Dinge, die du vorher wissen musst</span>
     <p>Erstens: Fang mit <b>Lesen</b> an, nicht mit Schreiben. Suchen, zusammenfassen, vorbereiten – ja. Selbstständig verschicken, löschen oder ändern erst, wenn du dem Ablauf über Wochen vertraust. Beim Postfach ist es ohnehin so gedacht, dass Claude Antworten <i>entwirft</i> und du auf Senden drückst.</p>
     <p>Zweitens: Eine Verbindung öffnet einen Zugang zu echten Betriebsdaten. Verbinde ein Konto, das nur das enthält, was gebraucht wird, und lies in <a href="#m16">Modul 16</a>, was datenschutzrechtlich davon abhängt. Bei Team-Zugängen muss ein Eigentümer die Verbindungen erst freigeben.</p>
+  </div>
+
+  <!-- ===== BILDSCHIRMFOTO 03 EINSETZEN =====
+       Ersetze den gesamten <div class="platzhalter">…</div> unten durch:
+
+         <figure class="abb">
+           <img src="bilder/03.png" alt="Eine geplante Aufgabe einrichten">
+           <figcaption><b>Bildschirmfoto 03 · Eine geplante Aufgabe einrichten</b>Die Maske, in der Zeitpunkt, Auftrag und Ablageort einer wiederkehrenden Aufgabe festgelegt werden.</figcaption>
+         </figure>
+
+       Lege die Bilddatei in einen Ordner "bilder" neben dieser HTML-Datei.
+       Soll alles in EINER Datei bleiben, nimm statt des Pfades das Bild
+       als Datenstrom: src="data:image/png;base64,IVBORw0KG…"
+       (Ein Bild in Base64 umwandeln kann jedes Online-Werkzeug oder
+        unter Linux/Mac: base64 -w0 bild.png)
+       ====================================== -->
+  <div class="platzhalter">
+    <b>Platz für dein Bildschirmfoto · 03</b>
+    <strong>Eine geplante Aufgabe einrichten</strong>
+    <p>Die Maske, in der Zeitpunkt, Auftrag und Ablageort einer wiederkehrenden Aufgabe festgelegt werden.</p>
+    <em>So füllst du ihn: Lege deine erste geplante Aufgabe an und fotografiere die ausgefüllte Maske ab, bevor du sie speicherst.<br>
+    Die genaue Anleitung steht im HTML-Kommentar direkt über diesem Kasten.</em>
   </div>
 
   <h3>Stufe 4: Aufgaben, die von selbst laufen</h3>
@@ -1231,7 +1648,7 @@ REGELN
   <h3>Warum Angebote so lange dauern</h3>
   <p>Nicht wegen des Rechnens. Sondern weil vor dem Rechnen unklar ist, was der Kunde eigentlich will, und nach dem Rechnen der Begleittext geschrieben werden muss, den niemand gern schreibt. Beide Teile lassen sich abgeben. Der Teil dazwischen – die Kalkulation – bleibt bei dir.</p>
   <div class="teilung">
-    <div class="ki"><h5>Gib ab</h5><ul>
+    <div class="ki"><h4>Gib ab</h4><ul>
       <li>Anfrage in strukturierte Form bringen: Was ist bestellt, was fehlt?</li>
       <li>Die Rückfragen formulieren, die vor der Kalkulation nötig sind</li>
       <li>Leistungsbeschreibung aus Stichworten ausformulieren</li>
@@ -1240,7 +1657,7 @@ REGELN
       <li>Die Absage an Anfragen, die nicht passen</li>
       <li>Das Nachfassen nach zehn Tagen</li>
     </ul></div>
-    <div class="mensch"><h5>Behalte bei dir</h5><ul>
+    <div class="mensch"><h4>Behalte bei dir</h4><ul>
       <li>Jeden Preis, jede Menge, jedes Maß</li>
       <li>Aufwandsschätzung und Risikoaufschlag</li>
       <li>Termine und Lieferzusagen</li>
@@ -1352,6 +1769,7 @@ Wettbewerber.</pre>
 <section class="modul" id="m07">
   <div class="modul-kopf"><span class="modul-nr">07</span><h2>Kundenkommunikation und Postfach</h2></div>
   <p class="ziel"><b>Lernziel</b>Du bearbeitest dein Postfach in einem Bruchteil der Zeit, ohne dass Kunden den Unterschied bemerken – außer daran, dass sie schneller Antwort bekommen.</p>
+  <p class="stand"><b>Stand August 2026</b><span>Der Abschnitt zum Postfach-Zugriff hängt am Funktionsstand der Verbindungen.</span></p>
 
   <h3>Die Zwei-Minuten-Regel neu gedacht</h3>
   <p>Der klassische Rat lautet: Was unter zwei Minuten dauert, sofort erledigen. Das Problem im Betrieb ist, dass die meisten Mails knapp darüber liegen – zehn Minuten, weil man erst nachsehen muss, was beim letzten Mal vereinbart war. Genau dort liegt der Hebel: nicht im Schreiben, sondern im Zusammensuchen.</p>
@@ -1385,6 +1803,28 @@ Danach separat: Wo warte ich seit mehr als 7 Tagen
 auf eine Antwort?
 
 Fasse zusammen, ohne zu antworten.</pre>
+  </div>
+
+  <!-- ===== BILDSCHIRMFOTO 04 EINSETZEN =====
+       Ersetze den gesamten <div class="platzhalter">…</div> unten durch:
+
+         <figure class="abb">
+           <img src="bilder/04.png" alt="Eine Verbindung zum Postfach freigeben">
+           <figcaption><b>Bildschirmfoto 04 · Eine Verbindung zum Postfach freigeben</b>Der Freigabedialog — inklusive der Stelle, an der sichtbar wird, welche Rechte tatsächlich erteilt werden.</figcaption>
+         </figure>
+
+       Lege die Bilddatei in einen Ordner "bilder" neben dieser HTML-Datei.
+       Soll alles in EINER Datei bleiben, nimm statt des Pfades das Bild
+       als Datenstrom: src="data:image/png;base64,IVBORw0KG…"
+       (Ein Bild in Base64 umwandeln kann jedes Online-Werkzeug oder
+        unter Linux/Mac: base64 -w0 bild.png)
+       ====================================== -->
+  <div class="platzhalter">
+    <b>Platz für dein Bildschirmfoto · 04</b>
+    <strong>Eine Verbindung zum Postfach freigeben</strong>
+    <p>Der Freigabedialog — inklusive der Stelle, an der sichtbar wird, welche Rechte tatsächlich erteilt werden.</p>
+    <em>So füllst du ihn: Fotografiere den Dialog beim Verbinden ab. Genau dieses Bild nimmt Kollegen die Sorge, dass „irgendwas mitliest".<br>
+    Die genaue Anleitung steht im HTML-Kommentar direkt über diesem Kasten.</em>
   </div>
 
   <h3>Standardantworten, die nicht nach Standard klingen</h3>
@@ -1512,6 +1952,62 @@ Für beide gilt:
     <p>Ab der letzten Aufforderung geht es um Fristen, Verzug und mögliche Kosten – also um Angaben mit rechtlicher Wirkung. Die gehören nicht in einen Textentwurf, der aus Wahrscheinlichkeiten entsteht. Nimm die Vorlage deines Anwalts oder deines Rechnungsprogramms, und lass Claude höchstens den einleitenden Satz an die Tonlage anpassen.</p>
   </div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbMahnT">
+        <title id="abbMahnT">Vier Stufen beim Zahlungsverzug. Die ersten beiden sind reine Textarbeit und dürfen entworfen werden. Ab der dritten Stufe stehen rechtlich wirksame Angaben im Text, ab der vierten übernimmt der Anwalt.</title>
+      
+        <text class="t-mono" x="0" y="16">Textarbeit — Entwurf zulässig</text>
+        <text class="t-mono t-akzent" x="392" y="16">Rechtlich wirksam — Vorlage nutzen</text>
+      
+        <rect class="fl-leit" x="0" y="30" width="184" height="150" rx="3"/>
+        <text class="t-mono t-weiss" x="18" y="56" opacity=".7">Stufe 1 · Tag 3</text>
+        <text class="t-weiss t-fett" x="18" y="82" font-size="15">Erinnerung</text>
+        <text class="t-weiss t-klein" x="18" y="106" fill="#fff" opacity=".8">Freundlich, kurz.</text>
+        <text class="t-weiss t-klein" x="18" y="124" fill="#fff" opacity=".8">Nimmt an, es ist</text>
+        <text class="t-weiss t-klein" x="18" y="142" fill="#fff" opacity=".8">untergegangen.</text>
+        <text class="t-weiss t-klein" x="18" y="168" fill="#FFC94D">keine Frist nennen</text>
+      
+        <rect class="fl-leit" x="196" y="30" width="184" height="150" rx="3"/>
+        <text class="t-mono t-weiss" x="214" y="56" opacity=".7">Stufe 2 · Tag 14</text>
+        <text class="t-weiss t-fett" x="214" y="82" font-size="15">Nachfassen</text>
+        <text class="t-weiss t-klein" x="214" y="106" fill="#fff" opacity=".8">Sachlich. Fragt,</text>
+        <text class="t-weiss t-klein" x="214" y="124" fill="#fff" opacity=".8">ob etwas unklar</text>
+        <text class="t-weiss t-klein" x="214" y="142" fill="#fff" opacity=".8">an der Rechnung ist.</text>
+        <text class="t-weiss t-klein" x="214" y="168" fill="#FFC94D">Betrag aus dem System</text>
+      
+        <rect class="fl-gelb" x="392" y="30" width="132" height="150" rx="3"/>
+        <rect class="str-akzent" x="392" y="30" width="132" height="150" rx="3"/>
+        <text class="t-mono" x="410" y="56">Stufe 3</text>
+        <text class="t-fett" x="410" y="82" font-size="15">Letzte</text>
+        <text class="t-fett" x="410" y="100" font-size="15">Aufforderung</text>
+        <text class="t-klein" x="410" y="124">Frist, Verzug,</text>
+        <text class="t-klein" x="410" y="142">mögliche Kosten</text>
+        <text class="t-akzent" x="410" y="168" font-size="11">Vorlage nutzen</text>
+      
+        <rect class="fl" x="536" y="30" width="144" height="150" rx="3"/>
+        <rect class="str-akzent" x="536" y="30" width="144" height="150" rx="3"/>
+        <text class="t-mono" x="554" y="56">Stufe 4</text>
+        <text class="t-fett" x="554" y="82" font-size="15">Übergabe</text>
+        <text class="t-klein" x="554" y="106">Anwalt oder</text>
+        <text class="t-klein" x="554" y="124">Inkasso</text>
+        <text class="t-akzent" x="554" y="168" font-size="11">nicht dein Text</text>
+      
+        <!-- Trennlinie -->
+        <path class="str-akzent" d="M386 24 L386 186" stroke-dasharray="6 4"/>
+      
+        <!-- Was Claude hier tatsächlich abnimmt -->
+        <rect class="fl-weich" x="0" y="204" width="680" height="106" rx="3"/>
+        <rect class="str-fein" x="0" y="204" width="680" height="106" rx="3"/>
+        <text class="t-fett" x="18" y="232" font-size="14">Der eigentliche Hebel liegt gar nicht im Formulieren</text>
+        <text class="t-klein" x="18" y="258">Sondern davor: Wer ist überfällig, seit wann, um welchen Betrag — und was war beim letzten Mal</text>
+        <text class="t-klein" x="18" y="278">vereinbart? Diese Übersicht aus deinem Export zu ziehen, kostet dich pro Woche eine halbe Stunde.</text>
+        <text class="t-klein" x="18" y="298">Der Entwurf selbst ist dann eine Sache von Sekunden.</text>
+      
+        <text class="t-klein" x="0" y="342">Beträge, Rechnungsnummern und Daten kommen immer als Platzhalter aus deinem Rechnungsprogramm</text>
+        <text class="t-klein" x="0" y="362">in den Text — nie aus dem Gedächtnis eines Chats. Eine falsche Mahnung kostet mehr als sie eintreibt.</text>
+      </svg>
+      <figcaption><b>Abbildung 6 · Die vier Stufen beim Zahlungsverzug</b>Die gestrichelte Linie ist die wichtigste im Bild: Links ist es Textarbeit, rechts sind es rechtlich wirksame Angaben.</figcaption>
+    </figure>
   <h3>Der wöchentliche Geldblick</h3>
   <p>Eine der lohnendsten geplanten Aufgaben (<a href="#m05">Stufe 4</a>) überhaupt – weil sie eine Frage beantwortet, die sonst niemand stellt, bis es knapp wird.</p>
   <div class="prompt">
@@ -2241,6 +2737,7 @@ PRÜFPUNKT    Was schaue ich mir bei jedem Lauf an,
 <section class="modul" id="m16">
   <div class="modul-kopf"><span class="modul-nr">16</span><h2>Recht, Datenschutz und die KI-Verordnung</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kennst die Pflichten, die dich als kleines Unternehmen wirklich betreffen, und hast die Regeln, mit denen du auf der sicheren Seite bleibst – ohne Anwaltskanzlei im Haus.</p>
+  <p class="stand"><b>Stand August 2026</b><span>Rechtsstand August 2026. Fristen der KI-Verordnung wurden bereits einmal verschoben – vor einer Entscheidung mit Folgen aktuellen Stand prüfen.</span></p>
   <div class="warnung">
     <span class="etikett">Stand und Vorbehalt</span>
     <p>Alle Angaben in diesem Modul: <b>August 2026</b>. Das ist eine Einordnung, keine Rechtsberatung. Die Fristen der KI-Verordnung sind seit 2024 mehrfach angepasst worden – vor verbindlichen Entscheidungen den aktuellen Stand prüfen oder prüfen lassen. Für deinen konkreten Fall bleibt der Anwalt oder Datenschutzbeauftragte zuständig.</p>
@@ -2294,6 +2791,55 @@ PRÜFPUNKT    Was schaue ich mir bei jedem Lauf an,
     <tr><td>Kaltakquise per E-Mail</td><td>Ändert sich durch KI nicht: Werbe-E-Mails ohne vorherige Einwilligung sind grundsätzlich unzulässig – dass sie sich jetzt leichter erzeugen lassen, macht sie nicht zulässiger</td></tr>
   </table></div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbRechtT">
+        <title id="abbRechtT">Vier Prüffragen vor jeder Eingabe: Sind Personendaten enthalten? Ist ein Berufsgeheimnis betroffen? Wird der Text veröffentlicht? Erst danach steht fest, ob die Eingabe unbedenklich ist, angepasst werden muss oder unterbleibt.</title>
+      
+        <text class="t-mono" x="0" y="16">Vor der Eingabe — vier Fragen, zwanzig Sekunden</text>
+      
+        <!-- Frage 1 -->
+        <rect class="fl-weich" x="0" y="30" width="680" height="62" rx="3"/>
+        <rect class="str-fein" x="0" y="30" width="680" height="62" rx="3"/>
+        <text class="t-fett" x="18" y="56" font-size="14">1 · Stecken Personendaten drin — Namen, Adressen, Gesundheit, Bewerbungen?</text>
+        <text class="t-klein" x="18" y="80">Wenn ja: Braucht die Aufgabe sie wirklich? Fast nie. Ersetz sie durch [Kunde], [Ort], [Betrag].</text>
+      
+        <!-- Frage 2 -->
+        <rect class="fl-weich" x="0" y="102" width="680" height="62" rx="3"/>
+        <rect class="str-fein" x="0" y="102" width="680" height="62" rx="3"/>
+        <text class="t-fett" x="18" y="128" font-size="14">2 · Bist du Berufsgeheimnisträger — Arzt, Anwalt, Steuerberater, Therapeut?</text>
+        <text class="t-klein" x="18" y="152">Dann gilt § 203 StGB zusätzlich. Vorher fachlich klären, nicht hinterher.</text>
+      
+        <!-- Frage 3 -->
+        <rect class="fl-weich" x="0" y="174" width="680" height="62" rx="3"/>
+        <rect class="str-fein" x="0" y="174" width="680" height="62" rx="3"/>
+        <text class="t-fett" x="18" y="200" font-size="14">3 · Geht das Ergebnis nach außen — Website, Werbung, Angebot?</text>
+        <text class="t-klein" x="18" y="224">Dann jede belegpflichtige Aussage markieren lassen: Zahlen, Ersparnisse, Vergleiche, Superlative.</text>
+      
+        <!-- Frage 4 -->
+        <rect class="fl-weich" x="0" y="246" width="680" height="62" rx="3"/>
+        <rect class="str-fein" x="0" y="246" width="680" height="62" rx="3"/>
+        <text class="t-fett" x="18" y="272" font-size="14">4 · Merkt der Gegenüber, dass ein System beteiligt war?</text>
+        <text class="t-klein" x="18" y="296">Seit August 2026 muss die Interaktion erkennbar sein — beim Chatbot auf der Website ein Satz.</text>
+      
+        <!-- Ergebnis -->
+        <rect class="fl-leit" x="0" y="330" width="216" height="60" rx="3"/>
+        <text class="t-weiss t-fett" x="18" y="356" font-size="14">Unbedenklich</text>
+        <text class="t-weiss t-klein" x="18" y="378" fill="#fff" opacity=".8">viermal nein — weitermachen</text>
+      
+        <rect class="fl-gelb" x="232" y="330" width="216" height="60" rx="3"/>
+        <rect class="str" x="232" y="330" width="216" height="60" rx="3"/>
+        <text class="t-fett" x="250" y="356" font-size="14">Anpassen</text>
+        <text class="t-klein" x="250" y="378">Daten weglassen, dann geht es</text>
+      
+        <rect class="fl" x="464" y="330" width="216" height="60" rx="3"/>
+        <rect class="str-akzent" x="464" y="330" width="216" height="60" rx="3"/>
+        <text class="t-fett" x="482" y="356" font-size="14">Erst klären</text>
+        <text class="t-klein" x="482" y="378">Berufsgeheimnis, Gesundheit</text>
+      
+        <text class="t-klein" x="0" y="424">Diese vier Fragen ersetzen kein Datenschutzkonzept. Sie verhindern die Fälle, die im Alltag tatsächlich schiefgehen.</text>
+      </svg>
+      <figcaption><b>Abbildung 7 · Die vier Fragen vor jeder Eingabe</b>Kurz genug, um sie neben den Bildschirm zu hängen — und deshalb die einzige Prüfung, die im Alltag tatsächlich stattfindet.</figcaption>
+    </figure>
   <h3>Die Nutzungsregel für deinen Betrieb</h3>
   <p>Eine Seite, die du an alle gibst und unterschreiben lässt. Sie erfüllt gleichzeitig einen Teil der Nachweispflicht aus Artikel 4.</p>
   <div class="prompt">
@@ -2356,6 +2902,70 @@ abstimmen sollte.</pre>
     <p>Nicht der spektakuläre Fehler ist das Risiko – der fällt auf und wird korrigiert. Das Risiko ist: alles ordentlich, nichts besonders. Angebote, die niemanden stören und niemanden überzeugen. Antworten, die höflich sind und nichts sagen. Nach einem halben Jahr klingt der Betrieb austauschbar, und niemand kann sagen, wann das angefangen hat. Die Gegenmaßnahme ist einfach und unbequem: Wer etwas freigibt, muss <b>mindestens eine substanzielle Änderung</b> vornehmen können. Wer nichts zu ändern findet, hat nicht richtig gelesen.</p>
   </div>
 
+    <figure class="abb">
+      <svg viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="abbFreigabeT">
+        <title id="abbFreigabeT">Der Weg vom Entwurf zur Freigabe: Claude erzeugt einen Entwurf, ein Mensch prüft, ein Mensch gibt frei. Drei rote Linien halten Verbindliches, Personenbezogenes und Sicherheitsrelevantes aus der Automatisierung heraus.</title>
+      
+        <!-- Ablauf -->
+        <rect class="fl-leit" x="0" y="30" width="196" height="80" rx="3"/>
+        <text class="t-mono t-weiss" x="18" y="56" opacity=".7">Claude</text>
+        <text class="t-weiss t-fett" x="18" y="82" font-size="16">Entwurf</text>
+        <text class="t-weiss t-klein" x="18" y="100" fill="#fff" opacity=".78">Sekunden statt Stunden</text>
+      
+        <path class="str-leit" d="M206 70 L232 70"/>
+        <path class="str-leit" d="M226 64 L234 70 L226 76"/>
+      
+        <rect class="fl-gelb" x="242" y="30" width="196" height="80" rx="3"/>
+        <rect class="str" x="242" y="30" width="196" height="80" rx="3"/>
+        <text class="t-mono" x="260" y="56">Mensch</text>
+        <text class="t-fett" x="260" y="82" font-size="16">Prüfung</text>
+        <text class="t-klein" x="260" y="100">Zahlen, Zusagen, Termine</text>
+      
+        <path class="str-leit" d="M448 70 L474 70"/>
+        <path class="str-leit" d="M468 64 L476 70 L468 76"/>
+      
+        <rect class="fl" x="484" y="30" width="196" height="80" rx="3"/>
+        <rect class="str" x="484" y="30" width="196" height="80" rx="3"/>
+        <text class="t-mono" x="502" y="56">Mensch mit Namen</text>
+        <text class="t-fett" x="502" y="82" font-size="16">Freigabe</text>
+        <text class="t-klein" x="502" y="100">trägt die Verantwortung</text>
+      
+        <text class="t-klein" x="0" y="140">Diese Kette ist nie kürzer. Sie wird nur schneller.</text>
+      
+        <!-- Drei rote Linien -->
+        <text class="t-mono t-akzent" x="0" y="184">Was gar nicht erst in die Kette kommt</text>
+      
+        <rect class="fl" x="0" y="198" width="216" height="130" rx="3"/>
+        <rect class="str-akzent" x="0" y="198" width="216" height="130" rx="3"/>
+        <text class="t-fett" x="18" y="228" font-size="14">1 · Verbindliches</text>
+        <text class="t-klein" x="18" y="252">Preise, Fristen, Zusagen,</text>
+        <text class="t-klein" x="18" y="270">rechtliche Erklärungen</text>
+        <text class="t-klein" x="18" y="298" font-style="italic">Entwurf ja —</text>
+        <text class="t-klein" x="18" y="316" font-style="italic">Absenden nie automatisch</text>
+      
+        <rect class="fl" x="232" y="198" width="216" height="130" rx="3"/>
+        <rect class="str-akzent" x="232" y="198" width="216" height="130" rx="3"/>
+        <text class="t-fett" x="250" y="228" font-size="14">2 · Über Menschen</text>
+        <text class="t-klein" x="250" y="252">Einstellung, Kündigung,</text>
+        <text class="t-klein" x="250" y="270">Beurteilung, Konflikte</text>
+        <text class="t-klein" x="250" y="298" font-style="italic">Auch Vorsortieren</text>
+        <text class="t-klein" x="250" y="316" font-style="italic">ist schon Entscheiden</text>
+      
+        <rect class="fl" x="464" y="198" width="216" height="130" rx="3"/>
+        <rect class="str-akzent" x="464" y="198" width="216" height="130" rx="3"/>
+        <text class="t-fett" x="482" y="228" font-size="14">3 · Sicherheit</text>
+        <text class="t-klein" x="482" y="252">Statik, Elektro, Medizin,</text>
+        <text class="t-klein" x="482" y="270">alles mit Personenrisiko</text>
+        <text class="t-klein" x="482" y="298" font-style="italic">Kein zulässiges</text>
+        <text class="t-klein" x="482" y="316" font-style="italic">Hilfsmittel — Punkt</text>
+      
+        <!-- Schlusszeile -->
+        <text class="t-akzent" x="0" y="366" font-size="13">Das eigentliche Risiko ist nicht der offensichtliche Fehler — der fällt auf.</text>
+        <text class="t-klein" x="0" y="388">Es ist die Gewöhnung, die aus der Prüfung eine Formalie macht. Gegenmittel: einmal im</text>
+        <text class="t-klein" x="0" y="408">Monat einen Vorgang vollständig gegen die Quelle prüfen — wer alles prüft, prüft nichts richtig.</text>
+      </svg>
+      <figcaption><b>Abbildung 8 · Der Weg zur Freigabe und die drei roten Linien</b>Die Kette wird nie kürzer — sie wird nur schneller. Was in den drei Kästen unten steht, kommt gar nicht erst hinein.</figcaption>
+    </figure>
   <h3>Was du nie automatisierst</h3>
   <div class="tab-huelle"><table>
     <tr><th>Nie</th><th>Warum</th></tr>
@@ -2419,7 +3029,7 @@ abstimmen sollte.</pre>
   <div class="pfade">
     <div class="pfad">
       <div class="rolle">Pfad A · etwa 3 Stunden</div>
-      <h4>Handwerk, Bau, Technik</h4>
+      <h3>Handwerk, Bau, Technik</h3>
       <p>Für Betriebe, deren Woche an Angeboten, Aufmaßen, Nachträgen und Terminen hängt. Schwerpunkt: der Weg von der Anfrage zur bezahlten Rechnung – und das Wissen aus dem Kopf des Chefs ins Handbuch.</p>
       <div class="kette">
         <a href="#m00">00</a><span>→</span><a href="#m01">01</a><span>→</span><a href="#m03">03</a><span>→</span><a href="#m04">04</a><span>→</span><a href="#m06">06</a><span>→</span><a href="#m08">08</a><span>→</span><a href="#m10">10</a><span>→</span><a href="#m14">14</a>
@@ -2427,7 +3037,7 @@ abstimmen sollte.</pre>
     </div>
     <div class="pfad">
       <div class="rolle">Pfad B · etwa 3 Stunden</div>
-      <h4>Beratung, Agentur, Planung, freie Berufe</h4>
+      <h3>Beratung, Agentur, Planung, freie Berufe</h3>
       <p>Für Betriebe, die Wissen und Zeit verkaufen. Schwerpunkt: Dokumente erschließen, Angebote begründen, Bestandskunden halten, Sichtbarkeit ohne Agentur.</p>
       <div class="kette">
         <a href="#m00">00</a><span>→</span><a href="#m03">03</a><span>→</span><a href="#m04">04</a><span>→</span><a href="#m06">06</a><span>→</span><a href="#m09">09</a><span>→</span><a href="#m12">12</a><span>→</span><a href="#m13">13</a><span>→</span><a href="#m16">16</a>
@@ -2435,7 +3045,7 @@ abstimmen sollte.</pre>
     </div>
     <div class="pfad">
       <div class="rolle">Pfad C · etwa 3 Stunden</div>
-      <h4>Praxis, Kanzlei, Pflege – alles mit sensiblen Daten</h4>
+      <h3>Praxis, Kanzlei, Pflege – alles mit sensiblen Daten</h3>
       <p>Für Betriebe, bei denen Datenschutz keine Formalie ist. Schwerpunkt: klare Grenzen ziehen, Verwaltung entlasten, Dokumente erschließen – und zwar so, dass keine Patienten- oder Mandantendaten hineingeraten.</p>
       <div class="kette">
         <a href="#m00">00</a><span>→</span><a href="#m16">16</a><span>→</span><a href="#m02">02</a><span>→</span><a href="#m03">03</a><span>→</span><a href="#m07">07</a><span>→</span><a href="#m09">09</a><span>→</span><a href="#m14">14</a><span>→</span><a href="#m17">17</a>
@@ -2443,7 +3053,7 @@ abstimmen sollte.</pre>
     </div>
     <div class="pfad">
       <div class="rolle">Pfad D · etwa 3 Stunden</div>
-      <h4>Handel, Gastronomie, Dienstleistung mit Laufkundschaft</h4>
+      <h3>Handel, Gastronomie, Dienstleistung mit Laufkundschaft</h3>
       <p>Für Betriebe, die gefunden werden müssen und viele gleichartige Vorgänge haben. Schwerpunkt: Sichtbarkeit, Bewertungen, Standardkommunikation, Personal.</p>
       <div class="kette">
         <a href="#m00">00</a><span>→</span><a href="#m01">01</a><span>→</span><a href="#m03">03</a><span>→</span><a href="#m07">07</a><span>→</span><a href="#m11">11</a><span>→</span><a href="#m12">12</a><span>→</span><a href="#m14">14</a><span>→</span><a href="#m17">17</a>
@@ -2451,7 +3061,7 @@ abstimmen sollte.</pre>
     </div>
     <div class="pfad">
       <div class="rolle">Pfad E · etwa 2,5 Stunden</div>
-      <h4>Alleinunternehmer und Zwei-Personen-Betriebe</h4>
+      <h3>Alleinunternehmer und Zwei-Personen-Betriebe</h3>
       <p>Für alle, die alles selbst machen. Schwerpunkt: möglichst schnell möglichst viel loswerden – ohne Team, ohne Einführungsprojekt, ohne Budget für Fehlversuche.</p>
       <div class="kette">
         <a href="#m00">00</a><span>→</span><a href="#m01">01</a><span>→</span><a href="#m03">03</a><span>→</span><a href="#m04">04</a><span>→</span><a href="#m06">06</a><span>→</span><a href="#m07">07</a><span>→</span><a href="#m13">13</a><span>→</span><a href="#m15">15</a>
@@ -2749,7 +3359,7 @@ Nur die Beobachtung.</pre>
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>30-Tage-Plan</h2></div>
   <p class="ziel"><b>Zweck</b>Damit aus dem Lesen eine Gewohnheit wird. Eine Sache pro Woche, jeweils 60 bis 90 Minuten – am eigenen echten Arbeitsstoff, nicht an Beispielen.</p>
 
-  <h4>Woche 1 · Sehen, was ist</h4>
+  <h3>Woche 1 · Sehen, was ist</h3>
   <ul class="check">
     <li><label><input type="checkbox"><span>Module 00 bis 03 durchgearbeitet</span></label></li>
     <li><label><input type="checkbox"><span>Tätigkeitsprotokoll gestartet – vier Spalten, jeden Abend drei Minuten</span></label></li>
@@ -2757,7 +3367,7 @@ Nur die Beobachtung.</pre>
     <li><label><input type="checkbox"><span>Eine echte Aufgabe zweimal gelöst: einmal ohne Anhang, einmal mit eigenem Material</span></label></li>
   </ul>
 
-  <h4>Woche 2 · Das Gedächtnis einrichten</h4>
+  <h3>Woche 2 · Das Gedächtnis einrichten</h3>
   <ul class="check">
     <li><label><input type="checkbox"><span>Projekt „Betrieb" angelegt, Projektanweisung eingesetzt und angepasst</span></label></li>
     <li><label><input type="checkbox"><span>Drei Dateien hochgeladen: Leistungen, Preise, drei eigene Texte</span></label></li>
@@ -2765,7 +3375,7 @@ Nur die Beobachtung.</pre>
     <li><label><input type="checkbox"><span>Protokoll ausgewertet, drei Startkandidaten bestimmt (Modul 01)</span></label></li>
   </ul>
 
-  <h4>Woche 3 · Den größten Zeitfresser angehen</h4>
+  <h3>Woche 3 · Den größten Zeitfresser angehen</h3>
   <ul class="check">
     <li><label><input type="checkbox"><span>Das Modul zum stärksten Zeitfresser gelesen und die Prompts daraus angepasst</span></label></li>
     <li><label><input type="checkbox"><span>Diese Aufgabe zehnmal mit Claude erledigt – mit Notiz, was jedes Mal nachgebessert werden musste</span></label></li>
@@ -2773,7 +3383,7 @@ Nur die Beobachtung.</pre>
     <li><label><input type="checkbox"><span>Häufige Kundenfragen mit Antworten ins Projekt gelegt</span></label></li>
   </ul>
 
-  <h4>Woche 4 · Absichern und verstetigen</h4>
+  <h3>Woche 4 · Absichern und verstetigen</h3>
   <ul class="check">
     <li><label><input type="checkbox"><span>Nutzungsregel entworfen, angepasst, im Team besprochen und Teilnahme dokumentiert (Modul 16)</span></label></li>
     <li><label><input type="checkbox"><span>Freigabestufen für die fünf häufigsten Ergebnisarten festgelegt (Modul 17)</span></label></li>
