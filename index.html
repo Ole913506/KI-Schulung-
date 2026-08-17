@@ -1,4 +1,32 @@
 <!DOCTYPE html>
+<!-- =====================================================================
+     HINWEISE FÜR DEN EIGENTÜMER DIESER DATEI
+     (Nur hier im Quelltext. Für Leserinnen und Leser ist das nicht bestimmt.)
+
+     AUFBAU
+     Eine einzelne HTML-Datei, keine Abhängigkeiten außer den Schriften
+     (siehe Hinweis weiter unten im <head>). Zum Ausliefern genügt es,
+     die Datei irgendwo abzulegen.
+
+     ANPASSEN
+     - Farben, Schriften, Radien: gesammelt im Stilblock unter :root.
+       Dunkelmodus direkt darunter unter @media (prefers-color-scheme: dark).
+       Das ist die einzige Stelle, die man für ein Rebranding anfassen muss.
+     - Inhalte: direkt im Text der jeweiligen <section class="modul">.
+     - Übungsteil: das Array DATEN im zweiten <script>-Block am Dateiende.
+     - Bildschirmfotos: vier vorbereitete Plätze, zu finden über die Suche
+       nach "BILDSCHIRMFOTO". Über jedem steht das fertige Ersatz-Markup.
+
+     VOR DER VERÖFFENTLICHUNG PRÜFEN
+     - Google Fonts entfernen? Siehe Hinweis im <head>.
+     - Rechteangabe und Kontakt im <footer class="fuss">: Suche nach
+       "ausfuellen" — die Stellen sind auf der Seite gelb hinterlegt und
+       orange gestrichelt, damit sie nicht versehentlich mitgehen.
+       Direkt darüber steht ein Kommentar mit Fassungen für interne
+       Nutzung, Workshop und freie Weitergabe.
+     - Impressumspflicht prüfen, sobald die Seite geschäftlich online steht.
+     - Titel, Beschreibung und Marke oben im <head> anpassen.
+     ===================================================================== -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
@@ -16,7 +44,7 @@
        a) Für den internen Gebrauch oder als weitergegebene Datei: unverändert lassen.
        b) Für eine öffentliche Website: die drei Zeilen ersatzlos löschen
           ODER die Schriften herunterladen und selbst ausliefern.
-     Ohne die Zeilen greifen die Ersatzschriften aus --display/--body/--mono
+     Ohne die Zeilen greifen die Ersatzschriften aus den Schrift-Tokens
      weiter unten; das Layout bleibt vollständig erhalten, nur die Anmutung
      wird nüchterner.
      =================================================================== -->
@@ -312,6 +340,12 @@ h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
    im Kasten selbst und in einem HTML-Kommentar direkt darüber.
    Sind alle gefüllt, kann die Regel .platzhalter{display:none} in
    den Stilblock, falls doch einer übrig bleibt. */
+/* Auszufüllende Stellen — absichtlich auffällig, damit sie nicht
+   versehentlich mitveröffentlicht werden. Nach dem Ausfüllen einfach
+   das <span class="ausfuellen"> entfernen. */
+.ausfuellen{background:var(--gelb-feld); border-bottom:2px dashed var(--akzent);
+  padding:0 3px; font-family:var(--mono); font-size:.92em; color:var(--akzent-text)}
+@media print{.ausfuellen{background:none; border-bottom:1px dashed #999; color:#000}}
 .platzhalter{margin:26px 0; padding:26px 22px; border:2px dashed var(--linie-stark);
   border-radius:var(--r); background:repeating-linear-gradient(135deg,
     transparent 0 9px, rgba(255,107,44,.045) 9px 18px)}
@@ -749,7 +783,7 @@ details > div > *:last-child{margin-bottom:0}
       <span class="marke">Ohne Programmieren</span>
     </div>
 
-    <!-- ---------- Zeitfresser-Rechner ---------- -->
+    <!-- ========== Zeitfresser-Rechner ========== -->
     <div class="rechner" id="rechner">
       <div class="rechner-kopf"><span>Zeitfresser-Rechner</span><em>deine Zahlen, nicht meine</em></div>
       <div class="tab-huelle">
@@ -3473,11 +3507,40 @@ Nur die Beobachtung.</pre>
 </section>
 
 <footer class="fuss">
-  <p><b>Nutzung.</b> Diese Seite ist eine einzelne HTML-Datei ohne Abhängigkeiten außer den eingebundenen Schriften. Anpassen: Farben und Schriften stehen gesammelt oben im Stilblock unter <code>:root</code>, der Dunkelmodus direkt darunter. Inhalte änderst du direkt im Text. Für Intranet, Kundenbereich oder Weitergabe genügt es, die Datei hochzuladen.</p>
+  <p><b>So arbeitest du damit.</b> Die Seite braucht keine Anmeldung und keine Internetverbindung – du kannst sie speichern und offline durcharbeiten. Sie funktioniert am Rechner wie am Telefon, und sie lässt sich ausdrucken; Navigation und Knöpfe fallen dabei weg, Abbildungen und Prompts bleiben. Du musst nicht von vorn nach hinten lesen: Wenn du weißt, wo dein größter Zeitfresser sitzt, fang bei dem Modul an und hol dir die Grundlagen später.</p>
   <p><b>Fortschritt.</b> Abgehakte Module, Checklisten und der Punktestand im Übungsteil werden im Browser gespeichert und bleiben beim nächsten Besuch erhalten – gerätebezogen, nicht personenbezogen und ohne Übertragung an einen Server. Über „Fortschritt zurücksetzen" in der Navigation lässt sich alles löschen. Die Eingaben im Zeitfresser-Rechner werden ebenfalls nur lokal gespeichert.</p>
   <p><b>Zahlen und Beispiele.</b> Die Prozentwerte im Zeitfresser-Rechner sind bewusst vorsichtig gewählte <i>Startannahmen</i>, keine gemessenen Werte und keine Zusage. Sie sind zum Überschreiben gedacht, sobald eigene Messungen vorliegen – wie du misst, steht in Modul 01. Alle Betriebs-, Kunden- und Zahlenbeispiele in den Modulen sind konstruiert und dienen der Veranschaulichung. Die Aussage im Titel („100 Stunden pro Woche") ist keine Behauptung über deinen Betrieb, sondern das Ergebnis einer Rechnung, die du oben mit deinen eigenen Zahlen selbst aufmachst: Sie wird erreicht, wenn mehrere Personen im Betrieb ähnlich arbeiten.</p>
   <p><b>Angaben zu Claude.</b> Funktionen, Stufen und Grenzen ändern sich laufend. Die Beschreibungen hier geben den Stand von August 2026 wieder und verzichten bewusst auf Preise und feste Limits. Verbindlich sind <a href="https://claude.com/pricing" rel="noopener">claude.com/pricing</a> und das Hilfezentrum unter <a href="https://support.claude.com" rel="noopener">support.claude.com</a>.</p>
   <p><b>Recht.</b> Angaben zu Datenschutz, KI-Verordnung und Werberecht: Stand August 2026, ohne Gewähr und ohne Rechtsberatung. Die Fristen der EU-KI-Verordnung wurden seit 2024 mehrfach angepasst; vor verbindlichen Entscheidungen den aktuellen Stand prüfen oder prüfen lassen. Für den konkreten Einzelfall bleiben Anwalt, Steuerberater und Datenschutzbeauftragter zuständig.</p>
+
+  <!-- ==================================================================
+       RECHTE UND KONTAKT AUSFÜLLEN
+
+       Die Voreinstellung unten geht vom Verkauf an Einzelkunden aus, also
+       von der engsten Variante. Passt das nicht, ersetze den Satz nach dem
+       Kontakt durch eine der folgenden Fassungen:
+
+       INTERN IM EIGENEN BETRIEB
+       Dieses Programm ist eine interne Arbeitsunterlage von [Betrieb] und
+       nicht zur Weitergabe an Dritte bestimmt.
+
+       TEILNEHMERUNTERLAGE ZU EINEM WORKSHOP
+       Diese Unterlage gehört zum Workshop „[Titel]" vom [Datum] und ist für
+       die Teilnehmenden bestimmt. Weitergabe an Dritte bitte nur nach
+       Rücksprache.
+
+       FREI WEITERGEBBAR
+       Diese Unterlage darf unverändert und unter Nennung der Quelle frei
+       weitergegeben werden. Bearbeitung und Wiederverkauf sind ausgenommen.
+
+       HINWEIS ZUM IMPRESSUM
+       Sobald die Seite geschäftlich online erreichbar ist, greift in
+       Deutschland in aller Regel die Impressumspflicht nach § 5 DDG
+       (früher § 5 TMG). Welche Angaben genau nötig sind, hängt an der
+       Rechtsform. Das ist keine Rechtsberatung — im Zweifel kurz prüfen
+       lassen, es kostet wenig und Abmahnungen sind hier häufig.
+       ================================================================== -->
+  <p><b>Rechte und Kontakt.</b> © 2026 <span class="ausfuellen">[Betrieb oder Name]</span> · <span class="ausfuellen">[E-Mail oder Anschrift]</span>. Dieses Programm ist für die Nutzung im erwerbenden Betrieb bestimmt. Weitergabe, Veröffentlichung und Wiederverkauf – auch in bearbeiteter Form – sind nicht gestattet. Für Team- und Mehrfachnutzung sprich uns an. Alle genannten Produkt- und Firmennamen gehören ihren jeweiligen Inhabern.</p>
 </footer>
 
 </div>
