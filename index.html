@@ -50,7 +50,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Automatisiere dein Business — Der Claude-Kurs für Inhaber kleiner Unternehmen</title>
-<meta name="description" content="Praxisprogramm für Inhaberinnen und Inhaber kleiner Unternehmen: mit Claude Angebote, Kundenkommunikation, Rechnungswesen, Dokumente, Personal, Marketing und wiederkehrende Abläufe automatisieren. 18 Module, Zeitfresser-Rechner, 52 Prompts zum Kopieren, Übungsteil mit 15 Themen.">
+<meta name="description" content="Praxisprogramm für kleine Unternehmen — für die Betriebsleitung und für Beschäftigte: mit Claude Angebote, Kundenkommunikation, Rechnungswesen, Dokumente, Personal, Marketing und wiederkehrende Abläufe automatisieren. 18 Module, Zeitfresser-Rechner, 52 Prompts zum Kopieren, Übungsteil mit 15 Themen.">
 <meta name="color-scheme" content="light dark">
 <!-- ===================================================================
      SCHRIFTEN — bitte vor einer Veröffentlichung in Deutschland lesen
@@ -364,14 +364,21 @@ h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
    vollständige. Mitarbeiter-Inhalte sind dann ausgeblendet.
    WICHTIG: Das ist ein Bequemlichkeitsfilter, KEIN Zugriffsschutz.
    ============================================================ */
-[data-rolle="ma"]{display:none}
+body [data-rolle="ma"]{display:none}
 body.ansicht-ma [data-rolle="ma"]{display:block}
+body.ansicht-ma .nav-marke b[data-rolle="ma"]{display:block; font-weight:800}
+.nav-marke b[data-rolle="chef"]{display:block; font-weight:800}
+body.ansicht-ma .nav-marke b[data-rolle="chef"]{display:none}
 body.ansicht-ma .nav-link[data-rolle="ma"]{display:flex}
 body.ansicht-ma a[data-rolle="ma"],
 body.ansicht-ma span[data-rolle="ma"],
 body.ansicht-ma em[data-rolle="ma"]{display:inline}
 body.ansicht-ma details[data-rolle="ma"]{display:block}
 body.ansicht-ma .meta-zeile[data-rolle="ma"]{display:flex}
+body.ansicht-ma p[data-rolle="ma"],
+body.ansicht-ma div[data-rolle="ma"],
+body.ansicht-ma h1[data-rolle="ma"]{display:block}
+body.ansicht-ma .nav-gruppe[data-rolle="ma"]{display:block}
 body.ansicht-ma [data-rolle="chef"]{display:none}
 
 .rollenwahl{position:fixed; inset:0; z-index:60; background:var(--papier);
@@ -821,7 +828,7 @@ details > div > *:last-child{margin-bottom:0}
 <!-- ========================= NAVIGATION ========================= -->
 <nav class="nav" id="nav" aria-label="Modulübersicht">
   <div class="mobil-kopf">
-    <div class="nav-marke">Automatisiere dein Business<span>Der Claude-Kurs</span></div>
+    <div class="nav-marke"><b data-rolle="chef">Automatisiere dein Business</b><b data-rolle="ma">Claude für deine Arbeit</b><span>Der Claude-Kurs</span></div>
     <button class="menue-knopf" id="menueKnopf" aria-expanded="false" aria-controls="navListe">Module</button>
   </div>
   <label class="nur-sr" for="suche">Module und Inhalte durchsuchen</label>
@@ -829,7 +836,7 @@ details > div > *:last-child{margin-bottom:0}
   <div class="nav-liste" id="navListe">
     <p class="nav-treffer" id="treffer" role="status"></p>
     <a class="nav-link hervor" href="#ueben"><b>★</b><span>Übungsteil: Claude üben<small><span data-rolle="chef">15 Themen</span><span data-rolle="ma">7 Themen</span> · Quiz · Werkstatt</small></span></a>
-    <div class="nav-gruppe">Start</div>
+    <div class="nav-gruppe" data-rolle="chef">Start</div>
     <a class="nav-link" href="#m00" data-rolle="chef"><b>00</b><span>In 60 Minuten startklar</span></a>
     <a class="nav-link" href="#m01" data-rolle="chef"><b>01</b><span>Der Zeitfresser-Audit</span></a>
     <div class="nav-gruppe">Fundament</div>
@@ -839,7 +846,7 @@ details > div > *:last-child{margin-bottom:0}
     <a class="nav-link" href="#m03"><b>03</b><span>Der Auftrag: Prompts, die Arbeit abnehmen</span></a>
     <a class="nav-link" href="#m04" data-rolle="chef"><b>04</b><span>Das Unternehmensgedächtnis</span></a>
     <a class="nav-link" href="#m05" data-rolle="chef"><b>05</b><span>Die fünf Automatisierungsstufen</span></a>
-    <div class="nav-gruppe">Der Betrieb</div>
+    <div class="nav-gruppe"><span data-rolle="chef">Der Betrieb</span><span data-rolle="ma">Deine Arbeit</span></div>
     <a class="nav-link" href="#m06" data-rolle="chef"><b>06</b><span>Anfragen &amp; Angebote</span></a>
     <a class="nav-link" href="#m07"><b>07</b><span>Kundenkommunikation &amp; Postfach</span></a>
     <a class="nav-link" href="#m08" data-rolle="chef"><b>08</b><span>Rechnungen, Zahlungen, Mahnwesen</span></a>
@@ -876,8 +883,10 @@ details > div > *:last-child{margin-bottom:0}
 
 <header class="auftakt">
   <div class="bahn">
-    <div class="kicker">Praxisprogramm für kleine Unternehmen · speziell für Claude</div>
-    <h1 class="titel"><span class="echt">Automatisiere dein Business</span><span class="auszug auszug-akzent" aria-hidden="true">Automatisiere dein Business</span><span class="auszug auszug-leit" aria-hidden="true">Automatisiere dein Business</span></h1>
+    <div class="kicker" data-rolle="chef">Praxisprogramm für kleine Unternehmen · speziell für Claude</div>
+    <div class="kicker" data-rolle="ma">Kurzprogramm für Beschäftigte · speziell für Claude</div>
+    <h1 class="titel" data-rolle="chef"><span class="echt">Automatisiere dein Business</span><span class="auszug auszug-akzent" aria-hidden="true">Automatisiere dein Business</span><span class="auszug auszug-leit" aria-hidden="true">Automatisiere dein Business</span></h1>
+    <h1 class="titel" data-rolle="ma"><span class="echt">Claude für deine Arbeit</span><span class="auszug auszug-akzent" aria-hidden="true">Claude für deine Arbeit</span><span class="auszug auszug-leit" aria-hidden="true">Claude für deine Arbeit</span></h1>
     <p class="vorspann" data-rolle="chef">Hundert Stunden pro Woche klingt nach einem Werbeversprechen. Es ist eine Rechnung – und du machst sie gleich hier selbst auf. Dieses Programm zeigt dir Aufgabe für Aufgabe, welche Arbeit in einem kleinen Unternehmen an Claude abgegeben werden kann, wie du sie sauber übergibst und wo du besser die Finger davon lässt.</p>
     <p class="vorspann" data-rolle="ma">Dein Betrieb arbeitet jetzt mit Claude, und du sollst mitziehen. Hier steht, was das für deine Arbeit bedeutet: welche Aufgaben dir tatsächlich abgenommen werden, woran du erkennst, dass ein Ergebnis falsch ist, und was du auf keinen Fall eingeben darfst. Acht Module, keine Vorkenntnisse nötig.</p>
     <div class="meta-zeile" data-rolle="chef">
@@ -1441,7 +1450,7 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
   <p class="ziel"><b>Lernziel</b>Du formulierst Aufträge, die beim ersten Versuch etwas Brauchbares liefern, und steuerst gezielt nach, statt neu zu würfeln. Das ist das Handwerk, auf dem alle Anwendungsmodule aufbauen.</p>
 
   <h3>Der Denkfehler, der die meisten Ergebnisse ruiniert</h3>
-  <p>Die meisten behandeln Claude wie eine Suchmaschine: kurze Stichworte hinein, fertiges Ergebnis erwartet. Nützlicher ist ein anderes Bild: <b>Du briefst eine neue Kollegin am ersten Arbeitstag.</b> Sie ist schnell, hat viel gelesen und arbeitet gründlich – aber sie kennt weder deine Kunden noch deine Preise noch das, was ihr letzte Woche entschieden habt. Alles, was du einer echten Kollegin erklären müsstest, muss in den Auftrag.</p>
+  <p>Die meisten behandeln Claude wie eine Suchmaschine: kurze Stichworte hinein, fertiges Ergebnis erwartet. Nützlicher ist ein anderes Bild: <b>Du briefst eine neue Kollegin am ersten Arbeitstag.</b> Sie ist schnell, hat viel gelesen und arbeitet gründlich – aber sie kennt weder die Kunden noch die Preise noch das, was ihr letzte Woche entschieden habt. Alles, was du einer echten Kollegin erklären müsstest, muss in den Auftrag.</p>
 
   <h3>Die sechs Bausteine</h3>
   <div class="tab-huelle"><table>
@@ -3106,9 +3115,11 @@ abstimmen sollte.</pre>
 
 <!-- ===================== MODUL 17 ===================== -->
 <section class="modul" id="m17">
-  <div class="modul-kopf"><span class="modul-nr">17</span><h2>Qualität, Kontrolle und was du nie automatisierst</h2></div>
-  <p class="ziel"><b>Lernziel</b>Du hast ein Freigabesystem, das zu deinem Betrieb passt, erkennst schleichenden Qualitätsverlust rechtzeitig und weißt, welche Dinge auch dann bei dir bleiben, wenn sie sich technisch abgeben ließen.</p>
+  <div class="modul-kopf"><span class="modul-nr">17</span><h2><span data-rolle="chef">Qualität, Kontrolle und was du nie automatisierst</span><span data-rolle="ma">Qualität, Kontrolle und wo du nicht allein entscheidest</span></h2></div>
+  <p class="ziel" data-rolle="chef"><b>Lernziel</b>Du hast ein Freigabesystem, das zu deinem Betrieb passt, erkennst schleichenden Qualitätsverlust rechtzeitig und weißt, welche Dinge auch dann bei dir bleiben, wenn sie sich technisch abgeben ließen.</p>
+  <p class="ziel" data-rolle="ma"><b>Lernziel</b>Du weißt, was du vor dem Absenden prüfen musst, erkennst, wenn du nachlässig geworden bist, und kennst die Aufgaben, die du auch dann nicht abgibst, wenn es technisch ginge.</p>
 
+  <div data-rolle="chef">
   <h3>Vier Freigabestufen</h3>
   <p>Nicht jedes Ergebnis braucht dieselbe Prüfung. Wer alles gleich streng prüft, prüft irgendwann gar nichts mehr – deshalb lohnt es sich, die Stufen einmal festzulegen.</p>
   <div class="tab-huelle"><table>
@@ -3118,6 +3129,7 @@ abstimmen sollte.</pre>
     <tr><td><b>3</b></td><td>Geht nach außen: Angebotstexte, Antworten, Website, Anzeigen</td><td>Vollständig lesen, jede Zahl und jede Zusage prüfen. Bei Mitarbeitern: Vier-Augen-Prinzip</td></tr>
     <tr><td><b>4</b></td><td>Verbindlich oder heikel: Verträge, Mahnungen ab Stufe 3, Personalsachen, alles mit Preisen und Fristen</td><td>Fachliche Prüfung durch dich, bei Bedarf durch Anwalt oder Steuerberater. Kein Direktversand</td></tr>
   </table></div>
+  </div>
 
   <h3>Die drei Fragen vor jeder Freigabe nach außen</h3>
   <ol>
@@ -3196,7 +3208,7 @@ abstimmen sollte.</pre>
       </svg>
       <figcaption><b>Abbildung 8 · Der Weg zur Freigabe und die drei roten Linien</b>Die Kette wird nie kürzer — sie wird nur schneller. Was in den drei Kästen unten steht, kommt gar nicht erst hinein.</figcaption>
     </figure>
-  <h3>Was du nie automatisierst</h3>
+  <h3><span data-rolle="chef">Was du nie automatisierst</span><span data-rolle="ma">Was du nicht allein erledigst</span></h3>
   <div class="tab-huelle"><table>
     <tr><th>Nie</th><th>Warum</th></tr>
     <tr><td>Der Anruf nach einem Fehler</td><td>Der Moment, in dem sich entscheidet, ob ein Kunde bleibt. Er gehört dir, nicht einer Vorlage</td></tr>
@@ -3207,6 +3219,7 @@ abstimmen sollte.</pre>
     <tr><td>Die Beziehung selbst</td><td>Der Grund, warum Kunden bei kleinen Betrieben kaufen, ist meistens: es ist persönlich. Genau das automatisiert man nicht weg</td></tr>
   </table></div>
 
+  <div data-rolle="chef">
   <h3>Einführung im Team</h3>
   <div class="merk">
     <span class="etikett">Diese Seite kann dein Team mitbenutzen</span>
@@ -3235,6 +3248,8 @@ abstimmen sollte.</pre>
   <div class="uebung"><span class="etikett">Übung · 20 Minuten</span>
     <p>Ordne deine fünf häufigsten Ergebnisarten den vier Freigabestufen zu und schreib es auf. Prüfe dann bei den drei Dingen, die du automatisieren willst: Steht bei jedem ein Prüfpunkt? Wenn nicht, ergänze ihn jetzt – nicht nach dem ersten Zwischenfall.</p>
   </div>
+  </div>
+
   <div class="uebe-zeile">
     <p>Im Übungsteil: Freigabestufen zuordnen und Grenzen erkennen.</p>
     <a href="#ueben/grenzen">Übungsteil →</a>
@@ -3245,7 +3260,7 @@ abstimmen sollte.</pre>
 <!-- ===================== ÜBUNGSTEIL ===================== -->
 <section class="modul" id="ueben">
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>Übungsteil: Claude üben</h2></div>
-  <p class="ziel"><b>Zweck</b>Gelesen ist nicht geübt. Elf Themen, die den Modulen oben folgen – mit Quiz, Einordnen, Prompt-Bausteinen, Werkstatt, Merkblatt und Karteikarten. Jede Antwort wird begründet, auch die richtige.</p>
+  <p class="ziel"><b>Zweck</b>Gelesen ist nicht geübt. <span data-rolle="chef">Fünfzehn Themen</span><span data-rolle="ma">Sieben Themen</span>, die den Modulen oben folgen – mit Quiz, Einordnen, Prompt-Bausteinen, Werkstatt, Merkblatt und Karteikarten. Jede Antwort wird begründet, auch die richtige.</p>
   <p class="gering" style="margin-bottom:20px">Quiz und Einordnen zählen in die Wertung, die Werkstatt nicht – dort prüfst du dich an einer Liste selbst. Der Stand bleibt im Browser gespeichert.</p>
   <div class="punkte">
     <span class="pille">Richtig <b id="zRichtig">0</b></span>
@@ -3635,7 +3650,7 @@ Nur die Beobachtung.</pre>
 <!-- ===================== SELBSTTEST ===================== -->
 <section class="modul" id="test">
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>Selbsttest</h2></div>
-  <p class="ziel"><b>Zweck</b>Zwölf Fragen aus dem Betriebsalltag. Erst selbst beantworten, dann aufklappen. Wer zehn davon sicher beantwortet, braucht dieses Programm nicht mehr.</p>
+  <p class="ziel"><b>Zweck</b><span data-rolle="chef">Zwölf Fragen aus dem Betriebsalltag</span><span data-rolle="ma">Acht Fragen aus dem Arbeitsalltag</span>. Erst selbst beantworten, dann aufklappen. Wer fast alle sicher beantwortet, braucht dieses Programm nicht mehr.</p>
 
   <details data-rolle="chef"><summary>1. Claude nennt dir für eine Kalkulation einen „branchenüblichen Stundensatz von 78 Euro". Was tust du?</summary>
     <div><p>Ignorieren. Diese Zahl stammt aus Trainingswissen, nicht aus deinem Betrieb und nicht aus einer Quelle. Der einzige Stundensatz, der zählt, ist der, den du selbst aus deinen Kosten ermittelt hast – das Modell dafür steht in <a href="#m10">Modul 10</a>. Zahlen in Kalkulationen kommen aus deiner Tabelle, nie aus einem Chat.</p></div></details>
@@ -3695,7 +3710,7 @@ Nur die Beobachtung.</pre>
     <tr><td>Kontextfenster</td><td>Textmenge, die gleichzeitig berücksichtigt werden kann. Ist sie voll, fällt Ältestes heraus</td></tr>
     <tr><td>Token</td><td>Textbaustein, in den Sprache zerlegt wird. Grundlage für Längenlimits und Verbrauch</td></tr>
     <tr><td>Halluzination</td><td>Erfundene, aber überzeugend formulierte Aussage. Betrifft vor allem Zahlen, Quellen und Paragrafen</td></tr>
-    <tr><td>Projekt</td><td>Arbeitsbereich mit eigenem Wissensspeicher und Dauer-Anweisung – dein Unternehmensgedächtnis</td></tr>
+    <tr><td>Projekt</td><td>Arbeitsbereich mit eigenem Wissensspeicher und Dauer-Anweisung – das Gedächtnis des Betriebs</td></tr>
     <tr><td>Projektanweisung</td><td>Dauerhafte Regel, die für alle Unterhaltungen in einem Projekt gilt</td></tr>
     <tr><td>Wissensspeicher</td><td>Die Dateien im Projekt, auf die in jeder Unterhaltung darin zugegriffen wird</td></tr>
     <tr><td>Artefakt</td><td>Ergebnis in einem eigenen Fenster – Tabelle, Checkliste, kleines Werkzeug –, das änderbar bleibt</td></tr>
@@ -3710,16 +3725,17 @@ Nur die Beobachtung.</pre>
     <tr><td>Human in the Loop</td><td>Fester Punkt im Ablauf, an dem ein Mensch prüft oder freigibt</td></tr>
     <tr><td>KI-Verordnung / AI Act</td><td>Verordnung (EU) 2024/1689. Für kleine Betriebe zählen KI-Kompetenz (Art. 4) und Transparenzpflichten (Art. 50)</td></tr>
     <tr><td>KI-Kompetenz</td><td>Pflicht, für ausreichende Schulung der Beteiligten zu sorgen. Gilt seit dem 2. Februar 2025</td></tr>
-    <tr><td>Betreiber</td><td>Rolle in der KI-Verordnung: wer ein KI-System beruflich einsetzt. Das bist in aller Regel du</td></tr>
+    <tr><td>Betreiber</td><td>Rolle in der KI-Verordnung: wer ein KI-System beruflich einsetzt. Das ist der Betrieb, nicht die einzelne beschäftigte Person</td></tr>
     <tr><td>Freigabestufe</td><td>Festgelegte Prüftiefe je nach Wirkung des Ergebnisses – von „nur für mich" bis „rechtlich verbindlich"</td></tr>
     <tr><td>Ausgangswert</td><td>Die Messung vor der Umstellung. Ohne sie lässt sich kein Nutzen belegen</td></tr>
   </table></div>
 </section>
 
 <footer class="fuss">
-  <p><b>So arbeitest du damit.</b> Die Seite braucht keine Anmeldung und keine Internetverbindung – du kannst sie speichern und offline durcharbeiten. Sie funktioniert am Rechner wie am Telefon, und sie lässt sich ausdrucken; Navigation und Knöpfe fallen dabei weg, Abbildungen und Prompts bleiben. Du musst nicht von vorn nach hinten lesen: Wenn du weißt, wo dein größter Zeitfresser sitzt, fang bei dem Modul an und hol dir die Grundlagen später.</p>
-  <p><b>Fortschritt.</b> Abgehakte Module, Checklisten und der Punktestand im Übungsteil werden im Browser gespeichert und bleiben beim nächsten Besuch erhalten – gerätebezogen, nicht personenbezogen und ohne Übertragung an einen Server. Über „Fortschritt zurücksetzen" in der Navigation lässt sich alles löschen. Die Eingaben im Zeitfresser-Rechner werden ebenfalls nur lokal gespeichert.</p>
-  <p><b>Zahlen und Beispiele.</b> Die Prozentwerte im Zeitfresser-Rechner sind bewusst vorsichtig gewählte <i>Startannahmen</i>, keine gemessenen Werte und keine Zusage. Sie sind zum Überschreiben gedacht, sobald eigene Messungen vorliegen – wie du misst, steht in Modul 01. Alle Betriebs-, Kunden- und Zahlenbeispiele in den Modulen sind konstruiert und dienen der Veranschaulichung. Die Aussage im Titel („100 Stunden pro Woche") ist keine Behauptung über deinen Betrieb, sondern das Ergebnis einer Rechnung, die du oben mit deinen eigenen Zahlen selbst aufmachst: Sie wird erreicht, wenn mehrere Personen im Betrieb ähnlich arbeiten.</p>
+  <p><b>So arbeitest du damit.</b> Die Seite braucht keine Anmeldung und keine Internetverbindung – du kannst sie speichern und offline durcharbeiten. Sie funktioniert am Rechner wie am Telefon, und sie lässt sich ausdrucken; Navigation und Knöpfe fallen dabei weg, Abbildungen und Prompts bleiben. Du musst nicht von vorn nach hinten lesen: <span data-rolle="chef">Wenn du weißt, wo dein größter Zeitfresser sitzt, fang bei dem Modul an und hol dir die Grundlagen später.</span><span data-rolle="ma">Wenn dich eine Aufgabe besonders viel Zeit kostet, fang bei dem passenden Modul an und hol dir die Grundlagen später.</span></p>
+  <p><b>Fortschritt.</b> Abgehakte Module, Checklisten und der Punktestand im Übungsteil werden im Browser gespeichert und bleiben beim nächsten Besuch erhalten – gerätebezogen, nicht personenbezogen und ohne Übertragung an einen Server. Über „Fortschritt zurücksetzen" in der Navigation lässt sich alles löschen. <span data-rolle="chef">Die Eingaben im Zeitfresser-Rechner werden ebenfalls nur lokal gespeichert.</span> Auch die Wahl der Ansicht liegt nur im Browser dieses Geräts.</p>
+  <p data-rolle="chef"><b>Zahlen und Beispiele.</b> Die Prozentwerte im Zeitfresser-Rechner sind bewusst vorsichtig gewählte <i>Startannahmen</i>, keine gemessenen Werte und keine Zusage. Sie sind zum Überschreiben gedacht, sobald eigene Messungen vorliegen – wie du misst, steht in Modul 01. Alle Betriebs-, Kunden- und Zahlenbeispiele in den Modulen sind konstruiert und dienen der Veranschaulichung. Die Aussage im Titel („100 Stunden pro Woche") ist keine Behauptung über deinen Betrieb, sondern das Ergebnis einer Rechnung, die du oben mit deinen eigenen Zahlen selbst aufmachst: Sie wird erreicht, wenn mehrere Personen im Betrieb ähnlich arbeiten.</p>
+  <p data-rolle="ma"><b>Zahlen und Beispiele.</b> Alle Betriebs-, Kunden- und Zahlenbeispiele in den Modulen sind konstruiert und dienen der Veranschaulichung. Sie beschreiben keinen echten Vorgang und keine echten Personen.</p>
   <p><b>Angaben zu Claude.</b> Funktionen, Stufen und Grenzen ändern sich laufend. Die Beschreibungen hier geben den Stand von August 2026 wieder und verzichten bewusst auf Preise und feste Limits. Verbindlich sind <a href="https://claude.com/pricing" rel="noopener">claude.com/pricing</a> und das Hilfezentrum unter <a href="https://support.claude.com" rel="noopener">support.claude.com</a>.</p>
   <p><b>Recht.</b> Angaben zu Datenschutz, KI-Verordnung und Werberecht: Stand August 2026, ohne Gewähr und ohne Rechtsberatung. Die Fristen der EU-KI-Verordnung wurden seit 2024 mehrfach angepasst; vor verbindlichen Entscheidungen den aktuellen Stand prüfen oder prüfen lassen. Für den konkreten Einzelfall bleiben Anwalt, Steuerberater und Datenschutzbeauftragter zuständig.</p>
 
@@ -3794,8 +3810,10 @@ Nur die Beobachtung.</pre>
      Auswahlseite, damit niemand sich darauf verlässt.
      ============================================================ */
   var ROLLEN = {
-    chef: { name: "Betriebsleitung", klasse: "ansicht-chef" },
-    ma:   { name: "Mitarbeit",       klasse: "ansicht-ma" }
+    chef: { name: "Betriebsleitung", klasse: "ansicht-chef",
+            titel: "Automatisiere dein Business — Der Claude-Kurs für Inhaber kleiner Unternehmen" },
+    ma:   { name: "Mitarbeit",       klasse: "ansicht-ma",
+            titel: "Claude für deine Arbeit — Der Kurs für Beschäftigte in kleinen Betrieben" }
   };
   var rolleJetzt = null;
 
@@ -3806,6 +3824,7 @@ Nur die Beobachtung.</pre>
     document.body.classList.toggle("ansicht-chef", rolle === "chef");
     var anzeige = document.getElementById("rollenName");
     if (anzeige) anzeige.textContent = ROLLEN[rolle].name;
+    document.title = ROLLEN[rolle].titel;
     if (merken) { var d = lies(); d.rolle = rolle; schreib(d); }
     aktualisieren();
     if (typeof window.uebenNeuZeichnen === "function") window.uebenNeuZeichnen();
@@ -4721,7 +4740,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
 },
 {
   nr:"15", id:"grenzen", ma:true, titel:"Kontrolle & Grenzen", tag:"Modul 11 + 17",
-  kurz:"Was du nie automatisierst, woran du Qualität misst und wie du verhinderst, dass Prüfung zur Formalie wird.",
+  kurz:"Wo die Grenzen liegen, woran du Qualität misst und wie du verhinderst, dass Prüfung zur Formalie wird.",
   erklaerung:`<p>Es gibt drei Sorten Aufgaben, die in kleinen Betrieben nicht automatisiert gehören – unabhängig davon, wie gut die Ergebnisse aussehen.</p>
   <h3>Die drei roten Linien</h3>
   <p><b>Erstens: alles Verbindliche.</b> Preise, Termine, Zusagen, rechtliche Erklärungen. Der Entwurf darf entstehen, das Absenden bleibt bei einem Menschen. <b>Zweitens: alles über Menschen.</b> Einstellung, Kündigung, Beurteilung, Konfliktentscheidung. <b>Drittens: alles Sicherheitsrelevante.</b> Wo Fehler Personen gefährden, ist ein Sprachmodell kein zulässiges Hilfsmittel.</p>
