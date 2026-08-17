@@ -13,9 +13,27 @@
        Dunkelmodus direkt darunter unter @media (prefers-color-scheme: dark).
        Das ist die einzige Stelle, die man für ein Rebranding anfassen muss.
      - Inhalte: direkt im Text der jeweiligen <section class="modul">.
-     - Übungsteil: das Array DATEN im zweiten <script>-Block am Dateiende.
+     - Übungsteil: das Array DATEN im zweiten Skriptblock am Dateiende.
      - Bildschirmfotos: vier vorbereitete Plätze, zu finden über die Suche
        nach "BILDSCHIRMFOTO". Über jedem steht das fertige Ersatz-Markup.
+
+     ZWEI ANSICHTEN: BETRIEBSLEITUNG UND MITARBEIT
+     Beim ersten Besuch wählt man eine Rolle; die Wahl liegt im Browser
+     und ist links unten jederzeit umstellbar.
+       - Chef sieht 18 Module, Rechner, Branchenpfade, 30-Tage-Plan,
+         15 Übungsthemen, 52 Prompts, 12 Selbsttestfragen.
+       - Mitarbeit sieht 8 Module (davon zwei eigene: ma01, ma02),
+         7 Übungsthemen, 25 Prompts, 8 Selbsttestfragen.
+     Gesteuert über das Attribut data-rolle="chef" bzw. "ma" an Abschnitten,
+     Navigationslinks, Selbsttestfragen und einzelnen Textstellen. Ohne
+     Attribut = für beide sichtbar. Ohne JavaScript erscheint die
+     Chef-Ansicht; das ist die vollständige.
+     Übungsthemen tragen im DATEN-Array die Kennzeichnung ma:true.
+
+     ACHTUNG, HÄUFIGES MISSVERSTÄNDNIS
+     Die Rollenansicht ist ein Bequemlichkeitsfilter, KEIN Zugriffsschutz.
+     Wer umschaltet oder den Quelltext liest, sieht alles. Nichts in diese
+     Datei schreiben, das vor Angestellten verborgen bleiben muss.
 
      VOR DER VERÖFFENTLICHUNG PRÜFEN
      - Google Fonts entfernen? Siehe Hinweis im <head>.
@@ -340,6 +358,55 @@ h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
    im Kasten selbst und in einem HTML-Kommentar direkt darüber.
    Sind alle gefüllt, kann die Regel .platzhalter{display:none} in
    den Stilblock, falls doch einer übrig bleibt. */
+/* ============================================================
+   ROLLENANSICHT — Chef / Mitarbeiter
+   Ohne JavaScript ist die Chef-Ansicht sichtbar; das ist die
+   vollständige. Mitarbeiter-Inhalte sind dann ausgeblendet.
+   WICHTIG: Das ist ein Bequemlichkeitsfilter, KEIN Zugriffsschutz.
+   ============================================================ */
+[data-rolle="ma"]{display:none}
+body.ansicht-ma [data-rolle="ma"]{display:block}
+body.ansicht-ma .nav-link[data-rolle="ma"]{display:flex}
+body.ansicht-ma a[data-rolle="ma"],
+body.ansicht-ma span[data-rolle="ma"],
+body.ansicht-ma em[data-rolle="ma"]{display:inline}
+body.ansicht-ma details[data-rolle="ma"]{display:block}
+body.ansicht-ma .meta-zeile[data-rolle="ma"]{display:flex}
+body.ansicht-ma [data-rolle="chef"]{display:none}
+
+.rollenwahl{position:fixed; inset:0; z-index:60; background:var(--papier);
+  display:none; align-items:center; justify-content:center; padding:24px; overflow-y:auto}
+body.wahl-offen .rollenwahl{display:flex}
+body.wahl-offen{overflow:hidden}
+.rollenwahl-inhalt{max-width:640px; width:100%}
+.rollenwahl .kicker{margin-bottom:10px}
+.rollenwahl h2{font-size:clamp(28px,5vw,40px); letter-spacing:-.03em; margin-bottom:12px}
+.rollenwahl > div > p{font-size:17px; color:var(--grau); margin-bottom:26px; max-width:52ch}
+.rollen-karten{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+@media (max-width:640px){.rollen-karten{grid-template-columns:1fr}}
+.rollen-karte{text-align:left; cursor:pointer; background:var(--karte); color:var(--tinte);
+  border:1.5px solid var(--tinte); border-radius:var(--r); padding:20px 20px 18px;
+  transition:transform .15s, box-shadow .15s}
+.rollen-karte:hover{transform:translateY(-2px); box-shadow:0 10px 22px var(--schatten);
+  border-color:var(--leit)}
+.rollen-karte b{display:block; font-family:var(--display); font-weight:800; font-size:21px;
+  letter-spacing:-.02em; margin-bottom:6px}
+.rollen-karte span{display:block; font-size:14.5px; color:var(--grau); line-height:1.5}
+.rollen-karte em{display:block; margin-top:12px; font-family:var(--mono); font-size:9.5px;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--akzent-text); font-style:normal}
+.rollenwahl .nebenbei{margin-top:22px; font-family:var(--mono); font-size:10.5px;
+  line-height:1.7; color:var(--grau-hell)}
+
+.rollen-schalter{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--grau); line-height:1.6}
+.rollen-schalter b{color:var(--akzent-text)}
+.rollen-schalter button{background:none; border:0; padding:0; cursor:pointer;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--grau-hell); text-decoration:underline; text-underline-offset:3px}
+.rollen-schalter button:hover{color:var(--akzent-text)}
+
+@media print{.rollenwahl{display:none !important} .rollen-schalter{display:none}}
+
 /* Auszufüllende Stellen — absichtlich auffällig, damit sie nicht
    versehentlich mitveröffentlicht werden. Nach dem Ausfüllen einfach
    das <span class="ausfuellen"> entfernen. */
@@ -718,6 +785,38 @@ details > div > *:last-child{margin-bottom:0}
 </head>
 <body>
 <a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- ========================= ROLLENAUSWAHL =========================
+     Erscheint nur beim ersten Besuch und nur mit JavaScript. Ohne
+     JavaScript sieht man direkt die vollständige Chef-Ansicht.
+     Die Wahl liegt im Browser des Geräts, nicht auf einem Server.
+     ================================================================= -->
+<div class="rollenwahl" id="rollenwahl" role="dialog" aria-modal="true" aria-labelledby="rollenwahlTitel">
+  <div class="rollenwahl-inhalt">
+    <div class="kicker">Bevor du anfängst</div>
+    <h2 id="rollenwahlTitel">Für wen ist das hier gedacht?</h2>
+    <p>Das Programm passt sich an. Als Inhaber bekommst du alles, auch die
+      Module zu Kalkulation, Personal und Recht. Als Mitarbeiterin oder
+      Mitarbeiter bekommst du den kürzeren Weg — nur das, was du für deine
+      tägliche Arbeit brauchst.</p>
+    <div class="rollen-karten">
+      <button class="rollen-karte" type="button" data-waehle="chef">
+        <b>Ich führe den Betrieb</b>
+        <span>Inhaberin, Inhaber, Geschäftsführung oder wer über Preise,
+          Personal und Abläufe entscheidet.</span>
+        <em>18 Module · alles</em>
+      </button>
+      <button class="rollen-karte" type="button" data-waehle="ma">
+        <b>Ich arbeite hier</b>
+        <span>Angestellte, Aushilfe, Azubi — alle, die mit Claude arbeiten
+          sollen, aber nicht über den Betrieb entscheiden.</span>
+        <em>8 Module · rund eine Stunde</em>
+      </button>
+    </div>
+    <p class="nebenbei">Die Auswahl lässt sich jederzeit links unten wechseln, und sie
+      ändert nur, was angezeigt wird — sie sperrt nichts ab. Wer umschaltet, sieht alles.</p>
+  </div>
+</div>
 <div class="huelle">
 <!-- ========================= NAVIGATION ========================= -->
 <nav class="nav" id="nav" aria-label="Modulübersicht">
@@ -729,33 +828,35 @@ details > div > *:last-child{margin-bottom:0}
   <input class="suche" id="suche" type="search" placeholder="Suchen: Angebot, Mahnung, DSGVO …" autocomplete="off">
   <div class="nav-liste" id="navListe">
     <p class="nav-treffer" id="treffer" role="status"></p>
-    <a class="nav-link hervor" href="#ueben"><b>★</b><span>Übungsteil: Claude üben<small>15 Themen · Quiz · Werkstatt</small></span></a>
+    <a class="nav-link hervor" href="#ueben"><b>★</b><span>Übungsteil: Claude üben<small><span data-rolle="chef">15 Themen</span><span data-rolle="ma">7 Themen</span> · Quiz · Werkstatt</small></span></a>
     <div class="nav-gruppe">Start</div>
-    <a class="nav-link" href="#m00"><b>00</b><span>In 60 Minuten startklar</span></a>
-    <a class="nav-link" href="#m01"><b>01</b><span>Der Zeitfresser-Audit</span></a>
+    <a class="nav-link" href="#m00" data-rolle="chef"><b>00</b><span>In 60 Minuten startklar</span></a>
+    <a class="nav-link" href="#m01" data-rolle="chef"><b>01</b><span>Der Zeitfresser-Audit</span></a>
     <div class="nav-gruppe">Fundament</div>
+    <a class="nav-link" href="#ma01" data-rolle="ma"><b>A</b><span>Was das für dich heißt</span></a>
+    <a class="nav-link" href="#ma02" data-rolle="ma"><b>B</b><span>Was du eingeben darfst</span></a>
     <a class="nav-link" href="#m02"><b>02</b><span>Wie Claude arbeitet – und wo es irrt</span></a>
     <a class="nav-link" href="#m03"><b>03</b><span>Der Auftrag: Prompts, die Arbeit abnehmen</span></a>
-    <a class="nav-link" href="#m04"><b>04</b><span>Das Unternehmensgedächtnis</span></a>
-    <a class="nav-link" href="#m05"><b>05</b><span>Die fünf Automatisierungsstufen</span></a>
+    <a class="nav-link" href="#m04" data-rolle="chef"><b>04</b><span>Das Unternehmensgedächtnis</span></a>
+    <a class="nav-link" href="#m05" data-rolle="chef"><b>05</b><span>Die fünf Automatisierungsstufen</span></a>
     <div class="nav-gruppe">Der Betrieb</div>
-    <a class="nav-link" href="#m06"><b>06</b><span>Anfragen &amp; Angebote</span></a>
+    <a class="nav-link" href="#m06" data-rolle="chef"><b>06</b><span>Anfragen &amp; Angebote</span></a>
     <a class="nav-link" href="#m07"><b>07</b><span>Kundenkommunikation &amp; Postfach</span></a>
-    <a class="nav-link" href="#m08"><b>08</b><span>Rechnungen, Zahlungen, Mahnwesen</span></a>
+    <a class="nav-link" href="#m08" data-rolle="chef"><b>08</b><span>Rechnungen, Zahlungen, Mahnwesen</span></a>
     <a class="nav-link" href="#m09"><b>09</b><span>Verträge, Ausschreibungen, Bescheide</span></a>
-    <a class="nav-link" href="#m10"><b>10</b><span>Kalkulation, Preise, Buchhaltung</span></a>
-    <a class="nav-link" href="#m11"><b>11</b><span>Personal: Anzeige bis Einarbeitung</span></a>
-    <a class="nav-link" href="#m12"><b>12</b><span>Marketing ohne Agentur</span></a>
-    <a class="nav-link" href="#m13"><b>13</b><span>Vertrieb &amp; Nachfassen</span></a>
+    <a class="nav-link" href="#m10" data-rolle="chef"><b>10</b><span>Kalkulation, Preise, Buchhaltung</span></a>
+    <a class="nav-link" href="#m11" data-rolle="chef"><b>11</b><span>Personal: Anzeige bis Einarbeitung</span></a>
+    <a class="nav-link" href="#m12" data-rolle="chef"><b>12</b><span>Marketing ohne Agentur</span></a>
+    <a class="nav-link" href="#m13" data-rolle="chef"><b>13</b><span>Vertrieb &amp; Nachfassen</span></a>
     <a class="nav-link" href="#m14"><b>14</b><span>Prozesse dokumentieren</span></a>
-    <a class="nav-link" href="#m15"><b>15</b><span>Deine digitalen Mitarbeiter</span></a>
+    <a class="nav-link" href="#m15" data-rolle="chef"><b>15</b><span>Deine digitalen Mitarbeiter</span></a>
     <div class="nav-gruppe">Absicherung</div>
-    <a class="nav-link" href="#m16"><b>16</b><span>Recht, Datenschutz, KI-Verordnung</span></a>
+    <a class="nav-link" href="#m16" data-rolle="chef"><b>16</b><span>Recht, Datenschutz, KI-Verordnung</span></a>
     <a class="nav-link" href="#m17"><b>17</b><span>Qualität, Kontrolle, Grenzen</span></a>
     <div class="nav-gruppe">Werkzeugkasten</div>
-    <a class="nav-link" href="#pfade"><b>›</b><span>Welche Module für welche Branche</span></a>
+    <a class="nav-link" href="#pfade" data-rolle="chef"><b>›</b><span>Welche Module für welche Branche</span></a>
     <a class="nav-link" href="#bibliothek"><b>›</b><span>Prompt-Bibliothek</span></a>
-    <a class="nav-link" href="#plan"><b>›</b><span>30-Tage-Plan</span></a>
+    <a class="nav-link" href="#plan" data-rolle="chef"><b>›</b><span>30-Tage-Plan</span></a>
     <a class="nav-link" href="#test"><b>›</b><span>Selbsttest</span></a>
     <a class="nav-link" href="#glossar"><b>›</b><span>Glossar</span></a>
   </div>
@@ -763,6 +864,10 @@ details > div > *:last-child{margin-bottom:0}
     <div class="fortschritt"><i id="balken"></i></div>
     <span id="zaehler">0 von 18 Modulen abgeschlossen</span>
     <button class="zuruecksetzen" id="zuruecksetzen" type="button">Fortschritt zurücksetzen</button>
+    <div class="rollen-schalter" style="margin-top:10px">
+      Ansicht: <b id="rollenName">Betriebsleitung</b><br>
+      <button type="button" id="rollenWechsel">Ansicht wechseln</button>
+    </div>
   </div>
 </nav>
 
@@ -773,8 +878,9 @@ details > div > *:last-child{margin-bottom:0}
   <div class="bahn">
     <div class="kicker">Praxisprogramm für kleine Unternehmen · speziell für Claude</div>
     <h1 class="titel"><span class="echt">Automatisiere dein Business</span><span class="auszug auszug-akzent" aria-hidden="true">Automatisiere dein Business</span><span class="auszug auszug-leit" aria-hidden="true">Automatisiere dein Business</span></h1>
-    <p class="vorspann">Hundert Stunden pro Woche klingt nach einem Werbeversprechen. Es ist eine Rechnung – und du machst sie gleich hier selbst auf. Dieses Programm zeigt dir Aufgabe für Aufgabe, welche Arbeit in einem kleinen Unternehmen an Claude abgegeben werden kann, wie du sie sauber übergibst und wo du besser die Finger davon lässt.</p>
-    <div class="meta-zeile">
+    <p class="vorspann" data-rolle="chef">Hundert Stunden pro Woche klingt nach einem Werbeversprechen. Es ist eine Rechnung – und du machst sie gleich hier selbst auf. Dieses Programm zeigt dir Aufgabe für Aufgabe, welche Arbeit in einem kleinen Unternehmen an Claude abgegeben werden kann, wie du sie sauber übergibst und wo du besser die Finger davon lässt.</p>
+    <p class="vorspann" data-rolle="ma">Dein Betrieb arbeitet jetzt mit Claude, und du sollst mitziehen. Hier steht, was das für deine Arbeit bedeutet: welche Aufgaben dir tatsächlich abgenommen werden, woran du erkennst, dass ein Ergebnis falsch ist, und was du auf keinen Fall eingeben darfst. Acht Module, keine Vorkenntnisse nötig.</p>
+    <div class="meta-zeile" data-rolle="chef">
       <span class="marke">18 Module</span>
       <span class="marke" title="Reine Lesezeit gemessen am Textumfang. Die Übungen an eigenem Material kommen dazu und dauern erfahrungsgemäß länger als das Lesen.">2,5 h lesen · Üben dauert länger</span>
       <span class="marke">52 Prompts zum Kopieren</span>
@@ -782,9 +888,16 @@ details > div > *:last-child{margin-bottom:0}
       <span class="marke">Ohne Vorkenntnisse</span>
       <span class="marke">Ohne Programmieren</span>
     </div>
+    <div class="meta-zeile" data-rolle="ma">
+      <span class="marke">8 Module</span>
+      <span class="marke" title="Reine Lesezeit. Die Übungen an eigenen Aufgaben kommen dazu.">rund 1 Stunde lesen</span>
+      <span class="marke">Prompts zum Kopieren</span>
+      <span class="marke">Übungsteil mit 7 Themen</span>
+      <span class="marke">Ohne Vorkenntnisse</span>
+    </div>
 
     <!-- ========== Zeitfresser-Rechner ========== -->
-    <div class="rechner" id="rechner">
+    <div class="rechner" id="rechner" data-rolle="chef">
       <div class="rechner-kopf"><span>Zeitfresser-Rechner</span><em>deine Zahlen, nicht meine</em></div>
       <div class="tab-huelle">
       <table>
@@ -868,7 +981,7 @@ details > div > *:last-child{margin-bottom:0}
           <div><b id="rJahr">619</b><span>Stunden pro Jahr</span></div>
           <div><b id="rGeld">40.216 €</b><span>Gegenwert pro Jahr</span></div>
         </div>
-        <p class="rechner-hinweis" id="rechnerHinweis">Trag deine echten Zahlen ein. Die Prozentwerte sind vorsichtige Startannahmen aus typischen Betrieben – keine gemessenen Werte und kein Versprechen. Überschreib sie, sobald du deine ersten eigenen Messungen hast. Wie du misst, steht in <a href="#m01">Modul 01</a>.</p>
+        <p class="rechner-hinweis" id="rechnerHinweis">Trag deine echten Zahlen ein. Die Prozentwerte sind vorsichtige Startannahmen aus typischen Betrieben – keine gemessenen Werte und kein Versprechen. Überschreib sie, sobald du deine ersten eigenen Messungen hast. Wie du misst, steht in <a href="#m01" data-rolle="chef">Modul 01</a><span data-rolle="ma">dem Zeitfresser-Audit</span>.</p>
       </div>
     </div>
 
@@ -881,7 +994,7 @@ details > div > *:last-child{margin-bottom:0}
 <div class="bahn">
 
 <!-- ===================== MODUL 00 ===================== -->
-<section class="modul" id="m00">
+<section class="modul" id="m00" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">00</span><h2>In 60 Minuten startklar</h2></div>
   <p class="ziel"><b>Lernziel</b>Du hast ein Konto, weißt, welche Arbeitsform für welche Aufgabe gedacht ist, und hast eine echte Aufgabe aus deinem Betrieb damit erledigt. Wenn du Claude schon täglich nutzt, überspring dieses Modul.</p>
   <p class="stand"><b>Stand August 2026</b><span>Beschreibt Zugänge und Arbeitsformen. Funktionsumfang und Grenzen ändern sich – im Zweifel bei claude.com/pricing gegenprüfen.</span></p>
@@ -978,7 +1091,7 @@ details > div > *:last-child{margin-bottom:0}
 </section>
 
 <!-- ===================== MODUL 01 ===================== -->
-<section class="modul" id="m01">
+<section class="modul" id="m01" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">01</span><h2>Der Zeitfresser-Audit</h2></div>
   <p class="ziel"><b>Lernziel</b>Du weißt, welche Aufgaben in deinem Betrieb sich wirklich lohnen zu automatisieren – und kannst es begründen, statt zu raten. Ohne dieses Modul automatisierst du die falschen Dinge sehr effizient.</p>
 
@@ -1108,6 +1221,89 @@ fehlt, schreib "unklar" statt zu schätzen.</pre>
 </section>
 
 <!-- ===================== MODUL 02 ===================== -->
+<!-- ===================== MITARBEITER-MODUL: EINSTIEG ===================== -->
+<section class="modul" id="ma01" data-rolle="ma">
+  <div class="modul-kopf"><span class="modul-nr">A</span><h2>Was das für dich heißt</h2></div>
+  <p class="ziel"><b>Lernziel</b>Du weißt, warum in deinem Betrieb mit Claude gearbeitet wird, was von dir erwartet wird und was ausdrücklich nicht. Danach kannst du entscheiden, wo du es einsetzt.</p>
+
+  <h3>Die Frage, die keiner laut stellt</h3>
+  <p>Wenn im Betrieb ein Werkzeug eingeführt wird, das Arbeit übernimmt, denkt fast jeder zuerst dasselbe: <i>Soll ich mich hier gerade selbst überflüssig machen?</i> Das ist eine vernünftige Frage und sie verdient eine ehrliche Antwort statt einer Beruhigungsformel.</p>
+  <p>Die Antwort hat zwei Teile. Der erste: In kleinen Betrieben ist so gut wie nie zu wenig Arbeit da, sondern zu wenig Zeit. Was wegfällt, sind meistens die Teile, die niemand gern macht — Formulierungen suchen, Unterlagen durchackern, dasselbe zum zwölften Mal schreiben. Der zweite Teil ist unbequemer: Niemand kann dir versprechen, wie sich Arbeit in zehn Jahren verändert. Wer das Werkzeug beherrscht, steht dabei besser da als wer es meidet. Genau deshalb sitzt du hier.</p>
+
+  <div class="merk">
+    <span class="etikett">Was von dir erwartet wird</span>
+    <p>Dass du es <b>ausprobierst</b>, dass du <b>prüfst</b>, was dabei herauskommt, und dass du <b>sagst, wenn es nicht funktioniert</b>. Nicht erwartet wird, dass du alles damit machst, dass du schneller wirst, ohne dass die Qualität stimmt, oder dass du Fehler stillschweigend ausbügelst.</p>
+  </div>
+
+  <h3>Drei Dinge, die du sofort wissen solltest</h3>
+  <ol>
+    <li><b>Es erfindet Sachen.</b> Flüssig, überzeugend und ohne Vorwarnung. Zahlen, Paragrafen, Preise, Termine. Wie das kommt und woran man es merkt, steht im nächsten Modul — es ist das Wichtigste im ganzen Programm.</li>
+    <li><b>Was rausgeht, verantwortest weiterhin du.</b> Ein Entwurf bleibt ein Entwurf, bis ein Mensch ihn geprüft hat. „Das hat die KI so geschrieben" ist keine Erklärung, die irgendwo zieht.</li>
+    <li><b>Nicht alles darf hinein.</b> Kundendaten, Gesundheitsangaben, Personalsachen — dafür gibt es Regeln. Die stehen in deinem Modul weiter unten, und dein Betrieb sollte dir zusätzlich eine eigene Nutzungsregel gegeben haben.</li>
+  </ol>
+
+  <h3>Wo es sich für dich zuerst lohnt</h3>
+  <div class="tab-huelle"><table>
+    <tr><th>Wenn deine Arbeit so aussieht</th><th>Fang hier an</th></tr>
+    <tr><td>Viel schreiben: Mails, Angebote, Antworten</td><td>Modul „Der Auftrag", dann „Kundenkommunikation"</td></tr>
+    <tr><td>Viel lesen: Verträge, Bescheide, Ausschreibungen</td><td>Modul „Verträge und lange Dokumente"</td></tr>
+    <tr><td>Du erklärst ständig dasselbe an Neue</td><td>Modul „Prozesse dokumentieren"</td></tr>
+    <tr><td>Du bist unsicher, was du überhaupt darfst</td><td>Modul „Was du eingeben darfst"</td></tr>
+  </table></div>
+
+  <div class="uebung">
+    <span class="etikett">Übung · 10 Minuten</span>
+    <p>Schreib drei Aufgaben aus deiner letzten Woche auf, die dich Zeit gekostet haben und bei denen du <i>nichts entscheiden</i> musstest — nur formulieren, suchen, sortieren oder umschreiben. Das sind deine Kandidaten. Aufgaben, bei denen du fachlich entschieden hast, gehören ausdrücklich nicht dazu.</p>
+  </div>
+
+  <div class="uebe-zeile">
+    <p>Im Übungsteil: die Grundlagen zum Mitmachen, mit begründeten Auflösungen.</p>
+    <a href="#ueben/grundlagen">Übungsteil &#8594;</a>
+  </div>
+  <label class="abschluss"><input type="checkbox" data-modul="ma01"> Modul abgeschlossen</label>
+</section>
+
+<!-- ===================== MITARBEITER-MODUL: DATEN ===================== -->
+<section class="modul" id="ma02" data-rolle="ma">
+  <div class="modul-kopf"><span class="modul-nr">B</span><h2>Was du eingeben darfst — und was nicht</h2></div>
+  <p class="ziel"><b>Lernziel</b>Du entscheidest in wenigen Sekunden sicher, ob etwas in ein Chatfenster darf. Du kennst die drei Fälle, bei denen du grundsätzlich vorher fragst.</p>
+
+  <h3>Die eine Regel, aus der fast alles folgt</h3>
+  <p>Gib nur weiter, was die Aufgabe wirklich braucht. Das klingt banal, löst aber die meisten Fälle: Ein Angebotstext wird kein bisschen schlechter, wenn statt „Familie Bergmann, Lindenweg 4" einfach <code>[Kunde]</code> dasteht. Eine Reklamationsantwort funktioniert mit <code>[Vorgang]</code> genauso. Was nie übermittelt wird, kann auch nicht in falsche Hände geraten — das ist wirksamer als jede nachträgliche Absicherung.</p>
+
+  <div class="merk">
+    <span class="etikett">Der Zwei-Sekunden-Test</span>
+    <p>Bevor du etwas einfügst: <b>Könnte man die Person daran erkennen?</b> Name, Adresse, Telefonnummer, Kundennummer, Kennzeichen, seltene Krankheit, ungewöhnlicher Auftrag am kleinen Ort. Wenn ja: ersetzen oder weglassen. Erst wenn es sich nicht ersetzen lässt, ist es überhaupt eine Frage.</p>
+  </div>
+
+  <h3>Die drei Fälle, bei denen du immer vorher fragst</h3>
+  <div class="tab-huelle"><table>
+    <tr><th>Fall</th><th>Warum</th></tr>
+    <tr><td>Gesundheitsangaben, egal von wem</td><td>Besonders geschützte Kategorie. Auch die beiläufige Bemerkung „der Kunde ist im Krankenhaus" gehört nicht hinein.</td></tr>
+    <tr><td>Alles über Kolleginnen und Kollegen</td><td>Beurteilungen, Krankheitstage, Konflikte, Gehalt. Auch wenn du es nur sortieren lassen willst.</td></tr>
+    <tr><td>Unterlagen, die jemand „vertraulich" genannt hat</td><td>Verträge Dritter, Gutachten, Patientenakten, Mandantensachen. Im Zweifel gilt: gefragt ist schneller erledigt als erklärt.</td></tr>
+  </table></div>
+
+  <div class="warnung">
+    <span class="etikett">Zwei Irrtümer, die teuer werden</span>
+    <p><b>„Ich lösche den Chat ja gleich wieder."</b> Übermittelt ist übermittelt — Löschen danach ändert daran nichts. <b>„Das ist doch nur eine Adresse."</b> Personenbezug hängt nicht an der Brisanz einer einzelnen Angabe, sondern daran, ob sich eine Person zuordnen lässt. Mehrere harmlose Angaben zusammen reichen dafür oft aus.</p>
+  </div>
+
+  <h3>Was dein Betrieb dir geben sollte</h3>
+  <p>Eine <b>Nutzungsregel</b> auf einem Blatt: welches Werkzeug freigegeben ist, welche Daten hinein dürfen, was nie. Wenn du so etwas nicht bekommen hast, frag danach — nicht aus Formalismus, sondern weil du sonst im Zweifelsfall alleine dastehst. Seit Februar 2025 ist der Betrieb ohnehin verpflichtet, für ausreichende Einweisung zu sorgen.</p>
+
+  <div class="uebung">
+    <span class="etikett">Übung · 5 Minuten</span>
+    <p>Nimm die letzte Kundenmail, die du beantwortet hast. Streich alles durch, was die Aufgabe nicht braucht — Name, Adresse, Nummern. Was bleibt übrig? In aller Regel genug, um eine gute Antwort zu bekommen. Genau so sieht der Alltag aus.</p>
+  </div>
+
+  <div class="uebe-zeile">
+    <p>Im Übungsteil: Fälle einordnen — unbedenklich, heikel oder vorher fragen.</p>
+    <a href="#ueben/recht">Übungsteil &#8594;</a>
+  </div>
+  <label class="abschluss"><input type="checkbox" data-modul="ma02"> Modul abgeschlossen</label>
+</section>
+
 <section class="modul" id="m02">
   <div class="modul-kopf"><span class="modul-nr">02</span><h2>Wie Claude arbeitet – und wo es zuverlässig irrt</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kannst erklären, warum ein Sprachmodell überzeugend klingende Fehler macht, und leitest daraus ab, welche Arbeit du abgibst und welche du selbst prüfst. Das ist die Grundlage für jede Entscheidung in den folgenden Modulen.</p>
@@ -1365,7 +1561,7 @@ Fehlen dir Angaben: frag nach, bevor du beginnst.</pre>
 </section>
 
 <!-- ===================== MODUL 04 ===================== -->
-<section class="modul" id="m04">
+<section class="modul" id="m04" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">04</span><h2>Das Unternehmensgedächtnis: Projekte richtig aufsetzen</h2></div>
   <p class="ziel"><b>Lernziel</b>Du hast ein Projekt eingerichtet, das deinen Betrieb kennt – sodass du den Kontext nicht bei jeder Anfrage neu erklären musst. Das ist die Investition mit der höchsten Rendite in diesem ganzen Programm.</p>
   <p class="stand"><b>Stand August 2026</b><span>Beschreibt Projekte und Wissensspeicher. Bedienung und Bezeichnungen können sich ändern, das Prinzip bleibt.</span></p>
@@ -1539,7 +1735,7 @@ REGELN
 </section>
 
 <!-- ===================== MODUL 05 ===================== -->
-<section class="modul" id="m05">
+<section class="modul" id="m05" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">05</span><h2>Die fünf Automatisierungsstufen</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kennst den Weg vom einzelnen Chat bis zur Aufgabe, die ohne dich läuft – und weißt, auf welcher Stufe eine bestimmte Arbeit aufgehoben ist. Höher ist nicht besser; passend ist besser.</p>
   <p class="stand"><b>Stand August 2026</b><span>Beschreibt Vorlagen, Verbindungen und geplante Aufgaben. Genau hier ändert sich am meisten – prüfe vor dem Einrichten den aktuellen Stand.</span></p>
@@ -1675,7 +1871,7 @@ REGELN
 </section>
 
 <!-- ===================== MODUL 06 ===================== -->
-<section class="modul" id="m06">
+<section class="modul" id="m06" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">06</span><h2>Anfragen und Angebote</h2></div>
   <p class="ziel"><b>Lernziel</b>Du verkürzt die Zeit von der Anfrage bis zum versendeten Angebot deutlich – ohne dass die Preise aus einer Maschine kommen. Für die meisten kleinen Betriebe ist das der größte einzelne Hebel überhaupt.</p>
 
@@ -1853,7 +2049,7 @@ Fasse zusammen, ohne zu antworten.</pre>
        (Ein Bild in Base64 umwandeln kann jedes Online-Werkzeug oder
         unter Linux/Mac: base64 -w0 bild.png)
        ====================================== -->
-  <div class="platzhalter">
+  <div class="platzhalter" data-rolle="chef">
     <b>Platz für dein Bildschirmfoto · 04</b>
     <strong>Eine Verbindung zum Postfach freigeben</strong>
     <p>Der Freigabedialog — inklusive der Stelle, an der sichtbar wird, welche Rechte tatsächlich erteilt werden.</p>
@@ -1921,7 +2117,7 @@ Haftung. Setz dort [rechtlich prüfen].</pre>
 </section>
 
 <!-- ===================== MODUL 08 ===================== -->
-<section class="modul" id="m08">
+<section class="modul" id="m08" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">08</span><h2>Rechnungen, Zahlungen, Mahnwesen</h2></div>
   <p class="ziel"><b>Lernziel</b>Du verkürzt die Zeit zwischen Leistung und Zahlungseingang und erledigst das Unangenehme daran in Minuten statt in Wochen. Dieses Modul betrifft nicht deine Zeit, sondern deine Liquidität.</p>
 
@@ -2178,7 +2374,7 @@ im Schreiben steht.</pre>
 </section>
 
 <!-- ===================== MODUL 10 ===================== -->
-<section class="modul" id="m10">
+<section class="modul" id="m10" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">10</span><h2>Kalkulation, Preise, Buchhaltung</h2></div>
   <p class="ziel"><b>Lernziel</b>Du nutzt Claude für das Denken über Zahlen – Struktur, Vergleich, Fragen, Szenarien – und nie für das Rechnen selbst. Der Unterschied ist die wichtigste Regel in diesem Modul.</p>
 
@@ -2293,7 +2489,7 @@ und Vollständigkeit.</pre>
 </section>
 
 <!-- ===================== MODUL 11 ===================== -->
-<section class="modul" id="m11">
+<section class="modul" id="m11" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">11</span><h2>Personal: von der Anzeige bis zur Einarbeitung</h2></div>
   <p class="ziel"><b>Lernziel</b>Du besetzt Stellen schneller und arbeitest neue Leute so ein, dass sie früher selbstständig arbeiten. Gleichzeitig weißt du, warum gerade hier besondere rechtliche Vorsicht gilt.</p>
 
@@ -2404,7 +2600,7 @@ Formulierungen für Abmahnung oder Kündigung.</pre>
 </section>
 
 <!-- ===================== MODUL 12 ===================== -->
-<section class="modul" id="m12">
+<section class="modul" id="m12" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">12</span><h2>Marketing ohne Agentur</h2></div>
   <p class="ziel"><b>Lernziel</b>Du hältst deine Außendarstellung mit wenigen Stunden im Monat lebendig – und weißt, welche drei Dinge in kleinen Betrieben tatsächlich Anfragen bringen und welche nur Arbeit machen.</p>
 
@@ -2504,7 +2700,7 @@ Kunde nicht selbst erwähnt hat.</pre>
 </section>
 
 <!-- ===================== MODUL 13 ===================== -->
-<section class="modul" id="m13">
+<section class="modul" id="m13" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">13</span><h2>Vertrieb: Nachfassen, Preisgespräch, Bestandskunden</h2></div>
   <p class="ziel"><b>Lernziel</b>Du holst die Aufträge, die du bereits fast hattest. In kleinen Betrieben liegt hier mehr Geld als in jeder Neukundengewinnung – und es kostet fast nichts.</p>
 
@@ -2676,7 +2872,7 @@ Sei zurückhaltend bei A. Im Zweifel B.</pre>
 </section>
 
 <!-- ===================== MODUL 15 ===================== -->
-<section class="modul" id="m15">
+<section class="modul" id="m15" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">15</span><h2>Deine digitalen Mitarbeiter</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kannst eine wiederkehrende Aufgabe so beschreiben, dass sie zuverlässig ohne dich läuft – mit klarer Zuständigkeit, klarer Grenze und einem Punkt, an dem du prüfst.</p>
 
@@ -2768,7 +2964,7 @@ PRÜFPUNKT    Was schaue ich mir bei jedem Lauf an,
 </section>
 
 <!-- ===================== MODUL 16 ===================== -->
-<section class="modul" id="m16">
+<section class="modul" id="m16" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">16</span><h2>Recht, Datenschutz und die KI-Verordnung</h2></div>
   <p class="ziel"><b>Lernziel</b>Du kennst die Pflichten, die dich als kleines Unternehmen wirklich betreffen, und hast die Regeln, mit denen du auf der sicheren Seite bleibst – ohne Anwaltskanzlei im Haus.</p>
   <p class="stand"><b>Stand August 2026</b><span>Rechtsstand August 2026. Fristen der KI-Verordnung wurden bereits einmal verschoben – vor einer Entscheidung mit Folgen aktuellen Stand prüfen.</span></p>
@@ -3012,6 +3208,11 @@ abstimmen sollte.</pre>
   </table></div>
 
   <h3>Einführung im Team</h3>
+  <div class="merk">
+    <span class="etikett">Diese Seite kann dein Team mitbenutzen</span>
+    <p>Links unten in der Navigation lässt sich die Ansicht auf <b>Mitarbeit</b> umstellen. Dann bleiben acht Module übrig – Grundlagen, Auftrag, Kundenkommunikation, Dokumente, Prozesse, Kontrolle plus zwei Module, die es nur dort gibt: „Was das für dich heißt“ und „Was du eingeben darfst“. Kalkulation, Personal, Vertrieb und Recht sind ausgeblendet. Schau sie dir einmal an, bevor du die Datei weitergibst – du solltest wissen, was deine Leute lesen.</p>
+    <p><b>Kein Zugriffsschutz.</b> Das Umschalten ist eine Bequemlichkeit, keine Sperre: Wer die Ansicht wechselt oder in den Quelltext sieht, hat alles. Wenn im Betrieb wirklich etwas vertraulich bleiben muss, darf es nicht in dieser Datei stehen.</p>
+  </div>
   <p>Wenn Mitarbeiter dabei sind, entscheidet der Anfang über die nächsten Monate. Vier Punkte, die den Unterschied machen:</p>
   <ul>
     <li><b>Zeige, statt zu erklären.</b> Eine echte Aufgabe aus dem Betrieb, live, mit einem schlechten und einem guten Auftrag im Vergleich. Das überzeugt schneller als jede Präsentation.</li>
@@ -3056,7 +3257,7 @@ abstimmen sollte.</pre>
 </section>
 
 <!-- ===================== BRANCHENPFADE ===================== -->
-<section class="modul" id="pfade">
+<section class="modul" id="pfade" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>Welche Module für welche Branche</h2></div>
   <p class="ziel"><b>Zweck</b>18 Module sind viel auf einmal. Fünf Pfade mit je sechs bis acht Modulen, die in einer Woche zu schaffen sind. Die Module 00 bis 05 sind für alle die Grundlage – alles danach hängt davon ab, womit du dein Geld verdienst.</p>
 
@@ -3389,7 +3590,7 @@ Nur die Beobachtung.</pre>
   </section>
 
 <!-- ===================== 30-TAGE-PLAN ===================== -->
-<section class="modul" id="plan">
+<section class="modul" id="plan" data-rolle="chef">
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>30-Tage-Plan</h2></div>
   <p class="ziel"><b>Zweck</b>Damit aus dem Lesen eine Gewohnheit wird. Eine Sache pro Woche, jeweils 60 bis 90 Minuten – am eigenen echten Arbeitsstoff, nicht an Beispielen.</p>
 
@@ -3436,25 +3637,25 @@ Nur die Beobachtung.</pre>
   <div class="modul-kopf"><span class="modul-nr">›</span><h2>Selbsttest</h2></div>
   <p class="ziel"><b>Zweck</b>Zwölf Fragen aus dem Betriebsalltag. Erst selbst beantworten, dann aufklappen. Wer zehn davon sicher beantwortet, braucht dieses Programm nicht mehr.</p>
 
-  <details><summary>1. Claude nennt dir für eine Kalkulation einen „branchenüblichen Stundensatz von 78 Euro". Was tust du?</summary>
+  <details data-rolle="chef"><summary>1. Claude nennt dir für eine Kalkulation einen „branchenüblichen Stundensatz von 78 Euro". Was tust du?</summary>
     <div><p>Ignorieren. Diese Zahl stammt aus Trainingswissen, nicht aus deinem Betrieb und nicht aus einer Quelle. Der einzige Stundensatz, der zählt, ist der, den du selbst aus deinen Kosten ermittelt hast – das Modell dafür steht in <a href="#m10">Modul 10</a>. Zahlen in Kalkulationen kommen aus deiner Tabelle, nie aus einem Chat.</p></div></details>
 
-  <details><summary>2. Du willst „Angebote automatisieren". Was ist der erste Schritt?</summary>
+  <details data-rolle="chef"><summary>2. Du willst „Angebote automatisieren". Was ist der erste Schritt?</summary>
     <div><p>Zerlegen. „Angebot schreiben" ist keine Aufgabe, sondern vier: Anfrage aufschlüsseln, Rückfragen stellen, kalkulieren, Begleittext schreiben. Drei davon lassen sich gut abgeben, eine – das Kalkulieren – bleibt vollständig bei dir. Wer das Ganze auf einmal automatisieren will, bekommt erfundene Preise. Wer es zerlegt, spart trotzdem den Großteil der Zeit.</p></div></details>
 
   <details><summary>3. Ein Kollege sagt: „Ich hab's probiert, da kommt nur Mist raus."</summary>
     <div><p>Meistens fehlt Kontext, nicht die richtige Zauberformel. Zeig ihm dieselbe Aufgabe zweimal: einmal als bloße Frage, einmal mit Preisliste, Kundenanfrage und Tonfall-Leitfaden im Anhang. Der Unterschied überzeugt schneller als jede Erklärung. Und häng „Frag nach, bevor du beginnst" an – das allein hebt die meisten Ergebnisse spürbar.</p></div></details>
 
-  <details><summary>4. Wann lohnt sich eine geplante Aufgabe statt eines Chats?</summary>
+  <details data-rolle="chef"><summary>4. Wann lohnt sich eine geplante Aufgabe statt eines Chats?</summary>
     <div><p>Wenn du dieselbe Sache mindestens zehnmal von Hand gemacht hast, das Ergebnis regelmäßig zur selben Zeit gebraucht wird und du in unter fünf Minuten prüfen kannst, ob ein Lauf gelungen ist. Fehlt eine dieser drei Bedingungen, ist es zu früh: Eine geplante Aufgabe, die wöchentlich Unbrauchbares abliefert, ist schlimmer als keine, weil alle glauben, das Thema sei erledigt.</p></div></details>
 
-  <details><summary>5. Du willst eine Bewerbung vorsortieren lassen. Geht das?</summary>
+  <details data-rolle="chef"><summary>5. Du willst eine Bewerbung vorsortieren lassen. Geht das?</summary>
     <div><p>Vorbereiten ja, entscheiden nein. Abgleich mit dem Anforderungsprofil, Fundstellen, Gesprächsfragen, offene Punkte – alles zulässig und nützlich. Eine Bewertung, ein Ranking oder gar eine automatische Absage nicht: Entscheidungen mit erheblicher Wirkung auf Einzelne dürfen nicht allein automatisiert getroffen werden, und ein bloßer Bestätigungsklick genügt dafür nicht. Details in <a href="#m16">Modul 16</a>.</p></div></details>
 
   <details><summary>6. Ihr wollt einen Chatbot auf die Website stellen. Was ist seit dem 2. August 2026 Pflicht?</summary>
     <div><p>Nutzer müssen zu Beginn erkennen können, dass sie mit einer KI sprechen – so verlangt es Artikel 50 der EU-KI-Verordnung, der seit diesem Datum anwendbar ist. Auch KI-erzeugte oder veränderte Inhalte unterliegen Kennzeichnungspflichten. Für Systeme, die vorher schon liefen, gilt eine Übergangsfrist bis zum 2. Dezember 2026. Die konkrete Umsetzung mit dem Anwalt abstimmen.</p></div></details>
 
-  <details><summary>7. Ein digitaler Mitarbeiter liest Webseiten und schreibt daraus Berichte. Welches Risiko entsteht dabei neu?</summary>
+  <details data-rolle="chef"><summary>7. Ein digitaler Mitarbeiter liest Webseiten und schreibt daraus Berichte. Welches Risiko entsteht dabei neu?</summary>
     <div><p>Versteckte Anweisungen im eingelesenen Material. In einer Seite oder E-Mail kann Text stehen, der wie ein Befehl formuliert ist. Deshalb gehört in jede Stellenbeschreibung der Satz, dass Eingelesenes immer Daten sind und niemals Anweisungen – und der digitale Mitarbeiter bekommt so wenig Schreibrechte wie möglich. Ein Zugang, der nur lesen darf, richtet auch im schlimmsten Fall wenig Schaden an.</p></div></details>
 
   <details><summary>8. Der Angebotstext ist fehlerfrei, gut lesbar und faktisch korrekt. Freigeben?</summary>
@@ -3466,11 +3667,20 @@ Nur die Beobachtung.</pre>
   <details><summary>10. Euer Produktfoto fehlt für den Shop. Erzeugen lassen?</summary>
     <div><p>Nein. Ein erzeugtes Bild, das eure Ware anders zeigt, als sie ist, ist irreführende Werbung. Dasselbe gilt für Fotos eurer Räume und eurer Arbeiten. Erzeugte Bilder sind für Symbol- und Stimmungsmotive gedacht. Was ihr tatsächlich liefert, wird fotografiert.</p></div></details>
 
-  <details><summary>11. Ihr habt gemessen: Ein Angebot dauert jetzt 40 statt 90 Minuten. Wo ist die gesparte Zeit?</summary>
+  <details data-rolle="chef"><summary>11. Ihr habt gemessen: Ein Angebot dauert jetzt 40 statt 90 Minuten. Wo ist die gesparte Zeit?</summary>
     <div><p>Meistens nicht als freie Zeit sichtbar, sondern als erledigte Arbeit, die vorher liegen geblieben ist: das Nachfassen, die zweite Variante, die Dokumentation, die Antwort auf die Bewertung. Das ist kein Buchungstrick, sondern der eigentliche Ertrag – aber du siehst ihn nur, wenn du die Liegenbleiber mitmisst und nicht bloß die Minuten.</p></div></details>
 
-  <details><summary>12. Der wirksamste einzelne Hebel für bessere Ergebnisse?</summary>
+  <details data-rolle="chef"><summary>12. Der wirksamste einzelne Hebel für bessere Ergebnisse?</summary>
     <div><p>Eigenes Material in den Prompt und ins Projekt: Preisliste, echte Kundenfragen, eigene Texte, dokumentierte Abläufe, Einwandkatalog. Ohne das produziert Claude den Durchschnitt des Internets – und der ist per Definition austauschbar. Genau deshalb ist <a href="#m04">Modul 04</a> die Investition mit der höchsten Rendite in diesem Programm.</p></div></details>
+
+  <details data-rolle="ma"><summary>M1. Dein Chef fragt, warum eine Kundenantwort falsche Angaben enthielt. Du hattest sie mit Claude entworfen.</summary>
+    <div><p>„Das hat die KI geschrieben" ist keine Erklärung, die irgendwo zieht. Ein Entwurf bleibt ein Entwurf, bis ein Mensch ihn geprüft hat – und der Mensch warst du. Die brauchbare Antwort ist eine andere: welche Angabe du hättest gegenkontrollieren müssen und woran du sie künftig erkennst. Alles Verbindliche – Preise, Termine, Zusagen – prüfst du an der Quelle, nicht am Bildschirmtext.</p></div></details>
+
+  <details data-rolle="ma"><summary>M2. Eine Kundin schildert am Telefon ihre Erkrankung, du sollst daraus eine Notiz machen. Darfst du das eintippen?</summary>
+    <div><p>Nein, nicht ohne Rücksprache. Gesundheitsangaben sind eine besonders geschützte Kategorie – auch die beiläufige Erwähnung. Frag vorher, und prüfe zuerst, ob die Aufgabe die Angabe überhaupt braucht: Eine Terminnotiz funktioniert fast immer ohne den Grund.</p></div></details>
+
+  <details data-rolle="ma"><summary>M3. Du bekommst zweimal dieselbe Frage gestellt und zwei verschiedene Antworten. Ist etwas kaputt?</summary>
+    <div><p>Nein, das ist so gebaut. Bei jedem Schritt wird unter mehreren wahrscheinlichen Fortsetzungen ausgewählt. Für Textarbeit ist das nützlich – so bekommst du zwölf Formulierungen statt zwölfmal derselben. Für alles, was reproduzierbar sein muss, ist es ein Grund mehr, das Ergebnis nicht als Beleg zu behandeln.</p></div></details>
 </section>
 
 <!-- ===================== GLOSSAR ===================== -->
@@ -3577,6 +3787,69 @@ Nur die Beobachtung.</pre>
     try { speicher.setItem(SCHLUESSEL, JSON.stringify(daten)); } catch (e) {}
   }
 
+  /* ============================================================
+     Rollenansicht — Betriebsleitung oder Mitarbeit
+     Blendet nur ein und aus. Das ist ausdrücklich KEIN Zugriffs-
+     schutz: Wer umschaltet, sieht alles. Steht auch so in der
+     Auswahlseite, damit niemand sich darauf verlässt.
+     ============================================================ */
+  var ROLLEN = {
+    chef: { name: "Betriebsleitung", klasse: "ansicht-chef" },
+    ma:   { name: "Mitarbeit",       klasse: "ansicht-ma" }
+  };
+  var rolleJetzt = null;
+
+  function rolleSetzen(rolle, merken){
+    if (!ROLLEN[rolle]) rolle = "chef";
+    rolleJetzt = rolle;
+    document.body.classList.toggle("ansicht-ma", rolle === "ma");
+    document.body.classList.toggle("ansicht-chef", rolle === "chef");
+    var anzeige = document.getElementById("rollenName");
+    if (anzeige) anzeige.textContent = ROLLEN[rolle].name;
+    if (merken) { var d = lies(); d.rolle = rolle; schreib(d); }
+    aktualisieren();
+    if (typeof window.uebenNeuZeichnen === "function") window.uebenNeuZeichnen();
+  }
+
+  var wahl = document.getElementById("rollenwahl");
+  if (wahl) {
+    wahl.addEventListener("click", function(e){
+      var b = e.target.closest("[data-waehle]");
+      if (!b) return;
+      rolleSetzen(b.dataset.waehle, true);
+      document.body.classList.remove("wahl-offen");
+    });
+  }
+  var wechsel = document.getElementById("rollenWechsel");
+  if (wechsel) {
+    wechsel.addEventListener("click", function(){
+      rolleSetzen(rolleJetzt === "ma" ? "chef" : "ma", true);
+      window.scrollTo({ top: 0, behavior: "auto" });
+    });
+  }
+
+  /* Tieflink auf ein Modul, das in der aktuellen Ansicht verborgen ist:
+     stillschweigend zur vollständigen Ansicht wechseln, statt eine
+     leere Seite zu zeigen. */
+  function tieflinkPruefen(){
+    var id = location.hash.replace(/^#\/?/, "").split("/")[0];
+    if (!id) return;
+    var ziel = document.getElementById(id);
+    if (ziel && getComputedStyle(ziel).display === "none") rolleSetzen("chef", false);
+  }
+
+  var gespeicherteRolle = lies().rolle;
+  if (gespeicherteRolle) {
+    rolleSetzen(gespeicherteRolle, false);
+  } else if (location.hash) {
+    rolleSetzen("chef", false);            // Tieflink: nicht mit der Auswahl aufhalten
+  } else {
+    rolleSetzen("chef", false);
+    document.body.classList.add("wahl-offen");
+  }
+  window.addEventListener("hashchange", tieflinkPruefen);
+  tieflinkPruefen();
+
   /* ---- Mobiles Menü ---- */
   var nav = document.getElementById("nav");
   var knopf = document.getElementById("menueKnopf");
@@ -3636,6 +3909,10 @@ Nur die Beobachtung.</pre>
     var teile = ["AUTOMATISIERE DEIN BUSINESS — ALLE PROMPTS", "=".repeat(60), ""];
     var letzterAbschnitt = "";
     Array.prototype.forEach.call(document.querySelectorAll(".prompt"), function(p){
+      // Prompts aus ausgeblendeten Modulen gehören nicht in die Sammlung
+      if (p.offsetParent === null && getComputedStyle(p).display === "none") return;
+      var vater = p.closest("[data-rolle]");
+      if (vater && getComputedStyle(vater).display === "none") return;
       var abschnitt = p.closest("section[id]");
       var titel = "Weitere Prompts";
       if (abschnitt) {
@@ -3841,6 +4118,7 @@ Nur die Beobachtung.</pre>
   /* ---- Fortschritt: Module und Checklisten ---- */
   var daten = lies();
   var alleHaken = [];
+  // (modulHaken wird direkt darunter befüllt)
   Array.prototype.forEach.call(document.querySelectorAll('input[type="checkbox"]'), function(c){
     var abschnitt = c.closest("section[id]");
     var basis = c.dataset.modul || ((abschnitt ? abschnitt.id : "frei") + ":" + alleHaken.length);
@@ -3854,10 +4132,17 @@ Nur die Beobachtung.</pre>
   var zaehler = document.getElementById("zaehler");
 
   function aktualisieren(){
-    var fertig = modulHaken.filter(function(c){ return c.checked; });
-    var anteil = modulHaken.length ? (fertig.length / modulHaken.length) * 100 : 0;
+    // Kann aus rolleSetzen() aufgerufen werden, bevor die Haken erfasst sind
+    if (!modulHaken) return;
+    // Nur zählen, was in der aktuellen Ansicht überhaupt sichtbar ist
+    var sichtbar = modulHaken.filter(function(c){
+      var sec = c.closest("section.modul");
+      return sec && getComputedStyle(sec).display !== "none";
+    });
+    var fertig = sichtbar.filter(function(c){ return c.checked; });
+    var anteil = sichtbar.length ? (fertig.length / sichtbar.length) * 100 : 0;
     if (balken) balken.style.width = anteil + "%";
-    if (zaehler) zaehler.textContent = fertig.length + " von " + modulHaken.length + " Modulen abgeschlossen";
+    if (zaehler) zaehler.textContent = fertig.length + " von " + sichtbar.length + " Modulen abgeschlossen";
     modulHaken.forEach(function(c){
       var link = document.querySelector('.nav-link[href="#' + c.dataset.modul + '"]');
       if (link) link.classList.toggle("erledigt", c.checked);
@@ -3892,7 +4177,7 @@ Nur die Beobachtung.</pre>
 
 const DATEN = [
 {
-  nr:"01", id:"grundlagen", titel:"Grundlagen & Grenzen", tag:"Modul 00 + 02",
+  nr:"01", id:"grundlagen", ma:true, titel:"Grundlagen & Grenzen", tag:"Modul 00 + 02",
   kurz:"Wie Claude arbeitet, warum es überzeugend klingende Fehler macht und welche Arbeit du daraufhin abgibst.",
   erklaerung:`<p>Claude ist ein Sprachmodell: Es sagt fortlaufend das nächste Textstück voraus, auf Basis von Mustern aus sehr großen Textmengen. Es <b>weiß</b> nichts im menschlichen Sinne und schlägt nichts nach, solange es nicht die Websuche nutzt oder ein Dokument von dir vor sich hat.</p>
   <h3>Was daraus folgt</h3>
@@ -3983,7 +4268,7 @@ const DATEN = [
   }
 },
 {
-  nr:"03", id:"auftrag", titel:"Der Auftrag", tag:"Modul 03",
+  nr:"03", id:"auftrag", ma:true, titel:"Der Auftrag", tag:"Modul 03",
   kurz:"Die sechs Bausteine eines Auftrags, der beim ersten Versuch etwas Brauchbares liefert – und wie man den Zuschnitt richtig wählt.",
   erklaerung:`<p>Die meisten behandeln Claude wie eine Suchmaschine: kurze Stichworte, Erwartung eines fertigen Ergebnisses. Nützlicher ist ein anderes Bild: <b>Du briefst eine neue Kollegin am ersten Arbeitstag.</b> Schnell, belesen, gründlich – aber sie kennt weder eure Kunden noch eure Preise.</p>
   <div class="probe">Du bist <b>[Rolle]</b>.
@@ -4149,7 +4434,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
   ]
 },
 {
-  nr:"07", id:"kommunikation", titel:"Kundenkommunikation", tag:"Modul 07",
+  nr:"07", id:"kommunikation", ma:true, titel:"Kundenkommunikation", tag:"Modul 07",
   kurz:"Postfach, Standardantworten und der schwierigste Fall überhaupt: die Reklamation.",
   erklaerung:`<p>Der Hebel im Postfach liegt nicht im Schreiben, sondern im Zusammensuchen: nachsehen, was beim letzten Mal vereinbart war, den Vorgang rekonstruieren, die offene Zusage finden. Genau das lässt sich abgeben.</p>
   <div class="hinweis"><span>Entwerfen, nicht senden</span>Auch bei verbundenem Postfach gilt: Claude bereitet Antworten vor, du drückst auf Senden. Das ist auch technisch so vorgesehen. Behandle es als Sicherheitsnetz, nicht als Einschränkung.</div>
@@ -4225,7 +4510,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
   }
 },
 {
-  nr:"09", id:"dokumente", titel:"Verträge & lange Dokumente", tag:"Modul 09",
+  nr:"09", id:"dokumente", ma:true, titel:"Verträge & lange Dokumente", tag:"Modul 09",
   kurz:"Die Stelle mit dem größten Zeitgewinn pro Vorgang – und der größten Verwechslungsgefahr zwischen Erschließen und Bewerten.",
   erklaerung:`<p>Ein vierzigseitiger Rahmenvertrag, eine Ausschreibung, ein Behördenbescheid: Solche Dokumente kosten Stunden, weil man sie ganz lesen muss, um die drei Stellen zu finden, auf die es ankommt.</p>
   <div class="hinweis"><span>Die Unterscheidung, um die alles kreist</span>Erschließen heißt: sichtbar machen, was drinsteht, mit Fundstelle. Bewerten heißt: sagen, ob es günstig, wirksam oder zumutbar ist. Das Erste darfst du abgeben. Das Zweite gehört zum Anwalt.</div>
@@ -4318,7 +4603,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
   ]
 },
 {
-  nr:"12", id:"prozesse", titel:"Prozesse dokumentieren", tag:"Modul 14",
+  nr:"12", id:"prozesse", ma:true, titel:"Prozesse dokumentieren", tag:"Modul 14",
   kurz:"Die unsichtbare Voraussetzung für alles andere – und der Grund, warum Wissen bei Krankheit oder Kündigung verschwindet.",
   erklaerung:`<p>In kleinen Betrieben steckt das meiste Wissen in Köpfen. Das funktioniert, bis jemand ausfällt. Dokumentation unterbleibt nicht aus Nachlässigkeit, sondern weil das Aufschreiben mühsam ist und Zeit kostet, die man gerade nicht hat.</p>
   <div class="hinweis"><span>Die Umkehrung</span>Erzähl den Ablauf, wie du ihn einem neuen Mitarbeiter erklären würdest – ungeordnet, mit Nebenbemerkungen. Daraus wird eine Arbeitsanweisung. Zehn Minuten Reden statt zwei Stunden Schreiben.</div>
@@ -4380,7 +4665,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
   ]
 },
 {
-  nr:"14", id:"recht", titel:"Recht & Datenschutz", tag:"Modul 16",
+  nr:"14", id:"recht", ma:true, titel:"Recht & Datenschutz", tag:"Modul 16",
   kurz:"Die vier Fragen, die du beantworten können musst – und die Pflichten, die seit August 2026 unmittelbar gelten.",
   erklaerung:`<p>Vier Bereiche betreffen jeden kleinen Betrieb: personenbezogene Daten, Berufsgeheimnisse, Urheber- und Wettbewerbsrecht sowie die KI-Verordnung der EU.</p>
   <div class="hinweis"><span>Datensparsamkeit als Arbeitsprinzip</span>Die meisten Aufgaben brauchen die Personendaten gar nicht. Ein Angebotstext funktioniert mit [Kunde], eine Reklamationsantwort mit [Vorgang]. Wer Namen und Adressen weglässt, löst das Problem an der Wurzel statt es zu verwalten.</div>
@@ -4435,7 +4720,7 @@ Fehlen dir Angaben: <b>frag nach, bevor du beginnst.</b></div>
   ]
 },
 {
-  nr:"15", id:"grenzen", titel:"Kontrolle & Grenzen", tag:"Modul 11 + 17",
+  nr:"15", id:"grenzen", ma:true, titel:"Kontrolle & Grenzen", tag:"Modul 11 + 17",
   kurz:"Was du nie automatisierst, woran du Qualität misst und wie du verhinderst, dass Prüfung zur Formalie wird.",
   erklaerung:`<p>Es gibt drei Sorten Aufgaben, die in kleinen Betrieben nicht automatisiert gehören – unabhängig davon, wie gut die Ergebnisse aussehen.</p>
   <h3>Die drei roten Linien</h3>
@@ -4539,10 +4824,23 @@ function verfuegbareModi(t){ return MODI.filter(m => t[m.k] && (!Array.isArray(t
 /* ============================================================
    Übersicht
    ============================================================ */
+function nurMitarbeit(){
+  return document.body.classList.contains("ansicht-ma");
+}
+function sichtbareThemen(){
+  return nurMitarbeit() ? DATEN.filter(t => t.ma) : DATEN;
+}
+
 function zeigeUebersicht(){
   leeren();
+  const liste = sichtbareThemen();
+  if (nurMitarbeit()) {
+    buehne.appendChild(el("p","leise",
+      "Diese Auswahl passt zu deinen Modulen. Die übrigen Themen betreffen "
+      + "Kalkulation, Personal und Betriebsführung."));
+  }
   const raster = el("div","raster");
-  DATEN.forEach(t => {
+  liste.forEach(t => {
     const karte = el("button","thema-karte");
     karte.type = "button";
     const s = stand.themen[t.id];
@@ -4879,11 +5177,12 @@ function route(){
   const anker = location.hash.replace(/^#\/?/, "");
   if(!/^ueben(\/|$)/.test(anker)){ zeigeUebersicht(); return; }   // Modulanker: Übersicht bereithalten
   const teile = anker.split("/");
-  const thema = DATEN.find(t => t.id === teile[1]);
+  const thema = sichtbareThemen().find(t => t.id === teile[1]);
   if(thema) zeigeThema(thema, teile[2]);
   else zeigeUebersicht();
 }
 window.addEventListener("hashchange", route);
+window.uebenNeuZeichnen = route;   // wird beim Rollenwechsel aufgerufen
 
 document.getElementById("uebenReset").addEventListener("click", () => {
   if(!confirm("Alle Zähler und den Themenfortschritt zurücksetzen?")) return;
