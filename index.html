@@ -35,29 +35,41 @@
      Wer umschaltet oder den Quelltext liest, sieht alles. Nichts in diese
      Datei schreiben, das vor Angestellten verborgen bleiben muss.
 
-     VOR DER VERÖFFENTLICHUNG PRÜFEN
-     - Google Fonts entfernen? Siehe Hinweis im <head>.
-     - Rechteangabe und Kontakt im <footer class="fuss">: Suche nach
-       "ausfuellen" — die Stellen sind auf der Seite gelb hinterlegt und
-       orange gestrichelt, damit sie nicht versehentlich mitgehen.
-       Direkt darüber steht ein Kommentar mit Fassungen für interne
-       Nutzung, Workshop und freie Weitergabe.
-     - IMPRESSUM UND DATENSCHUTZ SIND ANGELEGT (Abschnitte #impressum
-       und #datenschutz). Vor dem Livegang zwingend ausfüllen:
-         * Umsatzsteuer-Angabe im Impressum (USt-IdNr. ODER
-           Kleinunternehmer-Hinweis nach § 19 UStG ODER Absatz löschen)
-         * Hosting-Anbieter in Abschnitt 3 der Datenschutzerklärung
-       Beide Stellen sind gelb hinterlegt (Suche nach "ausfuellen").
-     - Wenn die Google-Fonts-Zeilen im <head> entfernt werden, muss
-       Abschnitt 5 der Datenschutzerklärung ebenfalls gelöscht werden.
-     - BEWUSST NICHT ENTHALTEN: der frühere Hinweis auf die EU-Plattform
-       zur Online-Streitbeilegung. Die Plattform wurde am 20.07.2025
-       abgeschaltet (Verordnung (EU) 2024/3228); ein verbliebener Verweis
-       darauf kann abgemahnt werden.
-     - § 36 VSBG (Verbraucherschlichtung): Die Informationspflicht gilt
-       nicht für Unternehmen mit zehn oder weniger Beschäftigten. Sobald
-       das nicht mehr zutrifft, gehört eine Erklärung dazu ins Impressum.
-     - Titel, Beschreibung und Marke oben im <head> anpassen.
+     RECHTLICHES — STAND: KOSTENLOSE ERPROBUNG
+     Impressum (#impressum) und Datenschutzerklärung (#datenschutz) sind
+     vollständig ausgefüllt und auf die aktuelle Lage abgestimmt:
+     kein Gewerbe, kein Verkauf, Hosting über Vercel, Quellcode bei GitHub.
+     Es sind KEINE Platzhalter mehr offen.
+
+     WENN SICH ETWAS ÄNDERT, HIER NACHZIEHEN:
+     - Google Fonts entfernt? Dann Abschnitt 5 der Datenschutzerklärung
+       löschen. (Für eine öffentliche Seite in Deutschland empfohlen,
+       siehe Hinweis weiter unten im Kopfbereich.)
+     - Anderer Hoster als Vercel? Abschnitt 3 der Datenschutzerklärung
+       vollständig austauschen, inklusive Drittlandgrundlage.
+     - Besucherstatistik in Vercel aktiviert? Dann ist die Aussage
+       "keine Besucherstatistik" falsch und muss ersetzt werden.
+     - Login eingebaut? Dann kommen Nutzerkonto, Zugangsdaten und
+       Speicherdauer als eigener Abschnitt hinzu.
+     - Verkauf gestartet? Dann: Gewerbeanmeldung, Umsatzsteuer-Abschnitt
+       im Impressum, Widerrufsbelehrung und AGB bei Verbrauchern,
+       Rechteabsatz im Fußbereich austauschen (Vorlage steht als
+       Kommentar direkt darüber).
+
+     NOCH ZU PRÜFEN, EINMALIG:
+     - Auftragsverarbeitungsvertrag mit Vercel: vercel.com/legal/dpa
+       Die Datenschutzerklärung beruft sich darauf. Sicherstellen, dass
+       er tatsächlich akzeptiert ist.
+     - Ist das GitHub-Repository öffentlich? Dann ist der gesamte
+       Dateiinhalt öffentlich einsehbar, einschließlich der Anschrift
+       im Impressum. Das ist bei einem Impressum unproblematisch, aber
+       es darf nie etwas hinein, was nicht öffentlich sein soll.
+
+     BEWUSST NICHT ENTHALTEN:
+     - Hinweis auf die EU-Plattform zur Online-Streitbeilegung. Sie wurde
+       am 20.07.2025 abgeschaltet (Verordnung (EU) 2024/3228); ein
+       verbliebener Verweis darauf kann abgemahnt werden.
+     - § 36 VSBG: gilt nicht bei zehn oder weniger Beschäftigten.
      ===================================================================== -->
 <html lang="de">
 <head>
@@ -3769,15 +3781,14 @@ Nur die Beobachtung.</pre>
   E-Mail: <a href="mailto:bullingole@gmail.com">bullingole@gmail.com</a></p>
 
   <!-- ==================================================================
-       AUSFÜLLEN ODER LÖSCHEN — Umsatzsteuer
-       Wer eine USt-IdNr. hat, trägt sie unten ein. Wer die Kleinunter-
-       nehmerregelung nach § 19 UStG nutzt, ersetzt den Absatz durch:
-         <p>Kleinunternehmer nach § 19 UStG, daher kein Ausweis
-         von Umsatzsteuer.</p>
-       Wer weder noch zutrifft, löscht den Absatz ersatzlos.
+       UMSATZSTEUER: bewusst nicht aufgeführt.
+       Solange kein Gewerbe angemeldet ist und nichts verkauft wird,
+       gibt es weder eine USt-IdNr. noch einen Kleinunternehmer-Status
+       nach § 19 UStG. Sobald verkauft wird, gehört hier ein Abschnitt
+       hin — entweder die USt-IdNr. oder der Kleinunternehmer-Hinweis.
        ================================================================== -->
-  <h3>Umsatzsteuer</h3>
-  <p><span class="ausfuellen">[USt-IdNr. eintragen oder diesen Abschnitt durch den Kleinunternehmer-Hinweis ersetzen]</span></p>
+  <h3>Zum Stand dieses Angebots</h3>
+  <p>Dieses Programm befindet sich in der Erprobung. Es wird derzeit einer kleinen Zahl von Betrieben kostenlos zur Verfügung gestellt, um Rückmeldungen zu sammeln. Es besteht kein Verkaufsangebot, keine Zahlungsabwicklung und kein Vertragsverhältnis. Ein Gewerbe ist nicht angemeldet; die Angaben oben werden gemacht, damit erkennbar ist, wer hinter dem Angebot steht.</p>
 
   <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
   <p>Ole Bulling, Anschrift wie oben.</p>
@@ -3789,7 +3800,7 @@ Nur die Beobachtung.</pre>
   <p>Diese Seite enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte kann ich keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft; rechtswidrige Inhalte waren nicht erkennbar. Eine dauerhafte inhaltliche Kontrolle ohne konkrete Anhaltspunkte einer Rechtsverletzung ist nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.</p>
 
   <h3>Urheberrecht</h3>
-  <p>Die auf dieser Seite erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des Verfassers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet und als solche gekennzeichnet. Sollte trotzdem eine Urheberrechtsverletzung bekannt werden, bitte ich um einen entsprechenden Hinweis; bei Bekanntwerden von Rechtsverletzungen werden derartige Inhalte umgehend entfernt.</p>
+  <p>Die auf dieser Seite erstellten Inhalte und Werke unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung. Betriebe, die am Test teilnehmen, dürfen die Seite intern nutzen und im eigenen Haus weitergeben; eine Veröffentlichung, Weitergabe an Dritte außerhalb des Betriebs oder ein Wiederverkauf ist damit nicht verbunden. Soweit Inhalte nicht von mir erstellt wurden, werden die Urheberrechte Dritter beachtet und als solche gekennzeichnet. Sollte trotzdem eine Urheberrechtsverletzung bekannt werden, bitte ich um einen Hinweis; ich entferne solche Inhalte umgehend.</p>
 
   <div class="merk">
     <span class="etikett">Marken und Produktnamen</span>
@@ -3800,7 +3811,7 @@ Nur die Beobachtung.</pre>
 <!-- ========================= DATENSCHUTZ ========================= -->
 <section class="modul" id="datenschutz">
   <div class="modul-kopf"><span class="modul-nr">§</span><h2>Datenschutzerklärung</h2></div>
-  <p class="ziel"><b>Kurzfassung</b>Diese Seite setzt keine Cookies, bindet keine Analyse- oder Werbedienste ein und überträgt deine Eingaben nicht an einen Server. Fortschritt, Rechnerwerte und Ansichtswahl bleiben im Speicher deines eigenen Browsers. Die ausführliche Fassung steht darunter.</p>
+  <p class="ziel"><b>Kurzfassung</b>Diese Seite setzt keine Cookies, erhebt keine Besucherstatistik und überträgt deine Eingaben nicht an einen Server. Fortschritt, Rechnerwerte und Ansichtswahl bleiben im Speicher deines eigenen Browsers. Was zwangsläufig anfällt: Der Hoster Vercel protokolliert den Abruf der Seite, und die Schriftarten werden von Google geladen. Beides steht ausführlich darunter.</p>
 
   <h3>1 · Verantwortlicher</h3>
   <p>Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
@@ -3814,26 +3825,24 @@ Nur die Beobachtung.</pre>
 
   <h3>2 · Was diese Seite technisch ist</h3>
   <p>Das Angebot besteht aus einer einzelnen HTML-Datei. Es gibt kein Benutzerkonto, keine Anmeldung, kein Kontaktformular, keinen Newsletter, keine Kommentarfunktion und keine Zahlungsabwicklung. Es findet keine automatisierte Entscheidungsfindung und kein Profiling statt.</p>
+  <p><b>Erprobungsphase.</b> Das Programm wird derzeit kostenlos mit einigen wenigen Betrieben getestet. Wenn du mir dazu eine Rückmeldung gibst – per E-Mail, am Telefon oder im Gespräch –, verarbeite ich das, was du mir mitteilst, um das Programm zu verbessern. Ich verwende deine Rückmeldung nicht namentlich und gebe sie nicht an Dritte weiter. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; du kannst jederzeit widersprechen, dann lösche ich die Aufzeichnungen.</p>
 
-  <!-- ==================================================================
-       AUSFÜLLEN — Abschnitt 3 (Hosting)
-       Trage hier den Anbieter ein, bei dem die Datei liegt, samt Sitz.
-       Bei einem Anbieter außerhalb der EU zusätzlich die Grundlage der
-       Übermittlung nennen (in aller Regel Standardvertragsklauseln).
-       Wird die Datei NICHT online gestellt, sondern nur als Datei
-       weitergegeben, kann dieser Abschnitt ersatzlos entfallen.
-       ================================================================== -->
-  <h3>3 · Hosting und Server-Logdateien</h3>
-  <p>Diese Seite wird bereitgestellt durch <span class="ausfuellen">[Name und Anschrift des Hosting-Anbieters eintragen]</span>. Beim Aufruf erhebt der Anbieter automatisch Daten, die dein Browser übermittelt und die technisch erforderlich sind, um die Seite auszuliefern und ihren Betrieb abzusichern:</p>
+  <h3>3 · Hosting über Vercel</h3>
+  <p>Diese Seite wird bereitgestellt über die Plattform von <b>Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, USA</b>. Beim Aufruf der Seite stellt dein Browser eine Verbindung zu Servern von Vercel her. Vercel erhebt dabei automatisch Daten, die technisch nötig sind, um die Seite auszuliefern und den Betrieb abzusichern:</p>
   <ul>
     <li>IP-Adresse des anfragenden Geräts</li>
+    <li>daraus abgeleitete Angabe zu Stadt und Land (keine genaue Ortsbestimmung)</li>
     <li>Datum und Uhrzeit des Zugriffs</li>
-    <li>Name und URL der abgerufenen Datei</li>
-    <li>übertragene Datenmenge und Meldung über den Erfolg des Abrufs</li>
-    <li>verwendeter Browser und Betriebssystem</li>
+    <li>aufgerufene Adresse, übertragene Datenmenge und Erfolgsmeldung</li>
+    <li>Browsertyp, Betriebssystem und Systemeinstellungen</li>
     <li>gegebenenfalls die zuvor besuchte Seite</li>
   </ul>
-  <p><b>Rechtsgrundlage:</b> Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in der technisch fehlerfreien Bereitstellung und der Sicherheit des Angebots. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt und nicht zur Identifizierung einzelner Personen ausgewertet.</p>
+  <p><b>Rechtsgrundlage:</b> Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt darin, die Seite überhaupt zuverlässig ausliefern und vor Missbrauch schützen zu können. Ohne diese Verarbeitung ist ein Betrieb im Internet technisch nicht möglich.</p>
+  <p><b>Auftragsverarbeitung und Drittlandübermittlung:</b> Vercel wird als Auftragsverarbeiter nach Art. 28 DSGVO auf Grundlage des Data Processing Addendum von Vercel tätig. Da Vercel seinen Sitz in den USA hat, werden Daten in ein Drittland übermittelt. Vercel ist nach eigenen Angaben unter dem <b>EU-U.S. Data Privacy Framework</b> zertifiziert; für die Kommission der Europäischen Union besteht damit ein Angemessenheitsbeschluss als Grundlage der Übermittlung. Ergänzend kommen Standardvertragsklauseln zur Anwendung. Die Datenschutzhinweise von Vercel: <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener">vercel.com/legal/privacy-policy</a>.</p>
+  <p>Es werden <b>keine Besucherstatistiken</b> erhoben. Die Analysefunktionen von Vercel sind für dieses Projekt nicht aktiviert.</p>
+
+  <h3>3a · Quellcode bei GitHub</h3>
+  <p>Der Quelltext dieser Seite wird bei <b>GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</b> verwaltet und von dort automatisch zu Vercel übertragen. GitHub verarbeitet dabei <b>keine Daten der Besucher dieser Seite</b> – der Abruf der Seite läuft ausschließlich über Vercel. GitHub kommt nur zwischen mir und der Veröffentlichung zum Einsatz.</p>
 
   <h3>4 · Speicherung im Browser (localStorage)</h3>
   <p>Die Seite verwendet <b>keine Cookies</b>. Sie nutzt jedoch den lokalen Speicher deines Browsers, damit dein Stand beim nächsten Öffnen erhalten bleibt. Gespeichert werden:</p>
@@ -3863,7 +3872,7 @@ Nur die Beobachtung.</pre>
   <p>Wenn du mich per E-Mail oder Telefon kontaktierst, verarbeite ich die von dir mitgeteilten Angaben, um deine Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vertragsbezogenen Anfragen, sonst Art. 6 Abs. 1 lit. f DSGVO. Ich lösche diese Angaben, sobald die Anfrage erledigt ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
 
   <h3>8 · Verschlüsselung</h3>
-  <p>Sofern die Seite über eine Adresse mit „https“ aufgerufen wird, ist die Verbindung durch TLS verschlüsselt. Du erkennst das am Schlosssymbol in der Adresszeile deines Browsers.</p>
+  <p>Die Seite wird ausschließlich über eine mit TLS verschlüsselte Verbindung ausgeliefert; Vercel erzwingt das automatisch. Du erkennst es am „https“ und am Schlosssymbol in der Adresszeile deines Browsers.</p>
 
   <h3>9 · Deine Rechte</h3>
   <p>Du hast jederzeit das Recht auf</p>
@@ -3899,35 +3908,20 @@ Nur die Beobachtung.</pre>
   <p><b>Recht.</b> Angaben zu Datenschutz, KI-Verordnung und Werberecht: Stand August 2026, ohne Gewähr und ohne Rechtsberatung. Die Fristen der EU-KI-Verordnung wurden seit 2024 mehrfach angepasst; vor verbindlichen Entscheidungen den aktuellen Stand prüfen oder prüfen lassen. Für den konkreten Einzelfall bleiben Anwalt, Steuerberater und Datenschutzbeauftragter zuständig.</p>
 
   <!-- ==================================================================
-       RECHTE UND KONTAKT AUSFÜLLEN
+       RECHTE UND KONTAKT
+       Aktueller Stand: kostenlose Erprobung, kein Verkauf, kein Gewerbe.
+       Der Absatz unten ist darauf abgestimmt.
 
-       Die Voreinstellung unten geht vom Verkauf an Einzelkunden aus, also
-       von der engsten Variante. Passt das nicht, ersetze den Satz nach dem
-       Kontakt durch eine der folgenden Fassungen:
-
-       INTERN IM EIGENEN BETRIEB
-       Dieses Programm ist eine interne Arbeitsunterlage von [Betrieb] und
-       nicht zur Weitergabe an Dritte bestimmt.
-
-       TEILNEHMERUNTERLAGE ZU EINEM WORKSHOP
-       Diese Unterlage gehört zum Workshop „[Titel]" vom [Datum] und ist für
-       die Teilnehmenden bestimmt. Weitergabe an Dritte bitte nur nach
-       Rücksprache.
-
-       FREI WEITERGEBBAR
-       Diese Unterlage darf unverändert und unter Nennung der Quelle frei
-       weitergegeben werden. Bearbeitung und Wiederverkauf sind ausgenommen.
-
-       HINWEIS ZUM IMPRESSUM
-       Sobald die Seite geschäftlich online erreichbar ist, greift in
-       Deutschland in aller Regel die Impressumspflicht nach § 5 DDG
-       (früher § 5 TMG). Welche Angaben genau nötig sind, hängt an der
-       Rechtsform. Das ist keine Rechtsberatung — im Zweifel kurz prüfen
-       lassen, es kostet wenig und Abmahnungen sind hier häufig.
+       SOBALD VERKAUFT WIRD, ersetze den Satz nach dem Kontakt durch:
+         Dieses Programm ist für die Nutzung im erwerbenden Betrieb
+         bestimmt. Weitergabe, Veröffentlichung und Wiederverkauf –
+         auch in bearbeiteter Form – sind nicht gestattet.
+       Dann zusätzlich prüfen:
+         * Gewerbeanmeldung und USt-Abschnitt im Impressum
+         * Widerrufsbelehrung und AGB, wenn an Verbraucher verkauft wird
+         * § 36 VSBG, sobald mehr als zehn Beschäftigte
        ================================================================== -->
-  <p><b>Rechte und Kontakt.</b> © 2026 <span class="ausfuellen">[Betrieb oder Name]</span> · <span class="ausfuellen">[E-Mail oder Anschrift]</span>. Dieses Programm ist für die Nutzung im erwerbenden Betrieb bestimmt. Weitergabe, Veröffentlichung und Wiederverkauf – auch in bearbeiteter Form – sind nicht gestattet. Für Team- und Mehrfachnutzung sprich uns an. Alle genannten Produkt- und Firmennamen gehören ihren jeweiligen Inhabern.</p>
-
-  <p><b>Rechtliches.</b> <a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutzerklärung</a></p>
+  <p><b>Rechte und Kontakt.</b> © 2026 Ole Bulling · <a href="mailto:bullingole@gmail.com">bullingole@gmail.com</a>. Dieses Programm ist eine Testfassung und wird kostenlos zur Verfügung gestellt. Ihr dürft sie im eigenen Betrieb frei nutzen und intern weitergeben. Eine Veröffentlichung, Weitergabe an Betriebe außerhalb des Tests oder ein Wiederverkauf ist nicht gestattet. Rückmeldungen sind ausdrücklich erwünscht – auch unbequeme. Alle genannten Produkt- und Firmennamen gehören ihren jeweiligen Inhabern. <a href="#impressum">Impressum</a> · <a href="#datenschutz">Datenschutzerklärung</a></p>
 </footer>
 
 </div>
