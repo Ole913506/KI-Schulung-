@@ -94,7 +94,7 @@
      =================================================================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    Design-Tokens — Riso-Druck-Anmutung, zwei Volltonfarben
@@ -243,8 +243,10 @@ code{font-family:var(--mono); font-size:.86em; background:rgba(15,92,74,.10); pa
 .nav-link.hervor{background:var(--leit-flaeche); color:#fff; margin-bottom:2px}
 .nav-link.hervor b{color:var(--gelb)}
 .nav-link.hervor:hover{background:var(--tinte); color:#fff}
-.nav-link.hervor small{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em;
-  text-transform:uppercase; color:rgba(255,255,255,.72); margin-top:3px}
+/* Untertitel in Navigationslinks — gilt für alle, nicht nur den hervorgehobenen */
+.nav-link small{display:block; font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--grau-hell); margin-top:3px}
+.nav-link.hervor small{color:rgba(255,255,255,.72)}
 .uebe-knopf{
   display:inline-flex; align-items:center; gap:9px; text-decoration:none;
   font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
@@ -412,8 +414,9 @@ h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
   border-radius:4px; padding:8px 10px; line-height:1.55}
 .v-zeile textarea{resize:vertical; min-height:56px}
 .v-zeile input:focus, .v-zeile textarea:focus{outline:2px solid var(--leit); outline-offset:1px}
-.v-fest{margin:0 0 12px; padding:10px 12px; border-left:3px solid var(--leit);
-  background:var(--leit-flaeche-hell, transparent); font-size:13.5px; color:var(--grau); line-height:1.6}
+.v-fest{margin:0 0 12px; padding:11px 13px; background:var(--papier-tief);
+  border-radius:0 4px 4px 0; font-size:13.5px; color:var(--grau); line-height:1.6;
+  border-left-width:3px; border-left-style:solid; border-left-color:var(--leit)}
 .v-unterschrift{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:20px;
   padding-top:6px}
 .v-unterschrift div{border-top:1px solid var(--tinte); padding-top:6px;
@@ -928,14 +931,14 @@ details > div > *:last-child{margin-bottom:0}
     <a class="nav-link" href="#m04" data-rolle="chef"><b>04</b><span>Das Unternehmensgedächtnis</span></a>
     <a class="nav-link" href="#m05" data-rolle="chef"><b>05</b><span>Die fünf Automatisierungsstufen</span></a>
     <div class="nav-gruppe"><span data-rolle="chef">Der Betrieb</span><span data-rolle="ma">Deine Arbeit</span></div>
-    <a class="nav-link" href="#m06" data-rolle="chef"><b>06</b><span>Anfragen &amp; Angebote</span></a>
-    <a class="nav-link" href="#m07"><b>07</b><span>Kundenkommunikation &amp; Postfach</span></a>
+    <a class="nav-link" href="#m06" data-rolle="chef"><b>06</b><span>Anfragen und Angebote</span></a>
+    <a class="nav-link" href="#m07"><b>07</b><span>Kundenkommunikation und Postfach</span></a>
     <a class="nav-link" href="#m08" data-rolle="chef"><b>08</b><span>Rechnungen, Zahlungen, Mahnwesen</span></a>
     <a class="nav-link" href="#m09"><b>09</b><span>Verträge, Ausschreibungen, Bescheide</span></a>
     <a class="nav-link" href="#m10" data-rolle="chef"><b>10</b><span>Kalkulation, Preise, Buchhaltung</span></a>
     <a class="nav-link" href="#m11" data-rolle="chef"><b>11</b><span>Personal: Anzeige bis Einarbeitung</span></a>
     <a class="nav-link" href="#m12" data-rolle="chef"><b>12</b><span>Marketing ohne Agentur</span></a>
-    <a class="nav-link" href="#m13" data-rolle="chef"><b>13</b><span>Vertrieb &amp; Nachfassen</span></a>
+    <a class="nav-link" href="#m13" data-rolle="chef"><b>13</b><span>Vertrieb und Nachfassen</span></a>
     <a class="nav-link" href="#m14"><b>14</b><span>Prozesse dokumentieren</span></a>
     <a class="nav-link" href="#m15" data-rolle="chef"><b>15</b><span>Deine digitalen Mitarbeiter</span></a>
     <div class="nav-gruppe">Absicherung</div>
@@ -3840,9 +3843,9 @@ Nur die Beobachtung.</pre>
 <!-- ========================= VORLAGEN ========================= -->
 <section class="vollton" id="vorlagen" data-rolle="chef">
   <div class="bahn">
-    <div class="kicker" style="color:rgba(255,255,255,.65)">Werkzeugkasten</div>
+    <div class="kicker">Werkzeugkasten</div>
     <h2>Fertige Vorlagen zum Ausfüllen</h2>
-    <p>Fünf Dokumente, die in den Modulen als nötig benannt werden – hier nicht als Anleitung, sondern fertig. Du füllst die Felder aus, der Rest steht schon da. Alles bleibt in deinem Browser: kopieren, als Textdatei speichern oder direkt ausdrucken.</p>
+    <p style="max-width:56ch">Fünf Dokumente, die in den Modulen als nötig benannt werden – hier nicht als Anleitung, sondern fertig. Du füllst die Felder aus, der Rest steht schon da. Alles bleibt in deinem Browser: kopieren, als Textdatei speichern oder direkt ausdrucken.</p>
   </div>
 </section>
 
@@ -3852,7 +3855,7 @@ Nur die Beobachtung.</pre>
     <div class="vorlage-kopf">
       <span class="nr">Vorlage 1 · eine Seite</span>
       <h3>Nutzungsregel KI im Betrieb</h3>
-      <p>Das Blatt, das jede Mitarbeiterin bekommt. Es beantwortet die drei Fragen, die sonst jeder anders beantwortet: Welches Werkzeug, welche Daten, wer entscheidet. Gehört zu Modul 16.</p>
+      <p>Das Blatt, das alle im Betrieb bekommen. Es beantwortet die drei Fragen, die sonst jeder anders beantwortet: Welches Werkzeug, welche Daten, wer entscheidet. Gehört zu Modul 16.</p>
     </div>
     <div class="vorlage-leib">
       <div class="v-block">
