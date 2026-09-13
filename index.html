@@ -385,6 +385,61 @@ h2:hover .anker,h3:hover .anker,.anker:focus{opacity:1}
    Sind alle gefüllt, kann die Regel .platzhalter{display:none} in
    den Stilblock, falls doch einer übrig bleibt. */
 /* ============================================================
+   AUSFÜLLBARE VORLAGEN
+   Fertige Dokumente statt Anleitungen. Eingaben liegen im
+   localStorage, verlassen das Gerät nicht. Jede Vorlage lässt
+   sich kopieren, als Textdatei speichern und drucken.
+   ============================================================ */
+.vorlage{margin:30px 0; border:1.5px solid var(--linie-stark); border-radius:var(--r);
+  background:var(--karte); overflow:hidden}
+.vorlage-kopf{padding:20px 22px 16px; background:var(--papier-tief);
+  border-bottom:1.5px solid var(--linie-stark)}
+.vorlage-kopf .nr{font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--akzent-text); display:block; margin-bottom:6px}
+.vorlage-kopf h3{margin:0 0 6px; font-size:20px; letter-spacing:-.02em}
+.vorlage-kopf p{margin:0; font-size:14px; color:var(--grau); max-width:62ch}
+.vorlage-leib{padding:20px 22px}
+.v-block{margin:0 0 22px}
+.v-block:last-child{margin-bottom:0}
+.v-block h4{margin:0 0 10px; font-family:var(--mono); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--leit-tief); font-weight:700}
+.v-zeile{display:block; margin:0 0 12px}
+.v-zeile > span{display:block; font-size:13.5px; font-weight:600; margin-bottom:4px}
+.v-zeile > em{display:block; font-style:normal; font-size:12.5px; color:var(--grau-hell);
+  margin-bottom:5px; line-height:1.5}
+.v-zeile input, .v-zeile textarea{width:100%; font-family:var(--body); font-size:14.5px;
+  color:var(--tinte); background:var(--papier); border:1px solid var(--linie-stark);
+  border-radius:4px; padding:8px 10px; line-height:1.55}
+.v-zeile textarea{resize:vertical; min-height:56px}
+.v-zeile input:focus, .v-zeile textarea:focus{outline:2px solid var(--leit); outline-offset:1px}
+.v-fest{margin:0 0 12px; padding:10px 12px; border-left:3px solid var(--leit);
+  background:var(--leit-flaeche-hell, transparent); font-size:13.5px; color:var(--grau); line-height:1.6}
+.v-unterschrift{display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:20px;
+  padding-top:6px}
+.v-unterschrift div{border-top:1px solid var(--tinte); padding-top:6px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--grau)}
+.vorlage-fuss{display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  padding:14px 22px; border-top:1px solid var(--linie); background:var(--papier-tief)}
+.vorlage-fuss .stand{margin:0; flex:1 1 100%}
+.knopf.klein{padding:8px 14px; font-size:12px}
+@media (max-width:640px){
+  .v-unterschrift{grid-template-columns:1fr; gap:20px}
+}
+@media print{
+  .vorlage{page-break-inside:avoid; border-color:#999}
+  body.nur-vorlage .modul:not(#vorlagen-liste),
+  body.nur-vorlage .auftakt,
+  body.nur-vorlage .vollton,
+  body.nur-vorlage .fuss{display:none}
+  .vorlage-kopf,.vorlage-fuss{background:none}
+  .vorlage-fuss button{display:none}
+  .v-zeile input,.v-zeile textarea{border:0; border-bottom:1px solid #999; border-radius:0;
+    background:none; padding-left:0}
+  .v-unterschrift div{border-top-color:#000}
+}
+
+/* ============================================================
    ROLLENANSICHT — Chef / Mitarbeiter
    Ohne JavaScript ist die Chef-Ansicht sichtbar; das ist die
    vollständige. Mitarbeiter-Inhalte sind dann ausgeblendet.
@@ -888,6 +943,7 @@ details > div > *:last-child{margin-bottom:0}
     <a class="nav-link" href="#m17"><b>17</b><span>Qualität, Kontrolle, Grenzen</span></a>
     <div class="nav-gruppe">Werkzeugkasten</div>
     <a class="nav-link" href="#pfade" data-rolle="chef"><b>›</b><span>Welche Module für welche Branche</span></a>
+    <a class="nav-link" href="#vorlagen" data-rolle="chef"><b>›</b><span>Vorlagen zum Ausfüllen<small>5 fertige Dokumente</small></span></a>
     <a class="nav-link" href="#bibliothek"><b>›</b><span>Prompt-Bibliothek</span></a>
     <a class="nav-link" href="#plan" data-rolle="chef"><b>›</b><span>30-Tage-Plan</span></a>
     <a class="nav-link" href="#test"><b>›</b><span>Selbsttest</span></a>
@@ -1726,6 +1782,11 @@ findest. Keine allgemeinen Stilempfehlungen.</pre>
     <p>Wie ein eingerichtetes Projekt aussieht: hinterlegte Dateien links, Dauervorgaben im Anweisungsfeld.</p>
     <em>So füllst du ihn: Richte dein eigenes Betriebsprojekt ein und fotografiere es ab, sobald die ersten drei Dateien darin liegen. Echte Preise vorher schwärzen.<br>
     Die genaue Anleitung steht im HTML-Kommentar direkt über diesem Kasten.</em>
+  </div>
+
+  <div class="merk">
+    <span class="etikett">Fertige Vorlage vorhanden</span>
+    <p>Du musst das Betriebsprofil und den Tonfall-Leitfaden nicht von Null schreiben. Unter <a href="#vorlagen">Vorlagen zum Ausfüllen</a> stehen beide als fertige Dokumente mit allen Feldern – ausfüllen, kopieren, in den Wissensspeicher legen.</p>
   </div>
 
   <h3>Die Projektanweisung</h3>
@@ -2933,6 +2994,11 @@ PRÜFPUNKT    Was schaue ich mir bei jedem Lauf an,
              bevor ich es verwende?</pre>
   </div>
 
+  <div class="merk">
+    <span class="etikett">Fertige Vorlage vorhanden</span>
+    <p>Für die erste Rolle gibt es eine fertige Stellenbeschreibung mit allen vier Angaben und den Standardgrenzen: <a href="#vorlagen">Vorlagen zum Ausfüllen</a>, Vorlage 5.</p>
+  </div>
+
   <h3>Acht digitale Mitarbeiter, die sich in kleinen Betrieben lohnen</h3>
   <p>Jeder davon ist mehrfach im Programm vorbereitet worden. Fang mit einem an, nicht mit acht.</p>
   <div class="pfade">
@@ -3108,6 +3174,11 @@ PRÜFPUNKT    Was schaue ich mir bei jedem Lauf an,
       </svg>
       <figcaption><b>Abbildung 7 · Die vier Fragen vor jeder Eingabe</b>Kurz genug, um sie neben den Bildschirm zu hängen – und deshalb die einzige Prüfung, die im Alltag tatsächlich stattfindet.</figcaption>
     </figure>
+  <div class="merk">
+    <span class="etikett">Fertige Vorlage vorhanden</span>
+    <p>Die Nutzungsregel und den Einweisungsnachweis nach Artikel 4 musst du nicht selbst entwerfen. Beide stehen fertig unter <a href="#vorlagen">Vorlagen zum Ausfüllen</a> – der Nachweis zum Ausdrucken und Unterschreiben.</p>
+  </div>
+
   <h3>Die Nutzungsregel für deinen Betrieb</h3>
   <p>Eine Seite, die du an alle gibst und unterschreiben lässt. Sie erfüllt gleichzeitig einen Teil der Nachweispflicht aus Artikel 4.</p>
   <div class="prompt">
@@ -3766,6 +3837,287 @@ Nur die Beobachtung.</pre>
   </table></div>
 </section>
 
+<!-- ========================= VORLAGEN ========================= -->
+<section class="vollton" id="vorlagen" data-rolle="chef">
+  <div class="bahn">
+    <div class="kicker" style="color:rgba(255,255,255,.65)">Werkzeugkasten</div>
+    <h2>Fertige Vorlagen zum Ausfüllen</h2>
+    <p>Fünf Dokumente, die in den Modulen als nötig benannt werden – hier nicht als Anleitung, sondern fertig. Du füllst die Felder aus, der Rest steht schon da. Alles bleibt in deinem Browser: kopieren, als Textdatei speichern oder direkt ausdrucken.</p>
+  </div>
+</section>
+
+<section class="modul" id="vorlagen-liste" data-rolle="chef" style="border-top:0; padding-top:30px">
+
+  <div class="vorlage" id="v-nutzung" data-titel="Nutzungsregel KI im Betrieb">
+    <div class="vorlage-kopf">
+      <span class="nr">Vorlage 1 · eine Seite</span>
+      <h3>Nutzungsregel KI im Betrieb</h3>
+      <p>Das Blatt, das jede Mitarbeiterin bekommt. Es beantwortet die drei Fragen, die sonst jeder anders beantwortet: Welches Werkzeug, welche Daten, wer entscheidet. Gehört zu Modul 16.</p>
+    </div>
+    <div class="vorlage-leib">
+      <div class="v-block">
+        <h4>Kopf</h4>
+        <label class="v-zeile"><span>Betrieb</span><input data-v="nu-betrieb" type="text" placeholder="Name des Betriebs"></label>
+        <label class="v-zeile"><span>Gilt ab</span><input data-v="nu-ab" type="text" placeholder="Datum"></label>
+        <label class="v-zeile"><span>Verantwortlich für Fragen</span><input data-v="nu-verant" type="text" placeholder="Name, Durchwahl"></label>
+      </div>
+
+      <div class="v-block">
+        <h4>1 · Womit wir arbeiten</h4>
+        <label class="v-zeile"><span>Freigegebene Werkzeuge</span>
+          <em>Nur was hier steht, ist erlaubt. Andere Dienste bitte vorher ansprechen.</em>
+          <textarea data-v="nu-werkzeuge" rows="2" placeholder="z. B. Claude über den Betriebszugang"></textarea></label>
+        <label class="v-zeile"><span>Wo der Zugang liegt</span>
+          <textarea data-v="nu-zugang" rows="2" placeholder="Wie kommt jemand an den Zugang, an wen wendet man sich"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>2 · Was hinein darf</h4>
+        <p class="v-fest">Grundregel: Gib nur weiter, was die Aufgabe wirklich braucht. Namen, Adressen und Kundennummern ersetzt du durch Platzhalter wie [Kunde] oder [Ort]. Ein Angebotstext wird dadurch nicht schlechter.</p>
+        <label class="v-zeile"><span>Ausdrücklich erlaubt</span>
+          <textarea data-v="nu-erlaubt" rows="3" placeholder="z. B. eigene Textentwürfe, anonymisierte Anfragen, öffentliche Unterlagen"></textarea></label>
+        <label class="v-zeile"><span>Nur nach Rücksprache</span>
+          <textarea data-v="nu-ruecksprache" rows="3" placeholder="z. B. Verträge Dritter, vollständige Kundenakten"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>3 · Was nie hinein darf</h4>
+        <p class="v-fest">Gesundheitsangaben jeder Art · Daten über Kolleginnen und Kollegen (Beurteilungen, Krankheitstage, Gehalt) · Bewerbungsunterlagen · Zugangsdaten und Passwörter · alles, was jemand ausdrücklich als vertraulich bezeichnet hat.</p>
+        <label class="v-zeile"><span>Zusätzlich bei uns tabu</span>
+          <textarea data-v="nu-tabu" rows="2" placeholder="Branchenspezifisches ergänzen, sonst leer lassen"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>4 · Wer freigibt</h4>
+        <p class="v-fest">Was nach außen geht – an Kunden, Behörden, Lieferanten – prüft ein Mensch, bevor es rausgeht. Preise, Termine und Zusagen kommen immer aus unseren Systemen, nie aus einem Chatfenster. „Das hat die KI so geschrieben“ ist keine Begründung.</p>
+        <label class="v-zeile"><span>Wer darf ohne Rückfrage versenden</span>
+          <textarea data-v="nu-freigabe" rows="2" placeholder="Rollen oder Namen"></textarea></label>
+        <label class="v-zeile"><span>Was immer eine zweite Person sieht</span>
+          <textarea data-v="nu-zweitblick" rows="2" placeholder="z. B. Reklamationen, alles mit Fristen"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>5 · Wenn etwas schiefgeht</h4>
+        <p class="v-fest">Fehler bitte sofort melden, nicht stillschweigend ausbügeln. Wer einen Fehler meldet, bekommt keinen Ärger – wer ihn verschweigt, macht daraus ein größeres Problem.</p>
+        <label class="v-zeile"><span>Meldeweg</span>
+          <input data-v="nu-melde" type="text" placeholder="An wen, wie schnell"></label>
+      </div>
+    </div>
+    <div class="vorlage-fuss">
+      <button class="knopf klein v-kopieren" type="button">Kopieren</button>
+      <button class="knopf klein leer v-laden" type="button">Als Textdatei speichern</button>
+      <button class="knopf klein leer v-drucken" type="button">Drucken</button>
+      <button class="knopf klein leer v-leeren" type="button">Felder leeren</button>
+    </div>
+  </div>
+
+  <div class="vorlage" id="v-einweisung" data-titel="Einweisung KI-Kompetenz — Nachweis">
+    <div class="vorlage-kopf">
+      <span class="nr">Vorlage 2 · zum Ausdrucken und Unterschreiben</span>
+      <h3>Einweisung KI-Kompetenz — Nachweis</h3>
+      <p>Artikel 4 der KI-Verordnung verlangt seit Februar 2025, dass Beschäftigte, die mit KI arbeiten, ausreichend eingewiesen sind. Nachweisen muss das der Betrieb. Dieses Blatt ist der Nachweis – ausdrucken, gemeinsam durchgehen, unterschreiben, ablegen.</p>
+    </div>
+    <div class="vorlage-leib">
+      <div class="v-block">
+        <h4>Angaben</h4>
+        <label class="v-zeile"><span>Betrieb</span><input data-v="ew-betrieb" type="text"></label>
+        <label class="v-zeile"><span>Eingewiesene Person</span><input data-v="ew-person" type="text" placeholder="Name"></label>
+        <label class="v-zeile"><span>Datum der Einweisung</span><input data-v="ew-datum" type="text"></label>
+        <label class="v-zeile"><span>Einweisung durch</span><input data-v="ew-durch" type="text" placeholder="Name"></label>
+        <label class="v-zeile"><span>Dauer und Form</span><input data-v="ew-form" type="text" placeholder="z. B. 60 Minuten, gemeinsam am Bildschirm"></label>
+      </div>
+
+      <div class="v-block">
+        <h4>Inhalte der Einweisung</h4>
+        <p class="v-fest">Besprochen wurden: (1) Wie das System arbeitet und warum es überzeugend klingende Fehler erzeugt. (2) Dass Ergebnisse Entwürfe sind und die Verantwortung beim Menschen bleibt. (3) Welche Daten eingegeben werden dürfen und welche nie. (4) Die Nutzungsregel des Betriebs. (5) An wen man sich bei Unsicherheit wendet und wie Fehler gemeldet werden.</p>
+        <label class="v-zeile"><span>Ergänzend besprochen</span>
+          <textarea data-v="ew-ergaenzend" rows="3" placeholder="Betriebsspezifische Punkte, verwendete Unterlagen, sonst leer lassen"></textarea></label>
+        <label class="v-zeile"><span>Verwendete Unterlage</span>
+          <input data-v="ew-unterlage" type="text" placeholder="z. B. dieses Programm, Module 02, 03, 16, 17"></label>
+      </div>
+
+      <div class="v-block">
+        <h4>Bestätigung</h4>
+        <p class="v-fest">Die eingewiesene Person bestätigt, die Inhalte verstanden zu haben und Rückfragen stellen zu können. Der Betrieb bestätigt, die Einweisung durchgeführt zu haben.</p>
+        <div class="v-unterschrift">
+          <div>Unterschrift eingewiesene Person</div>
+          <div>Unterschrift Betrieb</div>
+        </div>
+      </div>
+    </div>
+    <div class="vorlage-fuss">
+      <p class="stand"><b>Hinweis</b><span>Dieses Blatt ist eine praktische Hilfe, keine Rechtsberatung. Ob die Einweisung im Einzelfall ausreicht, hängt davon ab, womit im Betrieb tatsächlich gearbeitet wird.</span></p>
+      <button class="knopf klein v-kopieren" type="button">Kopieren</button>
+      <button class="knopf klein leer v-laden" type="button">Als Textdatei speichern</button>
+      <button class="knopf klein leer v-drucken" type="button">Drucken</button>
+      <button class="knopf klein leer v-leeren" type="button">Felder leeren</button>
+    </div>
+  </div>
+
+  <div class="vorlage" id="v-betrieb" data-titel="Betriebsprofil für den Wissensspeicher">
+    <div class="vorlage-kopf">
+      <span class="nr">Vorlage 3 · Projekt-Datei</span>
+      <h3>Betriebsprofil für den Wissensspeicher</h3>
+      <p>Die erste und wichtigste Datei im Projekt. Einmal ausgefüllt, muss sie nie wieder erklärt werden – und jedes Ergebnis wird spürbar besser. Gehört zu Modul 04.</p>
+    </div>
+    <div class="vorlage-leib">
+      <div class="v-block">
+        <h4>1 · Was wir machen</h4>
+        <label class="v-zeile"><span>In einem Satz</span>
+          <em>So, wie du es einem Fremden am Tresen erklären würdest.</em>
+          <textarea data-v="bp-satz" rows="2"></textarea></label>
+        <label class="v-zeile"><span>Unsere Leistungen</span>
+          <em>Was ihr regelmäßig macht. Ruhig aufzählen.</em>
+          <textarea data-v="bp-leistungen" rows="4"></textarea></label>
+        <label class="v-zeile"><span>Was wir ausdrücklich nicht machen</span>
+          <em>Der Teil, den fast alle vergessen – und der die meisten Fehlentwürfe verhindert.</em>
+          <textarea data-v="bp-nicht" rows="3"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>2 · Für wen</h4>
+        <label class="v-zeile"><span>Typische Kunden</span>
+          <textarea data-v="bp-kunden" rows="3" placeholder="Privat oder gewerblich, Größe, Region"></textarea></label>
+        <label class="v-zeile"><span>Einzugsgebiet</span><input data-v="bp-gebiet" type="text"></label>
+        <label class="v-zeile"><span>Was Kunden bei uns anders finden als beim Wettbewerb</span>
+          <em>Ehrlich bleiben. „Qualität und Service“ hilft niemandem.</em>
+          <textarea data-v="bp-anders" rows="3"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>3 · Zahlen und Rahmen</h4>
+        <label class="v-zeile"><span>Größe</span><input data-v="bp-groesse" type="text" placeholder="Beschäftigte, seit wann"></label>
+        <label class="v-zeile"><span>Wie wir arbeiten</span>
+          <textarea data-v="bp-arbeit" rows="3" placeholder="Auftragsannahme, typische Vorlaufzeit, Zahlungsbedingungen"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>4 · Grenzen</h4>
+        <p class="v-fest">Diese Angaben kommen immer aus unseren eigenen Systemen und dürfen nie ergänzt oder geschätzt werden: Preise, Mengen, Liefertermine, Zusagen, rechtliche Erklärungen. Bei fehlenden Angaben nachfragen statt raten.</p>
+        <label class="v-zeile"><span>Weitere Grenzen für unseren Betrieb</span>
+          <textarea data-v="bp-grenzen" rows="2"></textarea></label>
+      </div>
+    </div>
+    <div class="vorlage-fuss">
+      <button class="knopf klein v-kopieren" type="button">Kopieren</button>
+      <button class="knopf klein leer v-laden" type="button">Als Textdatei speichern</button>
+      <button class="knopf klein leer v-drucken" type="button">Drucken</button>
+      <button class="knopf klein leer v-leeren" type="button">Felder leeren</button>
+    </div>
+  </div>
+
+  <div class="vorlage" id="v-tonfall" data-titel="Tonfall-Leitfaden">
+    <div class="vorlage-kopf">
+      <span class="nr">Vorlage 4 · Projekt-Datei</span>
+      <h3>Tonfall-Leitfaden</h3>
+      <p>Damit Entwürfe nach eurem Betrieb klingen und nicht nach Textbaustein. Der schnellste Weg: drei eigene Texte hochladen und daraus ableiten lassen – dann hier hineinschreiben und korrigieren. Gehört zu Modul 04.</p>
+    </div>
+    <div class="vorlage-leib">
+      <div class="v-block">
+        <h4>1 · Anrede und Form</h4>
+        <label class="v-zeile"><span>Wie wir Kunden ansprechen</span><input data-v="tf-anrede" type="text" placeholder="Sie oder du, mit oder ohne Titel"></label>
+        <label class="v-zeile"><span>Wie wir uns verabschieden</span><input data-v="tf-gruss" type="text" placeholder="Standardgruß"></label>
+        <label class="v-zeile"><span>Übliche Länge einer Kundenmail</span><input data-v="tf-laenge" type="text" placeholder="z. B. höchstens 150 Wörter"></label>
+      </div>
+
+      <div class="v-block">
+        <h4>2 · Wie wir klingen</h4>
+        <label class="v-zeile"><span>In drei Wörtern</span>
+          <em>z. B. nüchtern, direkt, freundlich. Keine Werbewörter.</em>
+          <input data-v="tf-drei" type="text"></label>
+        <label class="v-zeile"><span>Ein Satz, der typisch für uns ist</span>
+          <em>Nimm einen echten Satz aus einer eurer Mails.</em>
+          <textarea data-v="tf-beispiel" rows="2"></textarea></label>
+        <label class="v-zeile"><span>Wörter und Wendungen, die wir nie verwenden</span>
+          <em>Der wirksamste Teil dieser Datei.</em>
+          <textarea data-v="tf-nie" rows="3" placeholder="z. B. innovativ, Lösungen aus einer Hand, leider müssen wir Ihnen mitteilen"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>3 · Fachsprache</h4>
+        <label class="v-zeile"><span>Fachbegriffe, die Kunden bei uns verstehen</span>
+          <textarea data-v="tf-fach-ja" rows="2"></textarea></label>
+        <label class="v-zeile"><span>Fachbegriffe, die wir immer erklären oder ersetzen</span>
+          <textarea data-v="tf-fach-nein" rows="2"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>4 · Heikle Lagen</h4>
+        <label class="v-zeile"><span>Bei einer Beschwerde klingen wir</span>
+          <textarea data-v="tf-beschwerde" rows="2" placeholder="z. B. sachlich, ohne Floskeln, Sache im ersten Satz"></textarea></label>
+        <label class="v-zeile"><span>Bei einer Absage klingen wir</span>
+          <textarea data-v="tf-absage" rows="2"></textarea></label>
+        <label class="v-zeile"><span>Beim Thema Preis klingen wir</span>
+          <textarea data-v="tf-preis" rows="2" placeholder="z. B. erklärend, nicht rechtfertigend"></textarea></label>
+      </div>
+    </div>
+    <div class="vorlage-fuss">
+      <button class="knopf klein v-kopieren" type="button">Kopieren</button>
+      <button class="knopf klein leer v-laden" type="button">Als Textdatei speichern</button>
+      <button class="knopf klein leer v-drucken" type="button">Drucken</button>
+      <button class="knopf klein leer v-leeren" type="button">Felder leeren</button>
+    </div>
+  </div>
+
+  <div class="vorlage" id="v-rolle" data-titel="Stellenbeschreibung digitaler Mitarbeiter">
+    <div class="vorlage-kopf">
+      <span class="nr">Vorlage 5 · eine Rolle, vier Wochen</span>
+      <h3>Stellenbeschreibung: digitaler Mitarbeiter</h3>
+      <p>Vier Angaben machen aus einer Idee eine Rolle. Die vierte – was sie ausdrücklich nicht tut – wird am häufigsten vergessen und ist die wichtigste. Gehört zu Modul 15.</p>
+    </div>
+    <div class="vorlage-leib">
+      <div class="v-block">
+        <h4>1 · Was sie tut</h4>
+        <label class="v-zeile"><span>Name der Rolle</span><input data-v="ro-name" type="text" placeholder="z. B. Wochenübersicht"></label>
+        <label class="v-zeile"><span>Aufgabe in einem Satz</span>
+          <em>Ein Verb, ein Ergebnis. Wenn du zwei Sätze brauchst, sind es zwei Rollen.</em>
+          <textarea data-v="ro-aufgabe" rows="2"></textarea></label>
+        <label class="v-zeile"><span>Ergebnis: Form, Länge, Ablageort</span>
+          <textarea data-v="ro-ergebnis" rows="2"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>2 · Was sie dafür braucht</h4>
+        <label class="v-zeile"><span>Quellen</span>
+          <em>Dateien, Verbindungen, Exporte. Alles einzeln benennen.</em>
+          <textarea data-v="ro-quellen" rows="3"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>3 · Wann sie arbeitet</h4>
+        <label class="v-zeile"><span>Zeitpunkt</span><input data-v="ro-zeit" type="text" placeholder="z. B. montags 6 Uhr"></label>
+        <label class="v-zeile"><span>Wie oft ich es vorher von Hand gemacht habe</span>
+          <em>Faustregel: mindestens zehnmal. Darunter automatisierst du deinen eigenen Irrtum.</em>
+          <input data-v="ro-handlaeufe" type="text"></label>
+      </div>
+
+      <div class="v-block">
+        <h4>4 · Was sie ausdrücklich nicht tut</h4>
+        <p class="v-fest">Grundsätzlich nie: etwas versenden, etwas freigeben, etwas zusagen, Beträge berechnen, Menschen beurteilen. Bei fehlenden oder unvollständigen Quellen: Ergebnis trotzdem liefern und die Lücke oben benennen – niemals schätzen.</p>
+        <label class="v-zeile"><span>Zusätzliche Grenzen dieser Rolle</span>
+          <textarea data-v="ro-grenzen" rows="3"></textarea></label>
+      </div>
+
+      <div class="v-block">
+        <h4>5 · Verantwortung</h4>
+        <label class="v-zeile"><span>Diese Person liest das Ergebnis und entscheidet</span>
+          <em>Ein Name, keine Abteilung. Eine Rolle, deren Ergebnis niemand liest, ist schlechter als keine Rolle.</em>
+          <input data-v="ro-verant" type="text"></label>
+        <label class="v-zeile"><span>Abbruchkriterium</span>
+          <em>Woran erkenne ich, dass ich sie wieder abschalten sollte?</em>
+          <textarea data-v="ro-abbruch" rows="2"></textarea></label>
+      </div>
+    </div>
+    <div class="vorlage-fuss">
+      <button class="knopf klein v-kopieren" type="button">Kopieren</button>
+      <button class="knopf klein leer v-laden" type="button">Als Textdatei speichern</button>
+      <button class="knopf klein leer v-drucken" type="button">Drucken</button>
+      <button class="knopf klein leer v-leeren" type="button">Felder leeren</button>
+    </div>
+  </div>
+
+</section>
+
 <!-- ========================= IMPRESSUM ========================= -->
 <section class="modul" id="impressum">
   <div class="modul-kopf"><span class="modul-nr">§</span><h2>Impressum</h2></div>
@@ -4211,6 +4563,129 @@ Nur die Beobachtung.</pre>
       if (e.target.tagName === "INPUT") rechne();
     });
     rechne();
+  })();
+
+  /* ============================================================
+     Ausfüllbare Vorlagen
+     Eingaben liegen im localStorage unter "vorlagen" und verlassen
+     das Gerät nicht. Der Serialisierer läuft einmal durch die
+     Vorlage und baut daraus reinen Text — dieselbe Ausgabe für
+     Kopieren und für die Textdatei.
+     ============================================================ */
+  (function(){
+    var vorlagen = Array.prototype.slice.call(document.querySelectorAll(".vorlage"));
+    if (!vorlagen.length) return;
+
+    function felder(v){
+      return Array.prototype.slice.call(v.querySelectorAll("[data-v]"));
+    }
+
+    /* Eingaben wiederherstellen */
+    var gespeichert = lies().vorlagen || {};
+    vorlagen.forEach(function(v){
+      felder(v).forEach(function(f){
+        if (gespeichert[f.dataset.v] !== undefined) f.value = gespeichert[f.dataset.v];
+      });
+    });
+
+    /* Eingaben sichern — gesammelt, nicht pro Tastendruck */
+    var wartet = null;
+    document.addEventListener("input", function(e){
+      if (!e.target.dataset || !e.target.dataset.v) return;
+      clearTimeout(wartet);
+      wartet = setTimeout(function(){
+        var d = lies();
+        d.vorlagen = d.vorlagen || {};
+        vorlagen.forEach(function(v){
+          felder(v).forEach(function(f){ d.vorlagen[f.dataset.v] = f.value; });
+        });
+        schreib(d);
+      }, 400);
+    });
+
+    /* Vorlage als reinen Text ausgeben */
+    function alsText(v){
+      var zeilen = [];
+      var titel = v.dataset.titel || "Vorlage";
+      zeilen.push(titel.toUpperCase());
+      zeilen.push("=".repeat(Math.max(titel.length, 20)));
+      zeilen.push("");
+
+      Array.prototype.forEach.call(v.querySelectorAll(".v-block"), function(block){
+        var kopf = block.querySelector("h4");
+        if (kopf) { zeilen.push(""); zeilen.push(kopf.textContent.trim().toUpperCase()); zeilen.push("-".repeat(46)); }
+        Array.prototype.forEach.call(block.children, function(kind){
+          if (kind.classList.contains("v-fest")) {
+            zeilen.push(kind.textContent.trim());
+            zeilen.push("");
+          } else if (kind.classList.contains("v-zeile")) {
+            var bez = kind.querySelector("span");
+            var feld = kind.querySelector("[data-v]");
+            if (!bez || !feld) return;
+            var wert = (feld.value || "").trim();
+            zeilen.push(bez.textContent.trim() + ":");
+            zeilen.push(wert ? wert : "[offen]");
+            zeilen.push("");
+          } else if (kind.classList.contains("v-unterschrift")) {
+            zeilen.push("");
+            Array.prototype.forEach.call(kind.children, function(u){
+              zeilen.push("____________________________________");
+              zeilen.push(u.textContent.trim());
+              zeilen.push("");
+            });
+          }
+        });
+      });
+      zeilen.push("");
+      zeilen.push("-".repeat(46));
+      zeilen.push("Erstellt mit „Automatisiere dein Business mit Claude“.");
+      zeilen.push("Vor der Verwendung prüfen und an den eigenen Betrieb anpassen.");
+      // Mehr als eine Leerzeile hintereinander zusammenfassen
+      return zeilen.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
+    }
+
+    function dateiname(v){
+      return (v.dataset.titel || "vorlage")
+        .toLowerCase()
+        .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
+        .replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"") + ".txt";
+    }
+
+    document.addEventListener("click", function(e){
+      var v = e.target.closest(".vorlage");
+      if (!v) return;
+
+      if (e.target.classList.contains("v-kopieren")) {
+        kopiere(alsText(v), e.target);
+      }
+      else if (e.target.classList.contains("v-laden")) {
+        var blob = new Blob([alsText(v)], {type:"text/plain;charset=utf-8"});
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = dateiname(v);
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+      }
+      else if (e.target.classList.contains("v-drucken")) {
+        // Nur diese eine Vorlage drucken: alle anderen kurzzeitig ausblenden
+        var andere = vorlagen.filter(function(x){ return x !== v; });
+        andere.forEach(function(x){ x.dataset.druckAus = "1"; x.style.display = "none"; });
+        document.body.classList.add("nur-vorlage");
+        window.print();
+        setTimeout(function(){
+          andere.forEach(function(x){ delete x.dataset.druckAus; x.style.display = ""; });
+          document.body.classList.remove("nur-vorlage");
+        }, 300);
+      }
+      else if (e.target.classList.contains("v-leeren")) {
+        if (!window.confirm("Alle Felder dieser Vorlage leeren?")) return;
+        felder(v).forEach(function(f){ f.value = ""; });
+        var d = lies();
+        d.vorlagen = d.vorlagen || {};
+        felder(v).forEach(function(f){ delete d.vorlagen[f.dataset.v]; });
+        schreib(d);
+      }
+    });
   })();
 
   /* ---- Volltextsuche über Titel UND Inhalte ---- */
